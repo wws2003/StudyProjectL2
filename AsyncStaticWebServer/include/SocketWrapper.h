@@ -17,12 +17,11 @@ class SocketWrapper : public boost::enable_shared_from_this<SocketWrapper> {
 public:
 	SocketWrapper(IOServicePtr ioPtr);
 	Socket& getSocket();
-
-protected:
 	void work();
 
+protected:
 	void cb_read(ErrorCode error, std::size_t bytes_transferred );
-	void cb_write();
+	void cb_write(ErrorCode error, std::size_t bytes_transferred);
 
 	Socket socket;
 	boost::array<char, BUFFER_SIZE> buff;

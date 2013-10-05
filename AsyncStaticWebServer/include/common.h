@@ -13,6 +13,7 @@
 #include <boost/shared_ptr.hpp>
 
 typedef boost::shared_ptr<boost::asio::io_service> IOServicePtr;
+typedef boost::shared_ptr<boost::asio::io_service::work> IOServiceWorkPtr;
 typedef boost::asio::ip::tcp::acceptor TCPAcceptor;
 typedef boost::asio::ip::tcp::socket Socket;
 typedef boost::shared_ptr<boost::asio::ip::tcp::socket> SocketPtr;

@@ -17,14 +17,14 @@ public:
 	WebServer(int port, int number_of_threads);
 	void start();
 
-	void  cb_handleRequest(SocketWrapperPtr socketPtr, ErrorCode error);
+	void  onRequest(SocketWrapperPtr socketPtr, ErrorCode error);
 
 protected:
 	void listen();
 
 	std::deque<IOServicePtr> io_queue;
+	std::deque<IOServiceWorkPtr> io_work_queue;
 	TCPAcceptorPtr acceptor;
-	int port_number;
 };
 
 

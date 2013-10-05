@@ -8,10 +8,13 @@
 
 #include <iostream>
 #include "common.h"
+#include "WebServer.h"
 
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	int port = 8085, number_of_threads = 4;
+	WebServer webServer(port, number_of_threads);
+	webServer.start();
 	return 0;
 }
