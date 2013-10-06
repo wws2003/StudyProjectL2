@@ -10,11 +10,13 @@
 #include "SocketWrapper.h"
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 using namespace std;
 using namespace boost::asio::ip;
 
-WebServer::WebServer(int port, int number_of_threads) : 	acceptor(new TCPAcceptor(*io_queue.front(), tcp::endpoint(tcp::v4(), port))) {
+WebServer::WebServer(int port, int number_of_threads)  {
 	//Initialize service queue and assign work to each io_service instance, to prevent it from stopping
 	for(int i = 0; i < number_of_threads; i++) {
 		IOServicePtr ioPtr(new boost::asio::io_service());
@@ -22,6 +24,9 @@ WebServer::WebServer(int port, int number_of_threads) : 	acceptor(new TCPAccepto
 		IOServiceWorkPtr workPtr(new boost::asio::io_service::work(*ioPtr));
 		io_work_queue.push_back(workPtr);
 	}
+
+	TCPAcceptorPtr acceptorPtr(new TCPAcceptor(*io_queue.front(), tcp::endpoint(tcp::v4(), port)));
+	acceptor = acceptorPtr;
 }
 
 /**
@@ -29,7 +34,11 @@ WebServer::WebServer(int port, int number_of_threads) : 	acceptor(new TCPAccepto
  */
 void WebServer::start() {
 
-	//Doesn't work as no work instance exists, and more important, run() is a blocking method
+
+	//Start asynchronously listening on an io_service
+	listen();
+
+	//Below code doesn't work as no work instance exists, and more important, run() is a blocking method
 
 	/*for(deque<IOServicePtr>::iterator sIter = io_queue.begin(); sIter != io_queue.end(); sIter++) {
 		IOServicePtr io = *sIter;
@@ -45,24 +54,31 @@ void WebServer::start() {
 	}
 	io_thread_group.join_all();
 
-	//Start asynchronously listening on an io_service
-	listen();
 }
 
 void WebServer::listen() {
+	std::cout << "Start listening "
+				<< "  In thread  "
+				<< boost::this_thread::get_id()
+				<< "\n";
+
 	//Create (but do not open yet) a peer socket
 	SocketWrapperPtr newSocket(new SocketWrapper(io_queue.front()));
 
 	//Asynchronously accept request on that socket
-	acceptor->async_accept(newSocket->getSocket(), boost::bind(&WebServer::onRequest, this, newSocket, boost::asio::placeholders::error));
+	acceptor->async_accept(newSocket->getSocket(), boost::bind(&WebServer::onRequest, this, newSocket.get()->shared_from_this(), boost::asio::placeholders::error));
 }
 
 void WebServer::onRequest(SocketWrapperPtr socketPtr, ErrorCode error) {
+	std::cout << "Received a request, error message: "
+			<< error.message()
+			<< "  In thread  "
+			<< boost::this_thread::get_id()
+			<< "\n";
+
 	IOServicePtr top = io_queue.front();
 	if(!error) {
 		//Handle the request from the top of queue
-
-		//TODO Get the opened socket (connection) via the wrapper and do the main work asynchronously
 		socketPtr->work();
 	}
 
