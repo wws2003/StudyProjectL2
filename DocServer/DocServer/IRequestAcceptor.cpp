@@ -8,8 +8,8 @@
 
 #include "IRequestAcceptor.h"
 
-IRequestAcceptor::IRequestAcceptor(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory)
-    : m_pRequestProcessor(requestProcessorPtr), m_pRequestExecutorFactory(requestExecutorFactory) {
+IRequestAcceptor::IRequestAcceptor(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, int acceptPort)
+    : m_pRequestProcessor(requestProcessorPtr), m_pRequestExecutorFactory(requestExecutorFactory), m_AcceptPort(acceptPort) {
     
 }
 

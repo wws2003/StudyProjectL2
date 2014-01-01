@@ -19,7 +19,7 @@
 class IRequestAcceptor : public IRunable {
 public:
     
-    IRequestAcceptor(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory);
+    IRequestAcceptor(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, int acceptPort);
     virtual ~IRequestAcceptor(){};
     
 protected:
@@ -32,6 +32,8 @@ protected:
     
     IRequestProcessorPtr m_pRequestProcessor;
     IRequestExecutorFactoryPtr m_pRequestExecutorFactory;
+    
+    int m_AcceptPort;
 };
 
 #endif /* defined(__DocServer__IRequestAcceptor__) */

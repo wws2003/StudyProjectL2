@@ -18,6 +18,7 @@ class IRequestProcessor : public IRunable {
 public:
     enum RequestProcessorOperationErr {
         ERR_NONE = 0,
+        ERR_ADD_JOB_FAILED
     };
     
     IRequestProcessor(IRequestExecutorQueuePtr requestExecutorQueuePtr);
