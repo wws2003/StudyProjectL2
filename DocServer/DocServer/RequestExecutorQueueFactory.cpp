@@ -9,7 +9,7 @@
 #include "RequestExecutorQueueFactory.h"
 #include "RequestExecutorQueueDequeImpl.h"
 
-#if INORMALPTR==1
+#if INORMAL_PTR==1
 IRequestExecutorQueuePtr RequestExecutorQueueFactory::createRequestExecutorQueue() {
     return new RequestExecutorQueueDequeImpl();
 }

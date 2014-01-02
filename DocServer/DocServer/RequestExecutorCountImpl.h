@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "IRequestExecutor.h"
+#include <boost/thread/mutex.hpp>
 
 class RequestExecutorCountImpl : public IRequestExecutor {
 public:
@@ -18,8 +19,10 @@ public:
     virtual ~RequestExecutorCountImpl(){};
     
     ResponsePtr execute();
+    
 private:
-    int m_NumberOfRequest;
+    static int s_NumberOfRequest;
+    boost::mutex m_CountingMutex;
 };
 
 #endif /* defined(__DocServer__RequestExecutorCountImpl__) */

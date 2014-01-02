@@ -10,7 +10,7 @@
 #include "RequestProcessorSimpleImpl.h"
 #include "RequestExecutorQueueFactory.h"
 
-#if INORMALPTR==1
+#if INORMAL_PTR==1
 IRequestProcessorPtr RequestProcessorFactory::createRequestProcessor() {
     IRequestExecutorQueuePtr requestExecutorQueuePtr = RequestExecutorQueueFactory::createRequestExecutorQueue();
     IRequestProcessorPtr requestProcessorPtr = new RequestProcessorSimpleImpl(requestExecutorQueuePtr);

@@ -11,10 +11,11 @@
 #include "RequestProcessorFactory.h"
 #include "RequestExecutorFactorySimpleImpl.h"
 
-#if INORMALPTR==1
+#if INORMAL_PTR==1
 IRequestAcceptorPtr RequestAcceptorFactory::createRequestAcceptor(int portNumber) {
     IRequestAcceptorPtr requestAcceptorPtr = NULL;
     IRequestProcessorPtr requestProcessorPtr = RequestProcessorFactory::createRequestProcessor();
+    requestProcessorPtr->start();
     IRequestExecutorFactoryPtr requestExecutorFactory = new RequestExecutorFactorySimpleImpl();
     requestAcceptorPtr = new RequestAcceptorBoostImpl(requestProcessorPtr, requestExecutorFactory, portNumber);
     return requestAcceptorPtr;

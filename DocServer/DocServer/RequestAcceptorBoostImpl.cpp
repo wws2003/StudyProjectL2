@@ -16,17 +16,25 @@ RequestAcceptorBoostImpl::RequestAcceptorBoostImpl(IRequestProcessorPtr requestP
     createIOService();
     
     createTCPAcceptor();
-    
-    start();
 }
 
 int RequestAcceptorBoostImpl::start() {
     
+    boost::thread_group threadGroups;
     //Start ioservice thread
-    boost::thread ioServiceThread(boost::bind(&boost::asio::io_service::run, m_pIOService));
+    boost::thread* ioServiceThread = new boost::thread(boost::bind(&boost::asio::io_service::run, m_pIOService));
     
     //Start the accepting loop
-    boost::thread acceptingThread(boost::bind(&RequestAcceptorBoostImpl::run, this));
+    boost::thread* acceptingThread = new boost::thread(boost::bind(&RequestAcceptorBoostImpl::run, this));
+    
+    threadGroups.add_thread(ioServiceThread);
+    threadGroups.add_thread(acceptingThread);
+    
+    threadGroups.join_all();
+    
+    delete ioServiceThread;
+    delete acceptingThread;
+    
     return 0;
 }
 
@@ -55,6 +63,7 @@ void RequestAcceptorBoostImpl::createIOService() {
 void RequestAcceptorBoostImpl::createTCPAcceptor() {
     using namespace boost::asio::ip;
     TCPAcceptorPtr tcpAcceptorPtr(new tcp::acceptor(*m_pIOService, tcp::endpoint(tcp::v4(), m_AcceptPort)));
+    m_pTCPAcceptor = tcpAcceptorPtr;
 }
 
 void RequestAcceptorBoostImpl::async_accept(SocketPtr listeningSocketPtr) {

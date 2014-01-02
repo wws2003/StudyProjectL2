@@ -8,12 +8,15 @@
 
 #include "RequestExecutorCountImpl.h"
 
-RequestExecutorCountImpl::RequestExecutorCountImpl(IRequestPtr requestPtr, IRequestPostExecutorPtr requestPostExecutorPtr) : IRequestExecutor(requestPtr, requestPostExecutorPtr), m_NumberOfRequest(0){
+int RequestExecutorCountImpl::s_NumberOfRequest = 0;
+
+RequestExecutorCountImpl::RequestExecutorCountImpl(IRequestPtr requestPtr, IRequestPostExecutorPtr requestPostExecutorPtr) : IRequestExecutor(requestPtr, requestPostExecutorPtr){
    
 }
 
 ResponsePtr RequestExecutorCountImpl::execute() {
-    m_NumberOfRequest++;
-    std::cout << "Number of request:" << m_NumberOfRequest << std::endl;
+    boost::mutex::scoped_lock lock(m_CountingMutex);
+    s_NumberOfRequest++;
+    std::cout << "Number of request:" << s_NumberOfRequest << std::endl;
     return NULL;
 }
