@@ -9,12 +9,10 @@
 #ifndef DocServer_IConnector_h
 #define DocServer_IConnector_h
 
+#include "PointerDef.h"
+
 class IConnector {
     
 };
-
-#if INORMAL_PTR==1
-typedef IConnector* IConnectorPtr;
-#endif
 
 #endif

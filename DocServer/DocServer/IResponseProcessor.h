@@ -12,6 +12,7 @@
 #include "IResponseSenderQueue.h"
 #include "IRunable.h"
 #include "IResponseSender.h"
+#include "PointerDef.h"
 
 class IResponseProcessor : public IRunable{
 public:
@@ -31,9 +32,5 @@ protected:
     
     IResponseSenderQueuePtr m_pResponseSenderQueue;
 };
-
-#if INORMAL_PTR==1
-    typedef IResponseProcessor* IResponseProcessorPtr;
-#endif
 
 #endif /* defined(__DocServer__IResponseProcessor__) */

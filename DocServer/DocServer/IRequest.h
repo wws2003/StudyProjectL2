@@ -13,6 +13,7 @@
 #include <string>
 
 #include "IConnector.h"
+#include "PointerDef.h"
 
 class IRequest {
 public:
@@ -30,9 +31,5 @@ public:
 protected:
     IConnectorPtr m_pConnector;
 };
-
-#if INORMAL_PTR == 1
-typedef IRequest* IRequestPtr;
-#endif
 
 #endif

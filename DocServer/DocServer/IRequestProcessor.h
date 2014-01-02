@@ -13,6 +13,7 @@
 #include "IRequestExecutorQueue.h"
 #include "IRequestExecutor.h"
 #include "IRunable.h"
+#include "PointerDef.h"
 
 class IRequestProcessor : public IRunable {
 public:
@@ -36,9 +37,5 @@ protected:
     virtual RequestProcessorOperationErr queueErr2ProcessorErr(IRequestExecutorQueue::RequestExecutorQueueOperationErr) = 0;
     IRequestExecutorQueuePtr m_pRequestExecutorQueue;
 };
-
-#if INORMAL_PTR == 1
-typedef IRequestProcessor* IRequestProcessorPtr;
-#endif
 
 #endif /* defined(__DocServer__IRequestProcessor__) */

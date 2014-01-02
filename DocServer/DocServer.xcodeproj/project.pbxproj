@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4003C20818757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C20618757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp */; };
+		4003C20E1875AC1D001EB6FF /* RequestAcceptorFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C20C1875AC1D001EB6FF /* RequestAcceptorFactory.cpp */; };
+		4003C2111875B6C6001EB6FF /* RequestProcessorFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C20F1875B6C6001EB6FF /* RequestProcessorFactory.cpp */; };
+		4003C2141875BADE001EB6FF /* RequestExecutorQueueFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */; };
 		403CAF7518708C6A00CF7EC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF7418708C6A00CF7EC9 /* main.cpp */; };
 		403CAF7718708C6A00CF7EC9 /* DocServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 403CAF7618708C6A00CF7EC9 /* DocServer.1 */; };
 		403CAF8118708EE200CF7EC9 /* IRequestExecutor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF7F18708EE200CF7EC9 /* IRequestExecutor.cpp */; };
@@ -17,7 +21,9 @@
 		403CAFA01871B1E900CF7EC9 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF9F1871B1E900CF7EC9 /* Buffer.cpp */; };
 		403CAFA31871C32F00CF7EC9 /* IResponseSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAFA21871C32F00CF7EC9 /* IResponseSender.cpp */; };
 		403CAFA91871C9D100CF7EC9 /* IResponseProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAFA71871C9D100CF7EC9 /* IResponseProcessor.cpp */; };
-		40413A681871E1C9000438C2 /* RequestPostExecutorSendResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40413A661871E1C9000438C2 /* RequestPostExecutorSendResponse.cpp */; };
+		40413A681871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40413A661871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp */; };
+		4067985A18747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4067985818747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp */; };
+		4067985D18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4067985B18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp */; };
 		40CE77D71873C12900D82704 /* libboost_date_time-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D31873C12900D82704 /* libboost_date_time-mt.dylib */; };
 		40CE77D81873C12900D82704 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D41873C12900D82704 /* libboost_filesystem-mt.dylib */; };
 		40CE77D91873C12900D82704 /* libboost_regex-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D51873C12900D82704 /* libboost_regex-mt.dylib */; };
@@ -42,6 +48,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4003C20618757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestExecutorFactorySimpleImpl.cpp; sourceTree = "<group>"; };
+		4003C20718757D81001EB6FF /* RequestExecutorFactorySimpleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorFactorySimpleImpl.h; sourceTree = "<group>"; };
+		4003C209187580BC001EB6FF /* PointerDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointerDef.h; sourceTree = "<group>"; };
+		4003C20C1875AC1D001EB6FF /* RequestAcceptorFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestAcceptorFactory.cpp; sourceTree = "<group>"; };
+		4003C20D1875AC1D001EB6FF /* RequestAcceptorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAcceptorFactory.h; sourceTree = "<group>"; };
+		4003C20F1875B6C6001EB6FF /* RequestProcessorFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestProcessorFactory.cpp; sourceTree = "<group>"; };
+		4003C2101875B6C6001EB6FF /* RequestProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestProcessorFactory.h; sourceTree = "<group>"; };
+		4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestExecutorQueueFactory.cpp; sourceTree = "<group>"; };
+		4003C2131875BADE001EB6FF /* RequestExecutorQueueFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorQueueFactory.h; sourceTree = "<group>"; };
 		403CAF7118708C6A00CF7EC9 /* DocServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		403CAF7418708C6A00CF7EC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		403CAF7618708C6A00CF7EC9 /* DocServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DocServer.1; sourceTree = "<group>"; };
@@ -68,8 +83,12 @@
 		403CAFA81871C9D100CF7EC9 /* IResponseProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResponseProcessor.h; sourceTree = "<group>"; };
 		40413A621871DC1A000438C2 /* IResponseSenderFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IResponseSenderFactory.h; sourceTree = "<group>"; };
 		40413A631871DDCE000438C2 /* IRequestPostExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRequestPostExecutor.h; sourceTree = "<group>"; };
-		40413A661871E1C9000438C2 /* RequestPostExecutorSendResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestPostExecutorSendResponse.cpp; sourceTree = "<group>"; };
-		40413A671871E1C9000438C2 /* RequestPostExecutorSendResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestPostExecutorSendResponse.h; sourceTree = "<group>"; };
+		40413A661871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestPostExecutorSendResponseImpl.cpp; sourceTree = "<group>"; };
+		40413A671871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestPostExecutorSendResponseImpl.h; sourceTree = "<group>"; };
+		4067985818747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestProcessorSimpleImpl.cpp; sourceTree = "<group>"; };
+		4067985918747A3F00A5D0BF /* RequestProcessorSimpleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestProcessorSimpleImpl.h; sourceTree = "<group>"; };
+		4067985B18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestExecutorCountImpl.cpp; sourceTree = "<group>"; };
+		4067985C18747E6E00A5D0BF /* RequestExecutorCountImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorCountImpl.h; sourceTree = "<group>"; };
 		40CE77D31873C12900D82704 /* libboost_date_time-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_date_time-mt.dylib"; path = "../../../../../opt/local/lib/libboost_date_time-mt.dylib"; sourceTree = "<group>"; };
 		40CE77D41873C12900D82704 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "../../../../../opt/local/lib/libboost_filesystem-mt.dylib"; sourceTree = "<group>"; };
 		40CE77D51873C12900D82704 /* libboost_regex-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_regex-mt.dylib"; path = "../../../../../opt/local/lib/libboost_regex-mt.dylib"; sourceTree = "<group>"; };
@@ -100,6 +119,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4003C20A1875ABF2001EB6FF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4003C20D1875AC1D001EB6FF /* RequestAcceptorFactory.h */,
+				4003C2101875B6C6001EB6FF /* RequestProcessorFactory.h */,
+				4003C2131875BADE001EB6FF /* RequestExecutorQueueFactory.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		4003C20B1875ABF8001EB6FF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4003C20C1875AC1D001EB6FF /* RequestAcceptorFactory.cpp */,
+				4003C20F1875B6C6001EB6FF /* RequestProcessorFactory.cpp */,
+				4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
 		403CAF6818708C6A00CF7EC9 = {
 			isa = PBXGroup;
 			children = (
@@ -186,13 +225,13 @@
 				403CAF8B18709FD200CF7EC9 /* IRequestExecutorFactory.h */,
 				403CAF871870939000CF7EC9 /* IRequestProcessor.h */,
 				403CAF8018708EE200CF7EC9 /* IRequestExecutor.h */,
+				40413A631871DDCE000438C2 /* IRequestPostExecutor.h */,
 				403CAF7E18708CCC00CF7EC9 /* IRequest.h */,
 				403CAF951871AB0300CF7EC9 /* IConnector.h */,
 				403CAFA11871C05100CF7EC9 /* IResponseSender.h */,
 				403CAFA51871C3E100CF7EC9 /* IResponseSenderQueue.h */,
 				403CAFA81871C9D100CF7EC9 /* IResponseProcessor.h */,
 				40413A621871DC1A000438C2 /* IResponseSenderFactory.h */,
-				40413A631871DDCE000438C2 /* IRequestPostExecutor.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -224,6 +263,7 @@
 			children = (
 				403CAF9C1871ADC800CF7EC9 /* Response.h */,
 				403CAF9A1871ACE300CF7EC9 /* Buffer.h */,
+				4003C209187580BC001EB6FF /* PointerDef.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -240,9 +280,12 @@
 		40413A641871E132000438C2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				40413A661871E1C9000438C2 /* RequestPostExecutorSendResponse.cpp */,
+				40413A661871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp */,
 				40CE77E81874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp */,
 				40CE77DB1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp */,
+				4067985818747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp */,
+				4003C20618757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp */,
+				4067985B18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -251,9 +294,12 @@
 			isa = PBXGroup;
 			children = (
 				40CE77DE1873C46700D82704 /* CommonTypes.h */,
-				40413A671871E1C9000438C2 /* RequestPostExecutorSendResponse.h */,
+				40413A671871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.h */,
 				40CE77DC1873C18D00D82704 /* RequestAcceptorBoostImpl.h */,
 				40CE77E91874743B00D82704 /* RequestExecutorQueueDequeImpl.h */,
+				4067985918747A3F00A5D0BF /* RequestProcessorSimpleImpl.h */,
+				4067985C18747E6E00A5D0BF /* RequestExecutorCountImpl.h */,
+				4003C20718757D81001EB6FF /* RequestExecutorFactorySimpleImpl.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -286,6 +332,8 @@
 		40CE77E6187471A300D82704 /* factory */ = {
 			isa = PBXGroup;
 			children = (
+				4003C20B1875ABF8001EB6FF /* src */,
+				4003C20A1875ABF2001EB6FF /* include */,
 			);
 			name = factory;
 			sourceTree = "<group>";
@@ -349,17 +397,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4067985D18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp in Sources */,
+				4003C20818757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp in Sources */,
 				40CE77E318745E0800D82704 /* RequestFactory.cpp in Sources */,
 				403CAF9218716BDE00CF7EC9 /* IRequestAcceptor.cpp in Sources */,
 				403CAF971871ABF500CF7EC9 /* IRequest.cpp in Sources */,
 				403CAF881870939000CF7EC9 /* IRequestProcessor.cpp in Sources */,
 				403CAF8118708EE200CF7EC9 /* IRequestExecutor.cpp in Sources */,
+				4003C2111875B6C6001EB6FF /* RequestProcessorFactory.cpp in Sources */,
+				4003C20E1875AC1D001EB6FF /* RequestAcceptorFactory.cpp in Sources */,
 				403CAFA01871B1E900CF7EC9 /* Buffer.cpp in Sources */,
 				40CE77DD1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp in Sources */,
 				403CAFA31871C32F00CF7EC9 /* IResponseSender.cpp in Sources */,
 				40CE77EA1874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp in Sources */,
 				403CAFA91871C9D100CF7EC9 /* IResponseProcessor.cpp in Sources */,
-				40413A681871E1C9000438C2 /* RequestPostExecutorSendResponse.cpp in Sources */,
+				4067985A18747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp in Sources */,
+				40413A681871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp in Sources */,
+				4003C2141875BADE001EB6FF /* RequestExecutorQueueFactory.cpp in Sources */,
 				403CAF9D1871ADC800CF7EC9 /* Response.cpp in Sources */,
 				403CAF7518708C6A00CF7EC9 /* main.cpp in Sources */,
 			);

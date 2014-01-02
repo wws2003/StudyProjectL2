@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "IRequestExecutor.h"
+#include "PointerDef.h"
 
 class IRequestExecutorQueue {
 public:
@@ -23,9 +24,5 @@ public:
     virtual RequestExecutorQueueOperationErr popFront() = 0;
     virtual bool isEmpty() = 0;
 };
-
-#if INORMAL_PTR == 1
-typedef IRequestExecutorQueue* IRequestExecutorQueuePtr;
-#endif
 
 #endif /* defined(__DocServer__IRequestExecutorQueue__) */

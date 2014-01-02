@@ -14,5 +14,7 @@ IRequestExecutor::IRequestExecutor(IRequestPtr requestPtr, IRequestPostExecutorP
 
 void IRequestExecutor::executeRequest() {
     ResponsePtr responsePtr = execute();
-    m_pRequestPostExecutor->onRequestExecutionEnd(responsePtr);
+    if (m_pRequestPostExecutor != NULL) {
+        m_pRequestPostExecutor->onRequestExecutionEnd(responsePtr);
+    }
 }

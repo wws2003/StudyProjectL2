@@ -15,6 +15,7 @@
 #include "IRequest.h"
 #include "IRequestProcessor.h"
 #include "IRequestExecutorFactory.h"
+#include "PointerDef.h"
 
 class IRequestAcceptor : public IRunable {
 public:

@@ -12,6 +12,7 @@
 #include <iostream>
 #include "IResponseSender.h"
 #include "Response.h"
+#include "PointerDef.h"
 
 class IResponseSenderQueue {
 public:
@@ -27,9 +28,5 @@ public:
     virtual IResponseSenderPtr front() = 0;
     virtual ResponseSenderQueueOperationErr popFront() = 0;
 };
-
-#if INORMAL_PTR==1
-    typedef IResponseSenderQueue* IResponseSenderQueuePtr;
-#endif
 
 #endif /* defined(__DocServer__IResponseSenderQueue__) */

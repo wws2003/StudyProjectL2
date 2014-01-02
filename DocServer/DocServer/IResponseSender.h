@@ -10,6 +10,7 @@
 #define DocServer_IResponseSender_h
 
 #include "Response.h"
+#include "PointerDef.h"
 
 class IResponseSender {
 public:
@@ -26,9 +27,5 @@ public:
 protected:
     ResponsePtr m_pResponse;
 };
-
-#if INORMAL_PTR==1
-    typedef IResponseSender* IResponseSenderPtr;
-#endif
 
 #endif

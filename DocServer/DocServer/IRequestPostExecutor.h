@@ -11,6 +11,7 @@
 
 #include "IRequest.h"
 #include "Response.h"
+#include "PointerDef.h"
 
 class IRequestPostExecutor {
 public:
@@ -18,9 +19,5 @@ public:
     
     virtual bool onRequestExecutionEnd(ResponsePtr responsePtr) = 0;
 };
-
-#if INORMAL_PTR
-    typedef IRequestPostExecutor* IRequestPostExecutorPtr;
-#endif
 
 #endif

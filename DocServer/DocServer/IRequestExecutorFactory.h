@@ -13,15 +13,12 @@
 
 #include "IRequestExecutor.h"
 #include "IRequest.h"
+#include "PointerDef.h"
 
 class IRequestExecutorFactory {
 public:
     virtual ~IRequestExecutorFactory(){};
     virtual IRequestExecutorPtr createRequestExecutor(IRequestPtr request) = 0;
 };
-
-#if INORMAL_PTR == 1
-typedef IRequestExecutorFactory* IRequestExecutorFactoryPtr;
-#endif
 
 #endif /* defined(__DocServer__IRequestExecutorFactory__) */

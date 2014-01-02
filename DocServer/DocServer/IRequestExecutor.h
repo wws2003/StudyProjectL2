@@ -14,6 +14,7 @@
 #include "IRequest.h"
 #include "IRequestPostExecutor.h"
 #include "Response.h"
+#include "PointerDef.h"
 
 class IRequestExecutor {
 public:
@@ -28,9 +29,5 @@ protected:
     IRequestPtr m_pRequest;
     IRequestPostExecutorPtr m_pRequestPostExecutor;
 };
-
-#if INORMAL_PTR == 1
-typedef IRequestExecutor* IRequestExecutorPtr;
-#endif
 
 #endif /* defined(__DocServer__IRequestExecutor__) */

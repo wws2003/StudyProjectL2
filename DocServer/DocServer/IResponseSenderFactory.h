@@ -11,15 +11,12 @@
 
 #include "IResponseSender.h"
 #include "Response.h"
+#include "PointerDef.h"
 
 class IResponseSenderFactory {
 public:
     virtual ~IResponseSenderFactory(){};
     virtual IResponseSenderPtr createResponseSenderPtr(ResponsePtr responsePtr) = 0;
 };
-
-#if INORMAL_PTR == 1
-typedef IResponseSenderFactory* IResponseSenderFactoryPtr;
-#endif
 
 #endif
