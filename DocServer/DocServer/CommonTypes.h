@@ -12,6 +12,7 @@
 #include <boost/asio.hpp>
 #include <boost/asio/io_service.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/array.hpp>
 
 typedef boost::shared_ptr<boost::asio::io_service> IOServicePtr;
 typedef boost::shared_ptr<boost::asio::io_service::work> IOServiceWorkPtr;
@@ -21,5 +22,6 @@ typedef boost::shared_ptr<boost::asio::ip::tcp::socket> SocketPtr;
 typedef boost::shared_ptr<TCPAcceptor> TCPAcceptorPtr;
 typedef const boost::system::error_code& ErrorCodeRef;
 typedef boost::system::error_code ErrorCode;
+typedef boost::array<char, 20> IOBuffer;
 
 #endif

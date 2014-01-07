@@ -22,7 +22,7 @@ public:
     
 private:
     static int s_NumberOfRequest;
-    boost::mutex m_CountingMutex;
+    static boost::mutex s_CountingMutex;
 };
 
 #endif /* defined(__DocServer__RequestExecutorCountImpl__) */

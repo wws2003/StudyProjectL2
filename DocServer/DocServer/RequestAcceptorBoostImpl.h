@@ -13,10 +13,11 @@
 
 #include "IRequestAcceptor.h"
 #include "CommonTypes.h"
+#include "IRequestFromSocketFactory.h"
 
 class RequestAcceptorBoostImpl : public IRequestAcceptor{
 public:
-    RequestAcceptorBoostImpl(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, int acceptPort);
+    RequestAcceptorBoostImpl(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, IRequestFromSocketFactoryPtr requestFromSocketFactoryPtr, int acceptPort);
     
     //@Override
     virtual int start();
@@ -35,6 +36,7 @@ private:
     
     IOServicePtr m_pIOService;
     TCPAcceptorPtr m_pTCPAcceptor;
+    IRequestFromSocketFactoryPtr m_pRequestFromSocketFactory;
 };
 
 #endif /* defined(__DocServer__RequestAcceptorBoostImpl__) */

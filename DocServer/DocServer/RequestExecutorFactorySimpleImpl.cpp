@@ -9,6 +9,6 @@
 #include "RequestExecutorFactorySimpleImpl.h"
 #include "RequestExecutorCountImpl.h"
 
-IRequestExecutorPtr RequestExecutorFactorySimpleImpl::createRequestExecutor(IRequestPtr request) {
-    return new RequestExecutorCountImpl(NULL, NULL);
+IRequestExecutorPtr RequestExecutorFactorySimpleImpl::createRequestExecutor(IRequestPtr requestPtr) {
+    return new RequestExecutorCountImpl(requestPtr, NULL);
 }

@@ -9,9 +9,8 @@
 #include "RequestAcceptorBoostImpl.h"
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
-#include "RequestFactory.h"
 
-RequestAcceptorBoostImpl::RequestAcceptorBoostImpl(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, int acceptPort) : IRequestAcceptor(requestProcessorPtr, requestExecutorFactory, acceptPort){
+RequestAcceptorBoostImpl::RequestAcceptorBoostImpl(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, IRequestFromSocketFactoryPtr requestFromSocketFactoryPtr, int acceptPort) : IRequestAcceptor(requestProcessorPtr, requestExecutorFactory, acceptPort), m_pRequestFromSocketFactory(requestFromSocketFactoryPtr){
     
     createIOService();
     
@@ -73,7 +72,7 @@ void RequestAcceptorBoostImpl::async_accept(SocketPtr listeningSocketPtr) {
 
 void RequestAcceptorBoostImpl::onAccepted(SocketPtr socketPtr, ErrorCodeRef errorCode) {
     if (errorCode.value() == boost::system::errc::success) {
-        IRequestPtr requestPtr = RequestFactory::createRequestFromSocket(socketPtr);
+        IRequestPtr requestPtr = m_pRequestFromSocketFactory->createRequestPtrFromSocketPtr(socketPtr);
         onRequest(requestPtr);
     }
 }

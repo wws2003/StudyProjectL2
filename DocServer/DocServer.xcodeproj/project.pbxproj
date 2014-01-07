@@ -11,6 +11,9 @@
 		4003C20E1875AC1D001EB6FF /* RequestAcceptorFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C20C1875AC1D001EB6FF /* RequestAcceptorFactory.cpp */; };
 		4003C2111875B6C6001EB6FF /* RequestProcessorFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C20F1875B6C6001EB6FF /* RequestProcessorFactory.cpp */; };
 		4003C2141875BADE001EB6FF /* RequestExecutorQueueFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */; };
+		4003C21D1876ABB4001EB6FF /* RequestFromSocketFactoryNullImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C21C1876ABB4001EB6FF /* RequestFromSocketFactoryNullImpl.cpp */; };
+		4003C2201876B610001EB6FF /* RequestFromSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C21E1876B610001EB6FF /* RequestFromSocket.cpp */; };
+		4003C2231876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4003C2211876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.cpp */; };
 		403CAF7518708C6A00CF7EC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF7418708C6A00CF7EC9 /* main.cpp */; };
 		403CAF7718708C6A00CF7EC9 /* DocServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 403CAF7618708C6A00CF7EC9 /* DocServer.1 */; };
 		403CAF8118708EE200CF7EC9 /* IRequestExecutor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF7F18708EE200CF7EC9 /* IRequestExecutor.cpp */; };
@@ -30,7 +33,6 @@
 		40CE77DA1873C12900D82704 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D61873C12900D82704 /* libboost_thread-mt.dylib */; };
 		40CE77DD1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40CE77DB1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp */; };
 		40CE77E01873C51C00D82704 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77DF1873C51C00D82704 /* libboost_system-mt.dylib */; };
-		40CE77E318745E0800D82704 /* RequestFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40CE77E118745E0800D82704 /* RequestFactory.cpp */; };
 		40CE77EA1874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40CE77E81874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,13 @@
 		4003C2101875B6C6001EB6FF /* RequestProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestProcessorFactory.h; sourceTree = "<group>"; };
 		4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestExecutorQueueFactory.cpp; sourceTree = "<group>"; };
 		4003C2131875BADE001EB6FF /* RequestExecutorQueueFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorQueueFactory.h; sourceTree = "<group>"; };
+		4003C2161876A833001EB6FF /* IRequestFromSocketFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRequestFromSocketFactory.h; sourceTree = "<group>"; };
+		4003C21B1876AAF4001EB6FF /* RequestFromSocketFactoryNullImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestFromSocketFactoryNullImpl.h; sourceTree = "<group>"; };
+		4003C21C1876ABB4001EB6FF /* RequestFromSocketFactoryNullImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestFromSocketFactoryNullImpl.cpp; sourceTree = "<group>"; };
+		4003C21E1876B610001EB6FF /* RequestFromSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestFromSocket.cpp; sourceTree = "<group>"; };
+		4003C21F1876B610001EB6FF /* RequestFromSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestFromSocket.h; sourceTree = "<group>"; };
+		4003C2211876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestFromSocketFactoryNormalImpl.cpp; sourceTree = "<group>"; };
+		4003C2221876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestFromSocketFactoryNormalImpl.h; sourceTree = "<group>"; };
 		403CAF7118708C6A00CF7EC9 /* DocServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		403CAF7418708C6A00CF7EC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		403CAF7618708C6A00CF7EC9 /* DocServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DocServer.1; sourceTree = "<group>"; };
@@ -97,8 +106,6 @@
 		40CE77DC1873C18D00D82704 /* RequestAcceptorBoostImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAcceptorBoostImpl.h; sourceTree = "<group>"; };
 		40CE77DE1873C46700D82704 /* CommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTypes.h; sourceTree = "<group>"; };
 		40CE77DF1873C51C00D82704 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../../opt/local/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
-		40CE77E118745E0800D82704 /* RequestFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestFactory.cpp; sourceTree = "<group>"; };
-		40CE77E218745E0800D82704 /* RequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestFactory.h; sourceTree = "<group>"; };
 		40CE77E81874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RequestExecutorQueueDequeImpl.cpp; sourceTree = "<group>"; };
 		40CE77E91874743B00D82704 /* RequestExecutorQueueDequeImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorQueueDequeImpl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +144,33 @@
 				4003C2121875BADE001EB6FF /* RequestExecutorQueueFactory.cpp */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		4003C2181876AAA4001EB6FF /* sub_factory */ = {
+			isa = PBXGroup;
+			children = (
+				4003C2191876AABE001EB6FF /* src */,
+				4003C21A1876AAC2001EB6FF /* include */,
+			);
+			name = sub_factory;
+			sourceTree = "<group>";
+		};
+		4003C2191876AABE001EB6FF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4003C21C1876ABB4001EB6FF /* RequestFromSocketFactoryNullImpl.cpp */,
+				4003C2211876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		4003C21A1876AAC2001EB6FF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4003C21B1876AAF4001EB6FF /* RequestFromSocketFactoryNullImpl.h */,
+				4003C2221876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.h */,
+			);
+			name = include;
 			sourceTree = "<group>";
 		};
 		403CAF6818708C6A00CF7EC9 = {
@@ -193,7 +227,7 @@
 		403CAF89187098B100CF7EC9 /* impl */ = {
 			isa = PBXGroup;
 			children = (
-				40413A691871E2DF000438C2 /* factory */,
+				40413A691871E2DF000438C2 /* abstract */,
 				403CAF8F18716A0400CF7EC9 /* main */,
 				403CAF8E187169FD00CF7EC9 /* mock */,
 			);
@@ -285,6 +319,7 @@
 				40CE77DB1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp */,
 				4067985818747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp */,
 				4003C20618757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp */,
+				4003C21E1876B610001EB6FF /* RequestFromSocket.cpp */,
 				4067985B18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp */,
 			);
 			name = src;
@@ -300,38 +335,31 @@
 				4067985918747A3F00A5D0BF /* RequestProcessorSimpleImpl.h */,
 				4067985C18747E6E00A5D0BF /* RequestExecutorCountImpl.h */,
 				4003C20718757D81001EB6FF /* RequestExecutorFactorySimpleImpl.h */,
+				4003C21F1876B610001EB6FF /* RequestFromSocket.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
 		};
-		40413A691871E2DF000438C2 /* factory */ = {
+		40413A691871E2DF000438C2 /* abstract */ = {
 			isa = PBXGroup;
 			children = (
-				40CE77E518745F1F00D82704 /* src */,
 				40CE77E418745F1400D82704 /* include */,
 			);
-			name = factory;
+			name = abstract;
 			sourceTree = "<group>";
 		};
 		40CE77E418745F1400D82704 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				40CE77E218745E0800D82704 /* RequestFactory.h */,
+				4003C2161876A833001EB6FF /* IRequestFromSocketFactory.h */,
 			);
 			name = include;
-			sourceTree = "<group>";
-		};
-		40CE77E518745F1F00D82704 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				40CE77E118745E0800D82704 /* RequestFactory.cpp */,
-			);
-			name = src;
 			sourceTree = "<group>";
 		};
 		40CE77E6187471A300D82704 /* factory */ = {
 			isa = PBXGroup;
 			children = (
+				4003C2181876AAA4001EB6FF /* sub_factory */,
 				4003C20B1875ABF8001EB6FF /* src */,
 				4003C20A1875ABF2001EB6FF /* include */,
 			);
@@ -399,7 +427,6 @@
 			files = (
 				4067985D18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp in Sources */,
 				4003C20818757D81001EB6FF /* RequestExecutorFactorySimpleImpl.cpp in Sources */,
-				40CE77E318745E0800D82704 /* RequestFactory.cpp in Sources */,
 				403CAF9218716BDE00CF7EC9 /* IRequestAcceptor.cpp in Sources */,
 				403CAF971871ABF500CF7EC9 /* IRequest.cpp in Sources */,
 				403CAF881870939000CF7EC9 /* IRequestProcessor.cpp in Sources */,
@@ -410,9 +437,12 @@
 				40CE77DD1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp in Sources */,
 				403CAFA31871C32F00CF7EC9 /* IResponseSender.cpp in Sources */,
 				40CE77EA1874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp in Sources */,
+				4003C21D1876ABB4001EB6FF /* RequestFromSocketFactoryNullImpl.cpp in Sources */,
 				403CAFA91871C9D100CF7EC9 /* IResponseProcessor.cpp in Sources */,
 				4067985A18747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp in Sources */,
+				4003C2231876C30B001EB6FF /* RequestFromSocketFactoryNormalImpl.cpp in Sources */,
 				40413A681871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp in Sources */,
+				4003C2201876B610001EB6FF /* RequestFromSocket.cpp in Sources */,
 				4003C2141875BADE001EB6FF /* RequestExecutorQueueFactory.cpp in Sources */,
 				403CAF9D1871ADC800CF7EC9 /* Response.cpp in Sources */,
 				403CAF7518708C6A00CF7EC9 /* main.cpp in Sources */,
