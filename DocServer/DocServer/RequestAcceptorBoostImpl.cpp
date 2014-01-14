@@ -43,7 +43,7 @@ void RequestAcceptorBoostImpl::run() {
         SocketPtr newListeningSocket(new Socket(*m_pIOService));
         
         /**Send async_accept/accept message to the acceptor instance.
-           The previous code is done in the second way (accepting synchronously)
+           The following code is done in the second way (accepting synchronously)
          **/
         
         ErrorCode err;

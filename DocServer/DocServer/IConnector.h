@@ -12,7 +12,10 @@
 #include "PointerDef.h"
 
 class IConnector {
+public:
+    virtual ~IConnector(){};
     
+    virtual void cancel() = 0;
 };
 
 #endif

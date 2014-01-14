@@ -10,6 +10,7 @@
 #define __DocServer__RequestFromSocket__
 
 #include <iostream>
+#include <boost/enable_shared_from_this.hpp>
 #include "IRequest.h"
 #include "CommonTypes.h"
 
@@ -22,12 +23,13 @@ public:
     virtual RequestOperationErr parseRequestParams(std::list<std::string>& params);
     
 private:
-    void asyncReadSocket(SocketPtr socketPtr, ErrorCodeRef errorCode, size_t byteReaded);
+    void asyncReadSocket(SocketPtr socketPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded);
+    void onTimedOut();
+    void onDataReaded(const IOBuffer& ioBuffer, size_t numberOfByteReaded);
+    
     static IConnectorPtr socketPtr2ConnectorPtr(SocketPtr socketPtr);
     
     std::list<std::string> m_TmpParams;
-    
-    IOBuffer oneTimeBuffer;
 };
 
 #endif /* defined(__DocServer__RequestFromSocket__) */
