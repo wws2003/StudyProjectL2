@@ -21,11 +21,11 @@ public:
     
     //@Override
     virtual int start();
-    
-    //@Override
-    virtual void run();
 
 private:
+    //@Override
+    virtual void run();
+    
     void createIOService();
     
     void createTCPAcceptor();

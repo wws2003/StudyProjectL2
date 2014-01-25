@@ -25,7 +25,7 @@ public:
 private:
     void asyncReadSocket(SocketPtr socketPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded);
     void onTimedOut();
-    void onDataReaded(const IOBuffer& ioBuffer, size_t numberOfByteReaded);
+    void onDataReaded(const IOBuffer& ioBuffer, const size_t& numberOfByteReaded);
     
     static IConnectorPtr socketPtr2ConnectorPtr(SocketPtr socketPtr);
     

@@ -11,36 +11,36 @@
 #include <boost/bind.hpp>
 
 RequestAcceptorBoostImpl::RequestAcceptorBoostImpl(IRequestProcessorPtr requestProcessorPtr, IRequestExecutorFactoryPtr requestExecutorFactory, IRequestFromSocketFactoryPtr requestFromSocketFactoryPtr, int acceptPort) : IRequestAcceptor(requestProcessorPtr, requestExecutorFactory, acceptPort), m_pRequestFromSocketFactory(requestFromSocketFactoryPtr){
-    
+
     createIOService();
     
     createTCPAcceptor();
 }
 
 int RequestAcceptorBoostImpl::start() {
-    
-    boost::thread_group threadGroups;
-    //Start ioservice thread
-    boost::thread* ioServiceThread = new boost::thread(boost::bind(&boost::asio::io_service::run, m_pIOService));
-    
     //Start the accepting loop
     boost::thread* acceptingThread = new boost::thread(boost::bind(&RequestAcceptorBoostImpl::run, this));
-    
-    threadGroups.add_thread(ioServiceThread);
-    threadGroups.add_thread(acceptingThread);
-    
-    threadGroups.join_all();
-    
-    delete ioServiceThread;
+    acceptingThread->join();
     delete acceptingThread;
-    
     return 0;
 }
 
 void RequestAcceptorBoostImpl::run() {
+    /*Try to move calling to io_service run() method here to satisfy the requirement: Callback handler of
+     io object must be called by the same thread which called io_service.run. But run is a blocking method
+     -> paradox? 
+    */
+    
+    //Currently do not know how to use one ioservice
+    //IOServiceWorkPtr workPtr(new IOServiceWork(*m_pIOService));
+    //m_pIOService->run();
+
     while (1) {
+        //Use a temporal ioservice
+        IOServicePtr connectingIOServicePtr(new IOService());
+        
         //Create a new socket bound to the ioservice instance
-        SocketPtr newListeningSocket(new Socket(*m_pIOService));
+        SocketPtr newListeningSocket(new Socket(*connectingIOServicePtr));
         
         /**Send async_accept/accept message to the acceptor instance.
            The following code is done in the second way (accepting synchronously)
@@ -55,7 +55,7 @@ void RequestAcceptorBoostImpl::run() {
 }
 
 void RequestAcceptorBoostImpl::createIOService() {
-    IOServicePtr servicePtr(new boost::asio::io_service());
+    IOServicePtr servicePtr(new IOService());
     m_pIOService = servicePtr;
 }
 

@@ -15,30 +15,21 @@ RequestFromSocket::RequestFromSocket(SocketPtr socketPtr) : IRequest(socketPtr2C
     assert(socketPtr->is_open());
     ErrorCode ec;
     size_t numberOfByteRead = 0;
-
-    //TODO How to wait async method ?
-    /*std::cout << "Called to asyncReadSocket from outside" << std::endl;
-    IOBuffer buffer;
-    asyncReadSocket(socketPtr, buffer, ec, numberOfByteRead);
-    */
     
-    boost::asio::deadline_timer timer(socketPtr->get_io_service());
+    IOServiceRef ioServiceForTimer = socketPtr->get_io_service();
+    boost::asio::deadline_timer timer(ioServiceForTimer);
     
-    //Wait for 2s for debug purpose
-    timer.expires_from_now(boost::posix_time::seconds(2));
+    //Wait for 10s to read data on the socket
+    timer.expires_from_now(boost::posix_time::seconds(10));
     
-    //Invoke onTimedOut at deadline
+    //Register invocation onTimedOut at deadline
     timer.async_wait(boost::bind(&RequestFromSocket::onTimedOut, this));
     //timer.wait();
     
-    do {
-        IOBuffer buffer;
-        numberOfByteRead = socketPtr->read_some(boost::asio::buffer(buffer), ec);
-        if(numberOfByteRead > 0) {
-            onDataReaded(buffer, numberOfByteRead);
-        }
-    }
-    while (numberOfByteRead > 0);
+    IOBuffer buffer;
+    asyncReadSocket(socketPtr, buffer, ec, numberOfByteRead);
+    
+    ioServiceForTimer.run();
 }
 
 int RequestFromSocket::getRequestType() {
@@ -46,7 +37,6 @@ int RequestFromSocket::getRequestType() {
 }
 
 void RequestFromSocket::asyncReadSocket(SocketPtr socketPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded) {
-    std::cout << "Called to asyncReadSocket" << std::endl;
     if (byteReaded > 0) {
         onDataReaded(buffer, byteReaded);
     }
@@ -68,9 +58,9 @@ void RequestFromSocket::onTimedOut() {
     m_pConnector->cancel();
 }
 
-void RequestFromSocket::onDataReaded(const IOBuffer& ioBuffer, size_t numberOfByteReaded) {
+void RequestFromSocket::onDataReaded(const IOBuffer& ioBuffer, const size_t&  numberOfByteReaded) {
     std::string param(ioBuffer.data(), numberOfByteReaded);
-    std::cout << "Read: " << param << std::endl;
+    std::cout << "Number of bytes readed " << numberOfByteReaded << std::endl;
     m_TmpParams.push_back(param);
 }
 
