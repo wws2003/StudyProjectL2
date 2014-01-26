@@ -7,11 +7,11 @@
 //
 
 #include "RequestFromSocket.h"
-#include "SocketConnector.h"
+#include "ConnectorSocketImpl.h"
 #include <boost/bind.hpp>
 #include <boost/asio/deadline_timer.hpp>
 
-RequestFromSocket::RequestFromSocket(SocketPtr socketPtr) : IRequest(socketPtr2ConnectorPtr(socketPtr)) {
+RequestFromSocket::RequestFromSocket(SocketPtr socketPtr) : IRequest(socketPtr2ConnectorPtr(socketPtr)), m_pReadBufferPtr(NULL) {
     assert(socketPtr->is_open());
     
     IOServiceRef ioServiceForTimer = socketPtr->get_io_service();
@@ -24,14 +24,16 @@ RequestFromSocket::RequestFromSocket(SocketPtr socketPtr) : IRequest(socketPtr2C
     timer.async_wait(boost::bind(&RequestFromSocket::onTimedOut, this));
     //timer.wait();
     
-    initBuffer(&m_tmpBuffer);
-    m_pConnector->readData(&m_tmpBuffer);
+    m_pReadBufferPtr = new Buffer();
+    initBuffer(m_pReadBufferPtr);
+    m_pConnector->readData(m_pReadBufferPtr);
     
     ioServiceForTimer.run();
 }
 
 RequestFromSocket::~RequestFromSocket() {
-    freeBuffer(&m_tmpBuffer);
+    freeBuffer(m_pReadBufferPtr);
+    delete m_pReadBufferPtr;
 }
 
 int RequestFromSocket::getRequestType() {
@@ -41,7 +43,7 @@ int RequestFromSocket::getRequestType() {
 void RequestFromSocket::onTimedOut() {
     std::cout << "Timed out" << std::endl;
     m_pConnector->cancel();
-    std::cout << "Readed buffer length: " << m_tmpBuffer.length << std::endl;
+    std::cout << "Readed buffer length: " << m_pReadBufferPtr->length << std::endl;
 }
 
 IRequest::RequestOperationErr RequestFromSocket::parseRequestParams(std::list<std::string>& params) {
@@ -50,6 +52,6 @@ IRequest::RequestOperationErr RequestFromSocket::parseRequestParams(std::list<st
 }
 
 IConnectorPtr RequestFromSocket::socketPtr2ConnectorPtr(SocketPtr socketPtr) {
-    IConnectorPtr connectorPtr(new SocketConnector(socketPtr));
+    IConnectorPtr connectorPtr(new ConnectorSocketImpl(socketPtr));
     return connectorPtr;
 }

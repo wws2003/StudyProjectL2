@@ -28,7 +28,7 @@ private:
     
     static IConnectorPtr socketPtr2ConnectorPtr(SocketPtr socketPtr);
     
-    Buffer m_tmpBuffer;
+    BufferPtr m_pReadBufferPtr ;
 };
 
 #endif /* defined(__DocServer__RequestFromSocket__) */
