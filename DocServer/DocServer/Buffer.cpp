@@ -15,6 +15,7 @@
 void freeBuffer(BufferPtr bufferPtr) {
     free(bufferPtr->data);
     bufferPtr->length = 0;
+    bufferPtr->maxSize = 0;
 }
 
 void initBuffer(BufferPtr bufferPtr) {
