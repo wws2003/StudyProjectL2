@@ -12,11 +12,14 @@
 typedef unsigned char* byte;
 typedef struct buffer {
     byte* data;
-    int length;
+    size_t length;
+    size_t maxSize;
 } Buffer;
 
 typedef Buffer* BufferPtr;
 
+void initBuffer(BufferPtr bufferPtr);
+void appendBuffer(BufferPtr bufferPtr, const char* dataToAppend, const size_t& lengthToAppend);
 void freeBuffer(BufferPtr bufferPtr);
 
 #endif

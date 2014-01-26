@@ -14,7 +14,7 @@
 #include "IConnector.h"
 #include <boost/enable_shared_from_this.hpp>
 
-class SocketConnector : public IConnector, public boost::enable_shared_from_this<SocketConnector> {
+class SocketConnector : public IConnector {
 public:
     SocketConnector(SocketPtr socketPtr);
     virtual ~SocketConnector(){};
@@ -22,8 +22,15 @@ public:
     //@Override
     void cancel();
     
+    //@Override
+    ConnectorOperationErr readData(BufferPtr bufferPtr);
+    
     SocketPtr getSocketPtr();
+    
 private:
+    void asyncReadSocket(BufferPtr mainBufferPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded);
+    void onDataReaded(BufferPtr mainBufferPtr, const IOBuffer& ioBuffer, const size_t& numberOfByteReaded);
+    
     SocketPtr m_pSocketPtr;
 };
 

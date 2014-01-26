@@ -11,25 +11,24 @@
 
 #include <iostream>
 #include <boost/enable_shared_from_this.hpp>
+#include "Buffer.h"
 #include "IRequest.h"
 #include "CommonTypes.h"
 
 class RequestFromSocket : public IRequest {
 public:
     RequestFromSocket(SocketPtr socketPtr);
-    virtual ~RequestFromSocket(){};
+    virtual ~RequestFromSocket();
     
     virtual int getRequestType();
     virtual RequestOperationErr parseRequestParams(std::list<std::string>& params);
     
 private:
-    void asyncReadSocket(SocketPtr socketPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded);
     void onTimedOut();
-    void onDataReaded(const IOBuffer& ioBuffer, const size_t& numberOfByteReaded);
     
     static IConnectorPtr socketPtr2ConnectorPtr(SocketPtr socketPtr);
     
-    std::list<std::string> m_TmpParams;
+    Buffer m_tmpBuffer;
 };
 
 #endif /* defined(__DocServer__RequestFromSocket__) */
