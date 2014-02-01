@@ -10,7 +10,7 @@
 #include <iostream>
 #include <boost/bind.hpp>
 
-ConnectorSocketImpl::ConnectorSocketImpl(SocketPtr socketPtr) : m_pSocketPtr(socketPtr){
+ConnectorSocketImpl::ConnectorSocketImpl(SocketPtr socketPtr) : m_pSocketPtr(socketPtr), m_pOneTimeBuffer(new IOBuffer()) {
     
 }
 
@@ -19,10 +19,9 @@ void ConnectorSocketImpl::cancel() {
 }
 
 ConnectorSocketImpl::ConnectorOperationErr ConnectorSocketImpl::readData(BufferPtr bufferPtr) {
-    IOBuffer oneTimeBuffer;
     ErrorCode errorCode;
     assert(m_pSocketPtr->is_open());
-    asyncReadSocket(bufferPtr, oneTimeBuffer, errorCode, 0);
+    asyncReadSocket(bufferPtr, m_pOneTimeBuffer, errorCode, 0);
     return ERR_NONE;
 }
 
@@ -30,22 +29,22 @@ SocketPtr ConnectorSocketImpl::getSocketPtr() {
     return m_pSocketPtr;
 }
 
-void ConnectorSocketImpl::asyncReadSocket(BufferPtr mainBufferPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded) {
+void ConnectorSocketImpl::asyncReadSocket(BufferPtr mainBufferPtr, IOBufferPtr bufferPtr, ErrorCodeRef errorCode, size_t byteReaded) {
     if (byteReaded > 0) {
-        onDataReaded(mainBufferPtr, buffer, byteReaded);
+        onDataReaded(mainBufferPtr, bufferPtr, byteReaded);
     }
     if (errorCode.value() != boost::system::errc::success) {
         return;
     }
-    m_pSocketPtr->async_read_some(boost::asio::buffer(buffer)
+    m_pSocketPtr->async_read_some(boost::asio::buffer(*bufferPtr)
                                   , boost::bind(&ConnectorSocketImpl::asyncReadSocket
                                              , this
                                              , mainBufferPtr
-                                             , boost::ref(buffer)
+                                             , bufferPtr
                                              , boost::asio::placeholders::error
                                              , boost::asio::placeholders::bytes_transferred));
 }
 
-void ConnectorSocketImpl::onDataReaded(BufferPtr mainBufferPtr, const IOBuffer& ioBuffer, const size_t& numberOfByteReaded){
-    appendBuffer(mainBufferPtr, ioBuffer.data(), numberOfByteReaded);
+void ConnectorSocketImpl::onDataReaded(BufferPtr mainBufferPtr, const IOBufferPtr& ioBuffer, const size_t& numberOfByteReaded){
+    appendBuffer(mainBufferPtr, ioBuffer->data(), numberOfByteReaded);
 }

@@ -6,10 +6,13 @@
 //  Copyright (c) 2013 wws2003. All rights reserved.
 //
 
-#ifndef DocServer_Buffer_h
-#define DocServer_Buffer_h
+#ifndef BufferUtil_Buffer_h
+#define BufferUtil_Buffer_h
 
-typedef unsigned char* byte;
+typedef unsigned char byte;
+
+#define CHUNK_SIZE 256
+
 typedef struct buffer {
     byte* data;
     size_t length;

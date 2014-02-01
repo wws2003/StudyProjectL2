@@ -28,10 +28,11 @@ public:
     SocketPtr getSocketPtr();
     
 private:
-    void asyncReadSocket(BufferPtr mainBufferPtr, IOBuffer buffer, ErrorCodeRef errorCode, size_t byteReaded);
-    void onDataReaded(BufferPtr mainBufferPtr, const IOBuffer& ioBuffer, const size_t& numberOfByteReaded);
+    void asyncReadSocket(BufferPtr mainBufferPtr, IOBufferPtr buffer, ErrorCodeRef errorCode, size_t byteReaded);
+    void onDataReaded(BufferPtr mainBufferPtr, const IOBufferPtr& ioBufferPtr, const size_t& numberOfByteReaded);
     
     SocketPtr m_pSocketPtr;
+    IOBufferPtr m_pOneTimeBuffer;
 };
 
 #endif /* defined(__DocServer__SocketConnection__) */

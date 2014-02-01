@@ -26,5 +26,6 @@ typedef boost::shared_ptr<TCPAcceptor> TCPAcceptorPtr;
 typedef const boost::system::error_code& ErrorCodeRef;
 typedef boost::system::error_code ErrorCode;
 typedef boost::array<char, 128> IOBuffer;
+typedef boost::shared_ptr<IOBuffer> IOBufferPtr;
 
 #endif

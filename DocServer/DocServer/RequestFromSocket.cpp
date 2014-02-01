@@ -48,6 +48,8 @@ void RequestFromSocket::onTimedOut() {
 
 IRequest::RequestOperationErr RequestFromSocket::parseRequestParams(std::list<std::string>& params) {
     //TODO Parse params from m_tmpBuffer
+    std::string dataString((const char*)m_pReadBufferPtr->data, m_pReadBufferPtr->length);
+    std::cout << "Data readed:" << dataString << std::endl;
     return ERR_NONE;
 }
 

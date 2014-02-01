@@ -21,13 +21,13 @@
 		403CAF9218716BDE00CF7EC9 /* IRequestAcceptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF9018716BDE00CF7EC9 /* IRequestAcceptor.cpp */; };
 		403CAF971871ABF500CF7EC9 /* IRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF961871ABF500CF7EC9 /* IRequest.cpp */; };
 		403CAF9D1871ADC800CF7EC9 /* Response.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF9B1871ADC800CF7EC9 /* Response.cpp */; };
-		403CAFA01871B1E900CF7EC9 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAF9F1871B1E900CF7EC9 /* Buffer.cpp */; };
 		403CAFA31871C32F00CF7EC9 /* IResponseSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAFA21871C32F00CF7EC9 /* IResponseSender.cpp */; };
 		403CAFA91871C9D100CF7EC9 /* IResponseProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 403CAFA71871C9D100CF7EC9 /* IResponseProcessor.cpp */; };
 		40413A681871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40413A661871E1C9000438C2 /* RequestPostExecutorSendResponseImpl.cpp */; };
 		4067985A18747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4067985818747A3F00A5D0BF /* RequestProcessorSimpleImpl.cpp */; };
 		4067985D18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4067985B18747E6E00A5D0BF /* RequestExecutorCountImpl.cpp */; };
 		406FFD26188438D600C17EFA /* ConnectorSocketImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 406FFD24188438D600C17EFA /* ConnectorSocketImpl.cpp */; };
+		406FFD59189D40A800C17EFA /* libBufferUtil.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 406FFD58189D40A800C17EFA /* libBufferUtil.dylib */; };
 		40CE77D71873C12900D82704 /* libboost_date_time-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D31873C12900D82704 /* libboost_date_time-mt.dylib */; };
 		40CE77D81873C12900D82704 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D41873C12900D82704 /* libboost_filesystem-mt.dylib */; };
 		40CE77D91873C12900D82704 /* libboost_regex-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CE77D51873C12900D82704 /* libboost_regex-mt.dylib */; };
@@ -85,7 +85,6 @@
 		403CAF9A1871ACE300CF7EC9 /* Buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
 		403CAF9B1871ADC800CF7EC9 /* Response.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Response.cpp; sourceTree = "<group>"; };
 		403CAF9C1871ADC800CF7EC9 /* Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Response.h; sourceTree = "<group>"; };
-		403CAF9F1871B1E900CF7EC9 /* Buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buffer.cpp; sourceTree = "<group>"; };
 		403CAFA11871C05100CF7EC9 /* IResponseSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IResponseSender.h; sourceTree = "<group>"; };
 		403CAFA21871C32F00CF7EC9 /* IResponseSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResponseSender.cpp; sourceTree = "<group>"; };
 		403CAFA51871C3E100CF7EC9 /* IResponseSenderQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResponseSenderQueue.h; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		4067985C18747E6E00A5D0BF /* RequestExecutorCountImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestExecutorCountImpl.h; sourceTree = "<group>"; };
 		406FFD24188438D600C17EFA /* ConnectorSocketImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConnectorSocketImpl.cpp; sourceTree = "<group>"; };
 		406FFD25188438D600C17EFA /* ConnectorSocketImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectorSocketImpl.h; sourceTree = "<group>"; };
+		406FFD58189D40A800C17EFA /* libBufferUtil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBufferUtil.dylib; path = ../../../Library/Developer/Xcode/DerivedData/Build/Products/Debug/libBufferUtil.dylib; sourceTree = "<group>"; };
 		40CE77D31873C12900D82704 /* libboost_date_time-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_date_time-mt.dylib"; path = "../../../../../opt/local/lib/libboost_date_time-mt.dylib"; sourceTree = "<group>"; };
 		40CE77D41873C12900D82704 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "../../../../../opt/local/lib/libboost_filesystem-mt.dylib"; sourceTree = "<group>"; };
 		40CE77D51873C12900D82704 /* libboost_regex-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_regex-mt.dylib"; path = "../../../../../opt/local/lib/libboost_regex-mt.dylib"; sourceTree = "<group>"; };
@@ -118,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				406FFD59189D40A800C17EFA /* libBufferUtil.dylib in Frameworks */,
 				40CE77E01873C51C00D82704 /* libboost_system-mt.dylib in Frameworks */,
 				40CE77D71873C12900D82704 /* libboost_date_time-mt.dylib in Frameworks */,
 				40CE77D81873C12900D82704 /* libboost_filesystem-mt.dylib in Frameworks */,
@@ -179,6 +180,7 @@
 		403CAF6818708C6A00CF7EC9 = {
 			isa = PBXGroup;
 			children = (
+				406FFD58189D40A800C17EFA /* libBufferUtil.dylib */,
 				40CE77DF1873C51C00D82704 /* libboost_system-mt.dylib */,
 				40CE77D31873C12900D82704 /* libboost_date_time-mt.dylib */,
 				40CE77D41873C12900D82704 /* libboost_filesystem-mt.dylib */,
@@ -308,7 +310,6 @@
 		403CAF9E1871B01D00CF7EC9 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				403CAF9F1871B1E900CF7EC9 /* Buffer.cpp */,
 				403CAF9B1871ADC800CF7EC9 /* Response.cpp */,
 			);
 			name = src;
@@ -438,7 +439,6 @@
 				403CAF8118708EE200CF7EC9 /* IRequestExecutor.cpp in Sources */,
 				4003C2111875B6C6001EB6FF /* RequestProcessorFactory.cpp in Sources */,
 				4003C20E1875AC1D001EB6FF /* RequestAcceptorFactory.cpp in Sources */,
-				403CAFA01871B1E900CF7EC9 /* Buffer.cpp in Sources */,
 				40CE77DD1873C18D00D82704 /* RequestAcceptorBoostImpl.cpp in Sources */,
 				403CAFA31871C32F00CF7EC9 /* IResponseSender.cpp in Sources */,
 				40CE77EA1874743B00D82704 /* RequestExecutorQueueDequeImpl.cpp in Sources */,
@@ -542,7 +542,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -555,7 +558,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
