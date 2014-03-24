@@ -18,7 +18,7 @@ public:
     AbstractThreadPool(IMutexPtr mutexPtr, ICondVarPtr condVarPtr, int numberOfThreads);
     virtual ~AbstractThreadPool();
     
-    virtual ThreadPoolErrorCode initAndStart() = 0;
+    virtual ThreadPoolErrorCode initAndStart(bool wait = true) = 0;
     virtual ThreadPoolErrorCode destroy() = 0;
     
     virtual void addTask(ITask* taskPtr);

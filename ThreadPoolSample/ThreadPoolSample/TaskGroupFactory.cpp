@@ -16,6 +16,8 @@
 #include "SimpleChildTask.h"
 #include "SumMasterTask.h"
 #include "AbstractThreadPool.h"
+#include "ResultSignalDelegate.h"
+#include "ResultWaitDelegate.h"
 
 TaskGroupFactory::TaskGroupFactory(unsigned int numberOfThread, unsigned int numberOfTask) {
     m_threadPoolPtr = ThreadPoolFactory::getThreadPoolPtr(numberOfThread + 1);
@@ -24,12 +26,16 @@ TaskGroupFactory::TaskGroupFactory(unsigned int numberOfThread, unsigned int num
    
     numberOfTask = (numberOfTask == 0) ? numberOfThread : numberOfTask;
     m_resultPtrs = new int[numberOfTask];
+
     for (unsigned int i = 0; i < numberOfTask; i++) {
-        AbstractChildTaskPtr childTaskPtr = new SimpleChildTask(m_resultStorePtr, &m_resultPtrs[i], numberOfTask, m_jobMutexPtr, m_jobCondPtr, i);
-        m_childTaskPtrs.push_back(childTaskPtr);
+        ResultSignalDelegatePtr resultSignalDelegatePtr = new ResultSignalDelegate(m_resultStore, &m_resultPtrs[i], numberOfTask, m_jobMutexPtr, m_jobCondPtr);
+        AbstractDelegatingSlaveTaskPtr slaveTaskPtr = new SimpleChildTask(resultSignalDelegatePtr, i);
+        m_childTaskPtrs.push_back(slaveTaskPtr);
     }
     
-    m_masterTaskPtr = new SumMasterTask(m_resultStorePtr, numberOfTask, m_jobMutexPtr, m_jobCondPtr);
+    ResultWaitDelegatePtr resultWaitDelegatePtr = new ResultWaitDelegate(m_resultStore, numberOfTask, m_jobMutexPtr, m_jobCondPtr);
+    
+    m_masterTaskPtr = new SumMasterTask(resultWaitDelegatePtr);
 }
 
 TaskGroupFactory::~TaskGroupFactory() {

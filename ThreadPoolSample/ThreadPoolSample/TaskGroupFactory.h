@@ -21,12 +21,12 @@ public:
     
 private:
     AbstractThreadPoolPtr m_threadPoolPtr;
-    ResultStore m_resultStorePtr;
+    ResultStore m_resultStore;
     int* m_resultPtrs;
     IMutexPtr m_jobMutexPtr;
     ICondVarPtr m_jobCondPtr;
-    std::vector<AbstractChildTaskPtr> m_childTaskPtrs;
-    AbstractMasterTaskPtr m_masterTaskPtr;
+    std::vector<AbstractDelegatingSlaveTaskPtr> m_childTaskPtrs;
+    AbstractDelegatingMasterTaskPtr m_masterTaskPtr;
 };
 
 #endif /* defined(__ThreadPoolSample__TaskGroupFactory__) */

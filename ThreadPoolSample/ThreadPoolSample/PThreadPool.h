@@ -20,7 +20,7 @@ public:
     virtual ~PThreadPool();
     
     //@Override
-    virtual ThreadPoolErrorCode initAndStart();
+    virtual ThreadPoolErrorCode initAndStart(bool wait = false);
     //@Override
     virtual ThreadPoolErrorCode destroy();
     

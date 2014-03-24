@@ -9,11 +9,15 @@
 #include "SumMasterTask.h"
 #include <cstdio>
 
-SumMasterTask::SumMasterTask(ResultStore& resultStoreRef, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr) : AbstractMasterTask(resultStoreRef, numberOfJobTodo, jobMutexPtr, jobCondPtr) {
+SumMasterTask::SumMasterTask(ResultWaitDelegatePtr resultWaitDelegatePtr) : AbstractDelegatingMasterTask(resultWaitDelegatePtr)  {
     
 }
 
 SumMasterTask::~SumMasterTask() {
+    
+}
+
+void SumMasterTask::prepare() {
     
 }
 

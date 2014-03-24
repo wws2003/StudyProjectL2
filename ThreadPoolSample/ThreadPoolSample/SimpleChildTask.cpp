@@ -8,7 +8,7 @@
 
 #include "SimpleChildTask.h"
 
-SimpleChildTask::SimpleChildTask(ResultStore& resultStoreRef, ResultPtr resultPtr, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr condMutexPtr, int inputNumber) : AbstractChildTask(resultStoreRef, resultPtr, numberOfJobTodo, jobMutexPtr, condMutexPtr), m_inputNumber(inputNumber) {
+SimpleChildTask::SimpleChildTask(ResultSignalDelegatePtr resultSignalDelegatePtr, unsigned int inputNumber) : AbstractDelegatingSlaveTask(resultSignalDelegatePtr), m_inputNumber(inputNumber) {
     
 }
 
@@ -16,6 +16,6 @@ SimpleChildTask::~SimpleChildTask() {
     
 }
 
-void SimpleChildTask::mainExecute() {
-    *(int*)m_resultPtr = m_inputNumber * m_inputNumber;
+void SimpleChildTask::mainExecute(ResultPtr resultPtr) {
+    *(int*)resultPtr = m_inputNumber * m_inputNumber;
 }

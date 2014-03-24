@@ -10,16 +10,16 @@
 #define __ThreadPoolSample__SimpleChildTask__
 
 #include <iostream>
-#include "AbstractChildTask.h"
+#include "AbstractDelegatingSlaveTask.h"
 
-class SimpleChildTask : public AbstractChildTask {
+class SimpleChildTask : public AbstractDelegatingSlaveTask {
 public:
-    SimpleChildTask(ResultStore& resultStoreRef, ResultPtr resultPtr, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr condMutexPtr, int inputNumber);
+    SimpleChildTask(ResultSignalDelegatePtr resultSignalDelegatePtr, unsigned int inputNumber);
     
     virtual ~SimpleChildTask();
     
     //@Override
-    virtual void mainExecute();
+    virtual void mainExecute(ResultPtr resultPtr);
     
 private:
     int m_inputNumber;

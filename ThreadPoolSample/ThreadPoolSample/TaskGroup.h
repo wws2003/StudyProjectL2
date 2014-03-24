@@ -12,17 +12,19 @@
 #include <iostream>
 #include <vector>
 #include "TypeDefs.h"
+#include "AbstractDelegatingMasterTask.h"
+#include "AbstractDelegatingSlaveTask.h"
 
 class TaskGroup {
 public:
-    TaskGroup(AbstractThreadPoolPtr threadPoolPtr, AbstractMasterTaskPtr masterTaskPtr, std::vector<AbstractChildTaskPtr> childTaskPtrs);
+    TaskGroup(AbstractThreadPoolPtr threadPoolPtr, AbstractDelegatingMasterTaskPtr masterTaskPtr, std::vector<AbstractDelegatingSlaveTaskPtr> childTaskPtrs);
     
     virtual ~TaskGroup();
     virtual void execute();
 protected:
     AbstractThreadPoolPtr m_threadPoolPtr;
-    AbstractMasterTaskPtr m_masterTaskPtr;
-    std::vector<AbstractChildTaskPtr> m_childTaskPtrs;
+    AbstractDelegatingMasterTaskPtr m_masterTaskPtr;
+    std::vector<AbstractDelegatingSlaveTaskPtr> m_childTaskPtrs;
 };
 
 #endif /* defined(__ThreadPoolSample__AbstractTaskGroup__) */

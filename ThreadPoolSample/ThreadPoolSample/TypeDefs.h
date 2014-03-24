@@ -36,6 +36,25 @@ typedef void* ResultPtr;
 
 typedef std::vector<ResultPtr> ResultStore;
 
+class AbstractRecursiveTask;
+typedef AbstractRecursiveTask* AbstractRecursiveTaskPtr;
+typedef std::vector<AbstractRecursiveTaskPtr> AbstractRecursiveTaskPtrs;
+
+class ISubTaskDelegate;
+typedef ISubTaskDelegate* ISubTaskDelegatePtr;
+
+class ResultSignalDelegate;
+typedef ResultSignalDelegate* ResultSignalDelegatePtr;
+
+class ResultWaitDelegate;
+typedef ResultWaitDelegate* ResultWaitDelegatePtr;
+
+class AbstractDelegatingSlaveTask;
+typedef AbstractDelegatingSlaveTask* AbstractDelegatingSlaveTaskPtr;
+
+class AbstractDelegatingMasterTask;
+typedef AbstractDelegatingMasterTask* AbstractDelegatingMasterTaskPtr;
+
 enum CondVarErrorCode{
     COND_VAR_ERROR_NONE,
     SIGNAL_ERROR,

@@ -10,13 +10,15 @@
 #define __ThreadPoolSample__SumMasterTask__
 
 #include <iostream>
-#include "AbstractMasterTask.h"
+#include "AbstractDelegatingMasterTask.h"
 
-class SumMasterTask : public AbstractMasterTask {
+class SumMasterTask : public AbstractDelegatingMasterTask {
 public:
-    SumMasterTask(ResultStore& resultStoreRef, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr);
+    SumMasterTask(ResultWaitDelegatePtr resultWaitDelegatePtr);
     virtual ~SumMasterTask();
     
+    //@Override
+    virtual void prepare();
     //@Override
     virtual void collectResults();
 };

@@ -29,7 +29,7 @@ PThreadPool::~PThreadPool() {
     assert(m_isStopped);
 }
 
-ThreadPoolErrorCode PThreadPool::initAndStart() {
+ThreadPoolErrorCode PThreadPool::initAndStart(bool wait) {
     ThreadPoolErrorCode err = THREADPOOL_ERROR_NONE;
     m_isStopped = false;
     for (unsigned int i = 0; i < m_numberOfThreads; i++) {
@@ -40,10 +40,11 @@ ThreadPoolErrorCode PThreadPool::initAndStart() {
         }
         m_threads.push_back(tid);
     }
-    for (unsigned int i = 0; i < m_numberOfThreads; i++) {
-        void* result = NULL;
-        pthread_join(m_threads[i], &result);
-    }
+    if(wait)
+        for (unsigned int i = 0; i < m_numberOfThreads; i++) {
+            void* result = NULL;
+            pthread_join(m_threads[i], &result);
+        }
     return err;
 }
 

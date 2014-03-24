@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
 {
     // insert code here...
     std::cout << "Hello, World!\n";
-    TaskGroupFactory* taskGroupFactory = new TaskGroupFactory(1, 12);
+    TaskGroupFactory* taskGroupFactory = new TaskGroupFactory(5, 22);
     TaskGroupPtr taskGroupPtr = taskGroupFactory->getSampleTaskGroupPtr();
     taskGroupPtr->execute();
     //sleep(10);

@@ -8,16 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4032716F18D4A798006AE977 /* PThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4032716D18D4A798006AE977 /* PThreadPool.cpp */; };
+		4042532018DDD0FC009E4AAB /* AbstractRecursiveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4042531E18DDD0FC009E4AAB /* AbstractRecursiveTask.cpp */; };
 		4080986718D58E110003C610 /* SimpleChildTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4080986518D58E110003C610 /* SimpleChildTask.cpp */; };
 		409D63C218D46D5500E84873 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 409D63C118D46D5500E84873 /* main.cpp */; };
 		409D63C418D46D5500E84873 /* ThreadPoolSample.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 409D63C318D46D5500E84873 /* ThreadPoolSample.1 */; };
 		409D63D318D4744400E84873 /* AbstractThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 409D63D118D4744400E84873 /* AbstractThreadPool.cpp */; };
+		40B1629B18DEE65A000A4A71 /* ResultSignalDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B1629918DEE65A000A4A71 /* ResultSignalDelegate.cpp */; };
+		40B1629F18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B1629D18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp */; };
+		40B162A218DEEA66000A4A71 /* ResultWaitDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */; };
+		40B162A518DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B162A318DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp */; };
 		40C84EED18D4D90E0080EE72 /* PCondVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C84EEB18D4D90E0080EE72 /* PCondVar.cpp */; };
 		40C84EF118D554480080EE72 /* ThreadPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C84EEF18D554480080EE72 /* ThreadPoolFactory.cpp */; };
 		40D5C82518D594EF00525C3C /* TaskGroupFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D5C82318D594EF00525C3C /* TaskGroupFactory.cpp */; };
-		40E08B5418D55C5F00B7C8C4 /* AbstractChildTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40E08B5218D55C5F00B7C8C4 /* AbstractChildTask.cpp */; };
 		40E08B5718D55F7700B7C8C4 /* TaskGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */; };
-		40E08B5A18D5721100B7C8C4 /* AbstractMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40E08B5818D5721100B7C8C4 /* AbstractMasterTask.cpp */; };
 		40E08B5D18D58C1C00B7C8C4 /* SumMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40E08B5B18D58C1C00B7C8C4 /* SumMasterTask.cpp */; };
 		40F7263918D4D5E600E4FB0F /* PMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40F7263718D4D5E600E4FB0F /* PMutex.cpp */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,8 @@
 /* Begin PBXFileReference section */
 		4032716D18D4A798006AE977 /* PThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PThreadPool.cpp; sourceTree = "<group>"; };
 		4032716E18D4A798006AE977 /* PThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PThreadPool.h; sourceTree = "<group>"; };
+		4042531E18DDD0FC009E4AAB /* AbstractRecursiveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractRecursiveTask.cpp; sourceTree = "<group>"; };
+		4042531F18DDD0FC009E4AAB /* AbstractRecursiveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractRecursiveTask.h; sourceTree = "<group>"; };
 		4080986518D58E110003C610 /* SimpleChildTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleChildTask.cpp; sourceTree = "<group>"; };
 		4080986618D58E110003C610 /* SimpleChildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleChildTask.h; sourceTree = "<group>"; };
 		409D63BE18D46D5500E84873 /* ThreadPoolSample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreadPoolSample; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,18 +54,23 @@
 		409D63D018D4733700E84873 /* ICondVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICondVar.h; sourceTree = "<group>"; };
 		409D63D118D4744400E84873 /* AbstractThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractThreadPool.cpp; sourceTree = "<group>"; };
 		409D63D218D4744400E84873 /* AbstractThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractThreadPool.h; sourceTree = "<group>"; };
+		40B1629718DEE05D000A4A71 /* ISubTaskDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISubTaskDelegate.h; sourceTree = "<group>"; };
+		40B1629918DEE65A000A4A71 /* ResultSignalDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultSignalDelegate.cpp; sourceTree = "<group>"; };
+		40B1629A18DEE65A000A4A71 /* ResultSignalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultSignalDelegate.h; sourceTree = "<group>"; };
+		40B1629D18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractDelegatingSlaveTask.cpp; sourceTree = "<group>"; };
+		40B1629E18DEE907000A4A71 /* AbstractDelegatingSlaveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDelegatingSlaveTask.h; sourceTree = "<group>"; };
+		40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultWaitDelegate.cpp; sourceTree = "<group>"; };
+		40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultWaitDelegate.h; sourceTree = "<group>"; };
+		40B162A318DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractDelegatingMasterTask.cpp; sourceTree = "<group>"; };
+		40B162A418DEEE72000A4A71 /* AbstractDelegatingMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDelegatingMasterTask.h; sourceTree = "<group>"; };
 		40C84EEB18D4D90E0080EE72 /* PCondVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCondVar.cpp; sourceTree = "<group>"; };
 		40C84EEC18D4D90E0080EE72 /* PCondVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCondVar.h; sourceTree = "<group>"; };
 		40C84EEF18D554480080EE72 /* ThreadPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPoolFactory.cpp; sourceTree = "<group>"; };
 		40C84EF018D554480080EE72 /* ThreadPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPoolFactory.h; sourceTree = "<group>"; };
 		40D5C82318D594EF00525C3C /* TaskGroupFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskGroupFactory.cpp; sourceTree = "<group>"; };
 		40D5C82418D594EF00525C3C /* TaskGroupFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroupFactory.h; sourceTree = "<group>"; };
-		40E08B5218D55C5F00B7C8C4 /* AbstractChildTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractChildTask.cpp; sourceTree = "<group>"; };
-		40E08B5318D55C5F00B7C8C4 /* AbstractChildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractChildTask.h; sourceTree = "<group>"; };
 		40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskGroup.cpp; sourceTree = "<group>"; };
 		40E08B5618D55F7700B7C8C4 /* TaskGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroup.h; sourceTree = "<group>"; };
-		40E08B5818D5721100B7C8C4 /* AbstractMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractMasterTask.cpp; sourceTree = "<group>"; };
-		40E08B5918D5721100B7C8C4 /* AbstractMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMasterTask.h; sourceTree = "<group>"; };
 		40E08B5B18D58C1C00B7C8C4 /* SumMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SumMasterTask.cpp; sourceTree = "<group>"; };
 		40E08B5C18D58C1C00B7C8C4 /* SumMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SumMasterTask.h; sourceTree = "<group>"; };
 		40F7263718D4D5E600E4FB0F /* PMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMutex.cpp; sourceTree = "<group>"; };
@@ -101,6 +111,7 @@
 				409D63CD18D46E0000E84873 /* common */,
 				409D63CB18D46D7B00E84873 /* implementation */,
 				409D63CA18D46D6C00E84873 /* abstract */,
+				40B1629818DEE569000A4A71 /* concrete */,
 				409D63C118D46D5500E84873 /* main.cpp */,
 				409D63C318D46D5500E84873 /* ThreadPoolSample.1 */,
 			);
@@ -110,17 +121,18 @@
 		409D63CA18D46D6C00E84873 /* abstract */ = {
 			isa = PBXGroup;
 			children = (
+				40B1629C18DEE6E8000A4A71 /* delegate */,
 				409D63CC18D46DD600E84873 /* ITask.h */,
 				409D63CF18D46F0500E84873 /* IMutex.h */,
 				409D63D018D4733700E84873 /* ICondVar.h */,
 				409D63D118D4744400E84873 /* AbstractThreadPool.cpp */,
 				409D63D218D4744400E84873 /* AbstractThreadPool.h */,
-				40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */,
-				40E08B5618D55F7700B7C8C4 /* TaskGroup.h */,
-				40E08B5218D55C5F00B7C8C4 /* AbstractChildTask.cpp */,
-				40E08B5318D55C5F00B7C8C4 /* AbstractChildTask.h */,
-				40E08B5818D5721100B7C8C4 /* AbstractMasterTask.cpp */,
-				40E08B5918D5721100B7C8C4 /* AbstractMasterTask.h */,
+				4042531E18DDD0FC009E4AAB /* AbstractRecursiveTask.cpp */,
+				4042531F18DDD0FC009E4AAB /* AbstractRecursiveTask.h */,
+				40B1629D18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp */,
+				40B1629E18DEE907000A4A71 /* AbstractDelegatingSlaveTask.h */,
+				40B162A318DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp */,
+				40B162A418DEEE72000A4A71 /* AbstractDelegatingMasterTask.h */,
 			);
 			name = abstract;
 			sourceTree = "<group>";
@@ -148,6 +160,27 @@
 				409D63CE18D46E8E00E84873 /* TypeDefs.h */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		40B1629818DEE569000A4A71 /* concrete */ = {
+			isa = PBXGroup;
+			children = (
+				40E08B5618D55F7700B7C8C4 /* TaskGroup.h */,
+				40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */,
+			);
+			name = concrete;
+			sourceTree = "<group>";
+		};
+		40B1629C18DEE6E8000A4A71 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				40B1629918DEE65A000A4A71 /* ResultSignalDelegate.cpp */,
+				40B1629A18DEE65A000A4A71 /* ResultSignalDelegate.h */,
+				40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */,
+				40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */,
+				40B1629718DEE05D000A4A71 /* ISubTaskDelegate.h */,
+			);
+			name = delegate;
 			sourceTree = "<group>";
 		};
 		40C84EEE18D5542A0080EE72 /* assembler */ = {
@@ -212,17 +245,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E08B5418D55C5F00B7C8C4 /* AbstractChildTask.cpp in Sources */,
 				40C84EF118D554480080EE72 /* ThreadPoolFactory.cpp in Sources */,
+				4042532018DDD0FC009E4AAB /* AbstractRecursiveTask.cpp in Sources */,
+				40B1629B18DEE65A000A4A71 /* ResultSignalDelegate.cpp in Sources */,
 				40E08B5718D55F7700B7C8C4 /* TaskGroup.cpp in Sources */,
 				4080986718D58E110003C610 /* SimpleChildTask.cpp in Sources */,
+				40B162A218DEEA66000A4A71 /* ResultWaitDelegate.cpp in Sources */,
 				4032716F18D4A798006AE977 /* PThreadPool.cpp in Sources */,
 				409D63C218D46D5500E84873 /* main.cpp in Sources */,
 				40C84EED18D4D90E0080EE72 /* PCondVar.cpp in Sources */,
 				40E08B5D18D58C1C00B7C8C4 /* SumMasterTask.cpp in Sources */,
-				40E08B5A18D5721100B7C8C4 /* AbstractMasterTask.cpp in Sources */,
 				40D5C82518D594EF00525C3C /* TaskGroupFactory.cpp in Sources */,
 				40F7263918D4D5E600E4FB0F /* PMutex.cpp in Sources */,
+				40B162A518DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp in Sources */,
+				40B1629F18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp in Sources */,
 				409D63D318D4744400E84873 /* AbstractThreadPool.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
