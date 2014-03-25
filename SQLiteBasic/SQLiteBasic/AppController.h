@@ -15,4 +15,5 @@
 -(void)initModelAndView:(AppModel*)model withView:(NSView*)view;
 -(void)initModelAndViewByAdapter:(NSObject<AppAdapter>*)adapter;
 -(void)receiveCommand:(Command*)command;
+
 @end
