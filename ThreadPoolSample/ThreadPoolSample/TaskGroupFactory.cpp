@@ -28,14 +28,14 @@ TaskGroupFactory::TaskGroupFactory(unsigned int numberOfThread, unsigned int num
     m_resultPtrs = new int[numberOfTask];
 
     for (unsigned int i = 0; i < numberOfTask; i++) {
-        ResultSignalDelegatePtr resultSignalDelegatePtr = new ResultSignalDelegate(m_resultStore, &m_resultPtrs[i], numberOfTask, m_jobMutexPtr, m_jobCondPtr);
-        AbstractDelegatingSlaveTaskPtr slaveTaskPtr = new SimpleChildTask(resultSignalDelegatePtr, i);
+        IResultSignalDelegatePtr resultSignalDelegatePtr = new ResultSignalDelegate(m_jobMutexPtr, m_jobCondPtr);
+        AbstractDelegatingSlaveTaskPtr slaveTaskPtr = new SimpleChildTask(resultSignalDelegatePtr, m_resultStore, i);
         m_childTaskPtrs.push_back(slaveTaskPtr);
     }
     
-    ResultWaitDelegatePtr resultWaitDelegatePtr = new ResultWaitDelegate(m_resultStore, numberOfTask, m_jobMutexPtr, m_jobCondPtr);
+    IResultWaitDelegatePtr resultWaitDelegatePtr = new ResultWaitDelegate(m_jobMutexPtr, m_jobCondPtr);
     
-    m_masterTaskPtr = new SumMasterTask(resultWaitDelegatePtr);
+    m_masterTaskPtr = new SumMasterTask(resultWaitDelegatePtr, m_resultStore, numberOfTask);
 }
 
 TaskGroupFactory::~TaskGroupFactory() {

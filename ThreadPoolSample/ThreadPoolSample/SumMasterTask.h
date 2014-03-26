@@ -14,7 +14,7 @@
 
 class SumMasterTask : public AbstractDelegatingMasterTask {
 public:
-    SumMasterTask(ResultWaitDelegatePtr resultWaitDelegatePtr);
+    SumMasterTask(IResultWaitDelegatePtr resultWaitDelegatePtr, ResultStore& resultStoreRef, unsigned int numberOfSlaveTasks);
     virtual ~SumMasterTask();
     
     //@Override

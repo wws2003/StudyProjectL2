@@ -14,12 +14,12 @@
 
 class SimpleChildTask : public AbstractDelegatingSlaveTask {
 public:
-    SimpleChildTask(ResultSignalDelegatePtr resultSignalDelegatePtr, unsigned int inputNumber);
+    SimpleChildTask(IResultSignalDelegatePtr resultSignalDelegatePtr, ResultStore& resultStoreRef, unsigned int inputNumber);
     
     virtual ~SimpleChildTask();
     
     //@Override
-    virtual void mainExecute(ResultPtr resultPtr);
+    virtual ResultPtr mainExecute();
     
 private:
     int m_inputNumber;

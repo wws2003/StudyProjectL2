@@ -15,17 +15,18 @@
 
 class AbstractDelegatingSlaveTask : public ITask{
 public:
-    AbstractDelegatingSlaveTask(ResultSignalDelegatePtr resultSignalDelegatePtr);
+    AbstractDelegatingSlaveTask(IResultSignalDelegatePtr resultSignalDelegatePtr, ResultStore& resultStoreRef);
     virtual ~AbstractDelegatingSlaveTask();
     
     //@Override
     virtual void execute();
     
 protected:
-    virtual void mainExecute(ResultPtr resultPtr) = 0;
-    virtual void reportResult();
+    virtual ResultPtr mainExecute() = 0;
+    virtual void reportResult(ResultPtr resultPtr);
     
-    ResultSignalDelegatePtr m_resultSignalDelegatePtr;
+    IResultSignalDelegatePtr m_resultSignalDelegatePtr;
+    ResultStore& m_resultStoreRef;
 };
 
 #endif /* defined(__ThreadPoolSample__AbstractDelegatingSlaveTask__) */

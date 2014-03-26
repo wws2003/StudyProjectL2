@@ -9,12 +9,14 @@
 #include "SumMasterTask.h"
 #include <cstdio>
 
-SumMasterTask::SumMasterTask(ResultWaitDelegatePtr resultWaitDelegatePtr) : AbstractDelegatingMasterTask(resultWaitDelegatePtr)  {
+SumMasterTask::SumMasterTask(IResultWaitDelegatePtr resultWaitDelegatePtr, ResultStore& resultStoreRef, unsigned int numberOfSlaveTasks) : AbstractDelegatingMasterTask(resultWaitDelegatePtr, resultStoreRef, numberOfSlaveTasks)  {
     
 }
 
 SumMasterTask::~SumMasterTask() {
-    
+    for (unsigned int i = 0; i < m_resultStoreRef.size(); i++) {
+        delete ((int*)m_resultStoreRef[i]);
+    }
 }
 
 void SumMasterTask::prepare() {

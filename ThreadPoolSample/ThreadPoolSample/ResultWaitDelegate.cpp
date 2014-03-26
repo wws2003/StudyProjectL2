@@ -8,7 +8,7 @@
 
 #include "ResultWaitDelegate.h"
 
-ResultWaitDelegate::ResultWaitDelegate(ResultStore& resultStoreRef, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr) :  m_resultStoreRef(resultStoreRef), m_numberOfJobTodo(numberOfJobTodo), m_jobMutexPtr(jobMutexPtr), m_jobCondPtr(jobCondPtr) {
+ResultWaitDelegate::ResultWaitDelegate(IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr) :  m_jobMutexPtr(jobMutexPtr), m_jobCondPtr(jobCondPtr) {
     
 }
 
@@ -16,13 +16,9 @@ ResultWaitDelegate::~ResultWaitDelegate() {
     
 }
 
-ResultStore& ResultWaitDelegate::getResultStoreRef() {
-    return m_resultStoreRef;
-}
-
-void ResultWaitDelegate::waitForResults() {
+void ResultWaitDelegate::waitForResults(const ResultStore& resultStoreRef, const unsigned int numberOfJobTodo) {
     m_jobMutexPtr->lock();
-    while (m_resultStoreRef.size() < m_numberOfJobTodo) {
+    while (resultStoreRef.size() < numberOfJobTodo) {
         m_jobCondPtr->wait(m_jobMutexPtr);
     }
     m_jobMutexPtr->unlock();

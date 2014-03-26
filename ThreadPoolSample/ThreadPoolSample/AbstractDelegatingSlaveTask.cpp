@@ -7,9 +7,9 @@
 //
 
 #include "AbstractDelegatingSlaveTask.h"
-#include "ResultSignalDelegate.h"
+#include "IResultSignalDelegate.h"
 
-AbstractDelegatingSlaveTask::AbstractDelegatingSlaveTask(ResultSignalDelegatePtr resultSignalDelegatePtr) : m_resultSignalDelegatePtr(resultSignalDelegatePtr){
+AbstractDelegatingSlaveTask::AbstractDelegatingSlaveTask(IResultSignalDelegatePtr resultSignalDelegatePtr, ResultStore& resultStoreRef) : m_resultSignalDelegatePtr(resultSignalDelegatePtr), m_resultStoreRef(resultStoreRef){
     
 }
 
@@ -18,10 +18,10 @@ AbstractDelegatingSlaveTask::~AbstractDelegatingSlaveTask() {
 }
 
 void AbstractDelegatingSlaveTask::execute() {
-    mainExecute(m_resultSignalDelegatePtr->getResultPtr());
-    reportResult();
+    ResultPtr resultPtr = mainExecute();
+    reportResult(resultPtr);
 }
 
-void AbstractDelegatingSlaveTask::reportResult() {
-    m_resultSignalDelegatePtr->reportResult();
+void AbstractDelegatingSlaveTask::reportResult(ResultPtr resultPtr) {
+    m_resultSignalDelegatePtr->reportResult(m_resultStoreRef, resultPtr);
 }

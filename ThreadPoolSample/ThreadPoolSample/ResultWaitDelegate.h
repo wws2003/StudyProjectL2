@@ -13,19 +13,18 @@
 #include "ITask.h"
 #include "IMutex.h"
 #include "ICondVar.h"
+#include "IResultWaitDelegate.h"
 #include <vector>
 
-class ResultWaitDelegate {
+class ResultWaitDelegate : public IResultWaitDelegate{
 public:
-    ResultWaitDelegate(ResultStore& resultStoreRef, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr);
+    ResultWaitDelegate(IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr);
     virtual ~ResultWaitDelegate();
     
-    virtual void waitForResults();
-    virtual ResultStore& getResultStoreRef();
+    //@Override
+    virtual void waitForResults(const ResultStore& resultStoreRef, const unsigned int numberOfJobTodo);
     
 private:
-    ResultStore& m_resultStoreRef;
-    const unsigned int m_numberOfJobTodo;
     IMutexPtr m_jobMutexPtr;
     ICondVarPtr m_jobCondPtr;
 };

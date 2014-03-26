@@ -96,6 +96,10 @@
 		400AE1CD18E33B8600656664 /* delegate */ = {
 			isa = PBXGroup;
 			children = (
+				40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */,
+				40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */,
+				40B1629918DEE65A000A4A71 /* ResultSignalDelegate.cpp */,
+				40B1629A18DEE65A000A4A71 /* ResultSignalDelegate.h */,
 				40B162A618E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp */,
 				40B162A718E1EAB4000A4A71 /* SubTaskDelegateImpl.h */,
 			);
@@ -179,10 +183,6 @@
 		40B1629C18DEE6E8000A4A71 /* delegate */ = {
 			isa = PBXGroup;
 			children = (
-				40B1629918DEE65A000A4A71 /* ResultSignalDelegate.cpp */,
-				40B1629A18DEE65A000A4A71 /* ResultSignalDelegate.h */,
-				40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */,
-				40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */,
 				40B1629718DEE05D000A4A71 /* ISubTaskDelegate.h */,
 				400AE1CB18E31D3800656664 /* IResultSignalDelegate.h */,
 				400AE1CC18E31F4600656664 /* IResultWaitDelegate.h */,

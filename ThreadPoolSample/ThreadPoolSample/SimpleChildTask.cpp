@@ -8,7 +8,7 @@
 
 #include "SimpleChildTask.h"
 
-SimpleChildTask::SimpleChildTask(ResultSignalDelegatePtr resultSignalDelegatePtr, unsigned int inputNumber) : AbstractDelegatingSlaveTask(resultSignalDelegatePtr), m_inputNumber(inputNumber) {
+SimpleChildTask::SimpleChildTask(IResultSignalDelegatePtr resultSignalDelegatePtr, ResultStore& resultStoreRef, unsigned int inputNumber) : AbstractDelegatingSlaveTask(resultSignalDelegatePtr, resultStoreRef), m_inputNumber(inputNumber) {
     
 }
 
@@ -16,6 +16,8 @@ SimpleChildTask::~SimpleChildTask() {
     
 }
 
-void SimpleChildTask::mainExecute(ResultPtr resultPtr) {
-    *(int*)resultPtr = m_inputNumber * m_inputNumber;
+ResultPtr SimpleChildTask::mainExecute() {
+    int* resultPtr = new int();
+    *resultPtr = m_inputNumber * m_inputNumber;
+    return resultPtr;
 }

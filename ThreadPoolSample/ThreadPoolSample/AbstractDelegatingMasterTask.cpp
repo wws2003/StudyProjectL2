@@ -9,7 +9,7 @@
 #include "AbstractDelegatingMasterTask.h"
 #include "IResultWaitDelegate.h"
 
-AbstractDelegatingMasterTask::AbstractDelegatingMasterTask(IResultWaitDelegatePtr resultWaitDelegatePtr) : m_resultWaitDelegatePtr(resultWaitDelegatePtr) {
+AbstractDelegatingMasterTask::AbstractDelegatingMasterTask(IResultWaitDelegatePtr resultWaitDelegatePtr, ResultStore& resultStoreRef, unsigned int numberOfSlaveTasks) : m_resultWaitDelegatePtr(resultWaitDelegatePtr), m_resultStoreRef(resultStoreRef), m_numberOfSlaveTasks(numberOfSlaveTasks) {
     
 }
 
@@ -24,10 +24,6 @@ void AbstractDelegatingMasterTask::execute() {
     collectResults();
 }
 
-void AbstractDelegatingMasterTask::addSlaveTaskPtr(AbstractDelegatingSlaveTaskPtr slaveTaskPtr) {
-    m_slaveTaskPtrs.push_back(slaveTaskPtr);
-}
-
 void AbstractDelegatingMasterTask::waitForResults() {
-    m_resultWaitDelegatePtr->waitForResults(m_resultStoreRef, (unsigned int)m_slaveTaskPtrs.size());
+    m_resultWaitDelegatePtr->waitForResults(m_resultStoreRef, m_numberOfSlaveTasks);
 }

@@ -13,20 +13,18 @@
 #include "ITask.h"
 #include "IMutex.h"
 #include "ICondVar.h"
+#include "IResultSignalDelegate.h"
 #include <vector>
 
-class ResultSignalDelegate {
+class ResultSignalDelegate : public IResultSignalDelegate{
 public:
-    ResultSignalDelegate(ResultStore& resultStoreRef, ResultPtr resultPtr, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr condMutexPtr);
+    ResultSignalDelegate(IMutexPtr jobMutexPtr, ICondVarPtr condMutexPtr);
     virtual ~ResultSignalDelegate();
     
-    virtual ResultPtr getResultPtr();
-    virtual void reportResult();
+    //@Override
+    virtual void reportResult(ResultStore& resultStoreRef, const ResultPtr resultPtr);
     
 private:
-    ResultStore& m_resultStoreRef;
-    ResultPtr m_resultPtr;
-    const unsigned int m_numberOfJobTodo;
     IMutexPtr m_jobMutexPtr;
     ICondVarPtr m_condMutexPtr;
 };
