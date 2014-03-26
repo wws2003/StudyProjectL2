@@ -19,5 +19,9 @@ AbstractDelegatingSlaveTask::~AbstractDelegatingSlaveTask() {
 
 void AbstractDelegatingSlaveTask::execute() {
     mainExecute(m_resultSignalDelegatePtr->getResultPtr());
+    reportResult();
+}
+
+void AbstractDelegatingSlaveTask::reportResult() {
     m_resultSignalDelegatePtr->reportResult();
 }

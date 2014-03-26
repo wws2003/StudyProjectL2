@@ -29,10 +29,30 @@ void AbstractThreadPool::addTask(ITask* taskPtr) {
     
     printf("Added a new task\n");
     //Signal to wake up the thread blocking on m_condVarPtr
-    //? Which thread to be waken up ?
+    //? Which thread to be waken up : Unknown from here?
     assert(m_condVarPtr->signal() == COND_VAR_ERROR_NONE);
     
     m_taskMutexPtr->unlock();
+}
+
+unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
+    m_taskMutexPtr->lock();
+    
+    unsigned int numberOfTaskAdded = 0;
+    const unsigned int MAX_TASK_CAN_ADD = 3; //TODO Remove hard code
+    
+    //To avoid deadlock, only conduct this operation if the task queue is empty
+    
+    if (m_taskPtrQueue.empty()) {
+        for (ITaskPtrs::const_iterator tIter = taskPtrs.begin(); tIter != taskPtrs.end() && numberOfTaskAdded < MAX_TASK_CAN_ADD; tIter++) {
+            m_taskPtrQueue.push_back(*tIter);
+            numberOfTaskAdded++;
+        }
+        assert(m_condVarPtr->signal() == COND_VAR_ERROR_NONE);
+    }
+    
+    m_taskMutexPtr->unlock();
+    return numberOfTaskAdded;
 }
 
 void AbstractThreadPool::oneThreadJob() {

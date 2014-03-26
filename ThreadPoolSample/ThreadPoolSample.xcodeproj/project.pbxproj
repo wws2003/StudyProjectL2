@@ -17,6 +17,7 @@
 		40B1629F18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B1629D18DEE907000A4A71 /* AbstractDelegatingSlaveTask.cpp */; };
 		40B162A218DEEA66000A4A71 /* ResultWaitDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */; };
 		40B162A518DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B162A318DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp */; };
+		40B162A818E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B162A618E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp */; };
 		40C84EED18D4D90E0080EE72 /* PCondVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C84EEB18D4D90E0080EE72 /* PCondVar.cpp */; };
 		40C84EF118D554480080EE72 /* ThreadPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C84EEF18D554480080EE72 /* ThreadPoolFactory.cpp */; };
 		40D5C82518D594EF00525C3C /* TaskGroupFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D5C82318D594EF00525C3C /* TaskGroupFactory.cpp */; };
@@ -39,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		400AE1CB18E31D3800656664 /* IResultSignalDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IResultSignalDelegate.h; sourceTree = "<group>"; };
+		400AE1CC18E31F4600656664 /* IResultWaitDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IResultWaitDelegate.h; sourceTree = "<group>"; };
 		4032716D18D4A798006AE977 /* PThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PThreadPool.cpp; sourceTree = "<group>"; };
 		4032716E18D4A798006AE977 /* PThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PThreadPool.h; sourceTree = "<group>"; };
 		4042531E18DDD0FC009E4AAB /* AbstractRecursiveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractRecursiveTask.cpp; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 		40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultWaitDelegate.h; sourceTree = "<group>"; };
 		40B162A318DEEE72000A4A71 /* AbstractDelegatingMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractDelegatingMasterTask.cpp; sourceTree = "<group>"; };
 		40B162A418DEEE72000A4A71 /* AbstractDelegatingMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDelegatingMasterTask.h; sourceTree = "<group>"; };
+		40B162A618E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubTaskDelegateImpl.cpp; sourceTree = "<group>"; };
+		40B162A718E1EAB4000A4A71 /* SubTaskDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTaskDelegateImpl.h; sourceTree = "<group>"; };
 		40C84EEB18D4D90E0080EE72 /* PCondVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCondVar.cpp; sourceTree = "<group>"; };
 		40C84EEC18D4D90E0080EE72 /* PCondVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCondVar.h; sourceTree = "<group>"; };
 		40C84EEF18D554480080EE72 /* ThreadPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPoolFactory.cpp; sourceTree = "<group>"; };
@@ -88,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		400AE1CD18E33B8600656664 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				40B162A618E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp */,
+				40B162A718E1EAB4000A4A71 /* SubTaskDelegateImpl.h */,
+			);
+			name = delegate;
+			sourceTree = "<group>";
+		};
 		409D63B518D46D5500E84873 = {
 			isa = PBXGroup;
 			children = (
@@ -107,11 +121,10 @@
 		409D63C018D46D5500E84873 /* ThreadPoolSample */ = {
 			isa = PBXGroup;
 			children = (
-				40C84EEE18D5542A0080EE72 /* assembler */,
+				40C84EEE18D5542A0080EE72 /* production */,
 				409D63CD18D46E0000E84873 /* common */,
 				409D63CB18D46D7B00E84873 /* implementation */,
 				409D63CA18D46D6C00E84873 /* abstract */,
-				40B1629818DEE569000A4A71 /* concrete */,
 				409D63C118D46D5500E84873 /* main.cpp */,
 				409D63C318D46D5500E84873 /* ThreadPoolSample.1 */,
 			);
@@ -140,6 +153,7 @@
 		409D63CB18D46D7B00E84873 /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				400AE1CD18E33B8600656664 /* delegate */,
 				4032716D18D4A798006AE977 /* PThreadPool.cpp */,
 				4032716E18D4A798006AE977 /* PThreadPool.h */,
 				40F7263718D4D5E600E4FB0F /* PMutex.cpp */,
@@ -162,15 +176,6 @@
 			name = common;
 			sourceTree = "<group>";
 		};
-		40B1629818DEE569000A4A71 /* concrete */ = {
-			isa = PBXGroup;
-			children = (
-				40E08B5618D55F7700B7C8C4 /* TaskGroup.h */,
-				40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */,
-			);
-			name = concrete;
-			sourceTree = "<group>";
-		};
 		40B1629C18DEE6E8000A4A71 /* delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,19 +184,23 @@
 				40B162A018DEEA66000A4A71 /* ResultWaitDelegate.cpp */,
 				40B162A118DEEA66000A4A71 /* ResultWaitDelegate.h */,
 				40B1629718DEE05D000A4A71 /* ISubTaskDelegate.h */,
+				400AE1CB18E31D3800656664 /* IResultSignalDelegate.h */,
+				400AE1CC18E31F4600656664 /* IResultWaitDelegate.h */,
 			);
 			name = delegate;
 			sourceTree = "<group>";
 		};
-		40C84EEE18D5542A0080EE72 /* assembler */ = {
+		40C84EEE18D5542A0080EE72 /* production */ = {
 			isa = PBXGroup;
 			children = (
 				40C84EEF18D554480080EE72 /* ThreadPoolFactory.cpp */,
 				40C84EF018D554480080EE72 /* ThreadPoolFactory.h */,
 				40D5C82318D594EF00525C3C /* TaskGroupFactory.cpp */,
 				40D5C82418D594EF00525C3C /* TaskGroupFactory.h */,
+				40E08B5518D55F7700B7C8C4 /* TaskGroup.cpp */,
+				40E08B5618D55F7700B7C8C4 /* TaskGroup.h */,
 			);
-			name = assembler;
+			name = production;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +256,7 @@
 			files = (
 				40C84EF118D554480080EE72 /* ThreadPoolFactory.cpp in Sources */,
 				4042532018DDD0FC009E4AAB /* AbstractRecursiveTask.cpp in Sources */,
+				40B162A818E1EAB4000A4A71 /* SubTaskDelegateImpl.cpp in Sources */,
 				40B1629B18DEE65A000A4A71 /* ResultSignalDelegate.cpp in Sources */,
 				40E08B5718D55F7700B7C8C4 /* TaskGroup.cpp in Sources */,
 				4080986718D58E110003C610 /* SimpleChildTask.cpp in Sources */,

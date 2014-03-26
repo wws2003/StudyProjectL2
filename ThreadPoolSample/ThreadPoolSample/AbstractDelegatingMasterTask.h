@@ -15,18 +15,22 @@
 
 class AbstractDelegatingMasterTask : public ITask {
 public:
-    AbstractDelegatingMasterTask(ResultWaitDelegatePtr resultWaitDelegatePtr);
+    AbstractDelegatingMasterTask(IResultWaitDelegatePtr resultWaitDelegatePtr);
     virtual ~AbstractDelegatingMasterTask();
     
     //@Override
     virtual void execute();
-    
-    virtual void prepare() = 0;
-    virtual void collectResults() = 0;
+
+    virtual void addSlaveTaskPtr(AbstractDelegatingSlaveTaskPtr slaveTaskPtr);
     
 protected:
-    ResultWaitDelegatePtr m_resultWaitDelegatePtr;
-    ResultStore& m_resultStoreRef;
+    virtual void prepare() = 0;
+    virtual void waitForResults();
+    virtual void collectResults() = 0;
+    
+    AbstractDelegatingSlaveTaskPtrs m_slaveTaskPtrs;
+    IResultWaitDelegatePtr m_resultWaitDelegatePtr;
+    ResultStore m_resultStoreRef;
 };
 
 #endif /* defined(__ThreadPoolSample__AbstractDelegatingMasterTask__) */

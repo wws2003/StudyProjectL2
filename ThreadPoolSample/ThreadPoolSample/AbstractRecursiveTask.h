@@ -12,21 +12,34 @@
 #include <iostream>
 #include "ITask.h"
 #include "TypeDefs.h"
-#include "AbstractDelegatingMasterTask.h"
 
-class AbstractRecursiveTask : public AbstractDelegatingMasterTask{
+class AbstractRecursiveTask : public ITask{
 public:
-    AbstractRecursiveTask(ResultWaitDelegatePtr resultWaitPtr, ISubTaskDelegatePtr subTaskDelegatePtr);
+    AbstractRecursiveTask(IResultWaitDelegatePtr subTaskResultsWaitPtr, ISubTaskDelegatePtr subTaskDelegatePtr, IResultSignalDelegatePtr resultSignalPtr, ResultStore& parentTaskResultStoreRef);
     
     virtual ~AbstractRecursiveTask();
     
-protected:
-    virtual void getSubTaskPtrs(AbstractRecursiveTaskPtrs subTaskPtrs) = 0;
-    
     //@Override
-    virtual void prepare();
+    virtual void execute();
     
+protected:
+    virtual void prepare() = 0;
+    
+    virtual void getSubTaskPtrs(AbstractRecursiveTaskPtrs subTaskPtrs) = 0;
+    virtual unsigned int executeSubTasks(const AbstractRecursiveTaskPtrs& subTaskPtrs);
+    virtual void waitForResults(const ResultStore& subResultStoreRef, const unsigned int numberOfJobTodo);
+    
+    virtual ResultPtr collectResults() = 0;
+    
+    virtual void releaseSubResults(const ResultStore& subResultStoreRef) = 0;
+    virtual void releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& subTaskPtrs);
+    
+    virtual void reportResult(const ResultPtr resultPtr);
+    
+    IResultWaitDelegatePtr m_subTaskResultsWaitDelegatePtr;
     ISubTaskDelegatePtr m_subTaskDelagatePtr;
+    IResultSignalDelegatePtr m_resultSignalDelegatePtr;
+    ResultStore& m_parentResultStoreRef;
 };
 
 #endif /* defined(__ThreadPoolSample__AbstractRecursiveTask__) */

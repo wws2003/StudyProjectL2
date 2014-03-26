@@ -16,7 +16,8 @@ public:
     ISubTaskDelegate(){};
     virtual ~ISubTaskDelegate(){};
     
-    virtual void executeTask(ITaskPtr taskPtr);
+    //Return number of subTasks need to wait
+    virtual unsigned int executeSubTasks(const AbstractRecursiveTaskPtrs& subTaskPtrs) = 0;
     
 };
 

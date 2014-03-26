@@ -20,7 +20,7 @@ ResultStore& ResultWaitDelegate::getResultStoreRef() {
     return m_resultStoreRef;
 }
 
-void ResultWaitDelegate::waitForResult() {
+void ResultWaitDelegate::waitForResults() {
     m_jobMutexPtr->lock();
     while (m_resultStoreRef.size() < m_numberOfJobTodo) {
         m_jobCondPtr->wait(m_jobMutexPtr);

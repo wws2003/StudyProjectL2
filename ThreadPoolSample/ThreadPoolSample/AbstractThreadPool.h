@@ -22,6 +22,7 @@ public:
     virtual ThreadPoolErrorCode destroy() = 0;
     
     virtual void addTask(ITask* taskPtr);
+    virtual unsigned int addTaskBatch(const ITaskPtrs& taskPtrs);
     virtual void oneThreadJob();
     
 protected:

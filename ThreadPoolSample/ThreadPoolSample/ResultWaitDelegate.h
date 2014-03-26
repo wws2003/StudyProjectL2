@@ -20,7 +20,7 @@ public:
     ResultWaitDelegate(ResultStore& resultStoreRef, const unsigned int numberOfJobTodo, IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr);
     virtual ~ResultWaitDelegate();
     
-    virtual void waitForResult();
+    virtual void waitForResults();
     virtual ResultStore& getResultStoreRef();
     
 private:

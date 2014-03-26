@@ -23,6 +23,7 @@ public:
     
 protected:
     virtual void mainExecute(ResultPtr resultPtr) = 0;
+    virtual void reportResult();
     
     ResultSignalDelegatePtr m_resultSignalDelegatePtr;
 };

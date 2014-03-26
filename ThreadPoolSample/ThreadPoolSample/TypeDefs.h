@@ -13,6 +13,7 @@
 
 class ITask;
 typedef ITask* ITaskPtr;
+typedef std::vector<ITaskPtr> ITaskPtrs;
 
 class IMutex;
 typedef IMutex* IMutexPtr;
@@ -43,6 +44,12 @@ typedef std::vector<AbstractRecursiveTaskPtr> AbstractRecursiveTaskPtrs;
 class ISubTaskDelegate;
 typedef ISubTaskDelegate* ISubTaskDelegatePtr;
 
+class IResultSignalDelegate;
+typedef IResultSignalDelegate* IResultSignalDelegatePtr;
+
+class IResultWaitDelegate;
+typedef IResultWaitDelegate* IResultWaitDelegatePtr;
+
 class ResultSignalDelegate;
 typedef ResultSignalDelegate* ResultSignalDelegatePtr;
 
@@ -51,6 +58,7 @@ typedef ResultWaitDelegate* ResultWaitDelegatePtr;
 
 class AbstractDelegatingSlaveTask;
 typedef AbstractDelegatingSlaveTask* AbstractDelegatingSlaveTaskPtr;
+typedef std::vector<AbstractDelegatingSlaveTaskPtr> AbstractDelegatingSlaveTaskPtrs;
 
 class AbstractDelegatingMasterTask;
 typedef AbstractDelegatingMasterTask* AbstractDelegatingMasterTaskPtr;
