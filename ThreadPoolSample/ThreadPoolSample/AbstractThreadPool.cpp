@@ -39,13 +39,15 @@ unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
     m_taskMutexPtr->lock();
     
     unsigned int numberOfTaskAdded = 0;
-    const unsigned int MAX_TASK_CAN_ADD = 3; //TODO Remove hard code
+    const unsigned int MAX_TASK_CAN_ADD = m_numberOfThreads;
     
     //To avoid deadlock, only conduct this operation if the task queue is empty
     
     if (m_taskPtrQueue.empty()) {
         for (ITaskPtrs::const_iterator tIter = taskPtrs.begin(); tIter != taskPtrs.end() && numberOfTaskAdded < MAX_TASK_CAN_ADD; tIter++) {
-            m_taskPtrQueue.push_back(*tIter);
+            printf("Added a new task\n");
+            ITaskPtr taskPtr = *tIter;
+            m_taskPtrQueue.push_back(taskPtr);
             numberOfTaskAdded++;
         }
         assert(m_condVarPtr->signal() == COND_VAR_ERROR_NONE);
@@ -71,7 +73,7 @@ void AbstractThreadPool::oneThreadJob() {
             ITaskPtr currentTask = m_taskPtrQueue.front();
             m_taskPtrQueue.pop_front();
             
-            printf("To process a task\n");
+            printf("To process a task in thread id = %ld\n", currentThreadId());
             //Unlock the queue while task is being executed
             m_taskMutexPtr->unlock();
             currentTask->execute();

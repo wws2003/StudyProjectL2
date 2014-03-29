@@ -23,9 +23,13 @@ public:
     
     virtual void addTask(ITask* taskPtr);
     virtual unsigned int addTaskBatch(const ITaskPtrs& taskPtrs);
+    
+    //Each thread would run this method as main loop
     virtual void oneThreadJob();
     
 protected:
+    virtual unsigned long currentThreadId() = 0;
+    
     int m_numberOfThreads;
     IMutexPtr m_taskMutexPtr;
     ICondVarPtr m_condVarPtr;

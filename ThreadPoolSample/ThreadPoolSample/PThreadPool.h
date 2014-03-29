@@ -25,6 +25,8 @@ public:
     virtual ThreadPoolErrorCode destroy();
     
 private:
+    //@Override
+    virtual unsigned long currentThreadId();
     std::vector<pthread_t> m_threads;
 };
 

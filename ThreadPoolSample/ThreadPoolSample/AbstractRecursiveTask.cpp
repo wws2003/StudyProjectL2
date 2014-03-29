@@ -11,8 +11,9 @@
 #include "IResultSignalDelegate.h"
 #include "ISubTaskDelegate.h"
 #include "ITask.h"
+#include "IResultDelegatePairFactory.h"
 
-AbstractRecursiveTask::AbstractRecursiveTask(IResultWaitDelegatePtr subTaskResultsWaitPtr, ISubTaskDelegatePtr subTaskDelegatePtr, IResultSignalDelegatePtr resultSignalPtr, ResultStore& parentTaskResultStoreRef) :  m_subTaskResultsWaitDelegatePtr(subTaskResultsWaitPtr), m_subTaskDelagatePtr(subTaskDelegatePtr), m_resultSignalDelegatePtr(resultSignalPtr), m_parentResultStoreRef(parentTaskResultStoreRef) {
+AbstractRecursiveTask::AbstractRecursiveTask() : m_parentResultStorePtr(NULL),m_resultDelegatePairFactoryPtr(NULL), m_resultSignalDelegatePtr(NULL), m_subTaskDelagatePtr(NULL) {
     
 }
 
@@ -24,27 +25,66 @@ void AbstractRecursiveTask::execute() {
     prepare();
     
     AbstractRecursiveTaskPtrs subTaskPtrs;
-    getSubTaskPtrs(subTaskPtrs);
-    
-    //All sub tasks share the same result signal delegate ptr?
-    
-    unsigned int numberOfSubTaskNeedToWait = executeSubTasks(subTaskPtrs);
     ResultStore subResultStore;
-    waitForResults(subResultStore, numberOfSubTaskNeedToWait);
-    releaseSubResults(subResultStore);
+    
+    getSubTaskPtrs(subTaskPtrs, subResultStore);
+    
+    executeSubTasks(subTaskPtrs, subResultStore);
     
     releaseSubTaskPtrs(subTaskPtrs);
     
-    ResultPtr resultPtr = collectResults();
+    ResultPtr resultPtr = collectResults(subResultStore);
+    releaseSubResults(subResultStore);
     reportResult(resultPtr);
 }
 
-unsigned int AbstractRecursiveTask::executeSubTasks(const AbstractRecursiveTaskPtrs& subTaskPtrs) {
-    return m_subTaskDelagatePtr->executeSubTasks(subTaskPtrs);
+void AbstractRecursiveTask::setParentResultStorePtr(ResultStorePtr parentResultStorePtr) {
+    m_parentResultStorePtr = parentResultStorePtr;
 }
 
-void AbstractRecursiveTask::waitForResults(const ResultStore& subResultStoreRef, const unsigned int numberOfJobTodo) {
-    m_subTaskResultsWaitDelegatePtr->waitForResults(subResultStoreRef, numberOfJobTodo);
+void AbstractRecursiveTask::setSubTaskDelegatePtr(ISubTaskDelegatePtr subTaskDelegatePtr) {
+    m_subTaskDelagatePtr = subTaskDelegatePtr;
+}
+
+void AbstractRecursiveTask::setResultSignalDelegatePtr(IResultSignalDelegatePtr resultSignalPtr) {
+    m_resultSignalDelegatePtr = resultSignalPtr;
+}
+
+void AbstractRecursiveTask::setResultDelegatePairFactoryPtr(IResultDelegatePairFactoryPtr resultDelegateFactoryPtr) {
+    m_resultDelegatePairFactoryPtr = resultDelegateFactoryPtr;
+}
+
+void AbstractRecursiveTask::executeSubTasks(AbstractRecursiveTaskPtrs& subTaskPtrs, ResultStore& subTaskResultStoreRef) {
+    
+    if (subTaskPtrs.empty()) {
+        return;
+    }
+    
+    //Call factory method to retrieve pair of wait delegate and sub task 's signal delegate
+    IResultDelegatePtrPair resultDelegatePtrPair = m_resultDelegatePairFactoryPtr->getResultDelegatePtrPair();
+    
+    IResultWaitDelegatePtr subTaskResultWaitDelegatePtr = resultDelegatePtrPair.first;
+    IResultSignalDelegatePtr subTaskResultSignalDelegatePtr = resultDelegatePtrPair.second;
+    
+    //All sub tasks share the same result signal delegate ptr
+    for (AbstractRecursiveTaskPtrs::const_iterator tIter = subTaskPtrs.begin(); tIter != subTaskPtrs.end(); tIter++) {
+        AbstractRecursiveTaskPtr subTaskPtr = *tIter;
+        subTaskPtr->setParentResultStorePtr(&subTaskResultStoreRef);
+        subTaskPtr->setSubTaskDelegatePtr(m_subTaskDelagatePtr);
+        subTaskPtr->setResultDelegatePairFactoryPtr(m_resultDelegatePairFactoryPtr);
+        subTaskPtr->setResultSignalDelegatePtr(subTaskResultSignalDelegatePtr);
+    }
+    
+    //Execute sub tasks and wait for results
+    unsigned int numberOfSubTaskNeedToWait = m_subTaskDelagatePtr->executeSubTasks(subTaskPtrs);
+    waitForResults(subTaskResultWaitDelegatePtr, subTaskResultStoreRef, numberOfSubTaskNeedToWait);
+    
+    delete subTaskResultWaitDelegatePtr;
+    delete subTaskResultSignalDelegatePtr;
+}
+
+void AbstractRecursiveTask::waitForResults(IResultWaitDelegatePtr resultWaitDelegatePtr, const ResultStore& subResultStoreRef, const unsigned int numberOfJobTodo) {
+    resultWaitDelegatePtr->waitForResults(subResultStoreRef, numberOfJobTodo);
 }
 
 void AbstractRecursiveTask::releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& subTaskPtrs) {
@@ -55,5 +95,5 @@ void AbstractRecursiveTask::releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& 
 
 void AbstractRecursiveTask::reportResult(const ResultPtr resultPtr) {
     if(m_resultSignalDelegatePtr)
-        m_resultSignalDelegatePtr->reportResult(m_parentResultStoreRef, resultPtr);
+        m_resultSignalDelegatePtr->reportResult(*m_parentResultStorePtr, resultPtr);
 }

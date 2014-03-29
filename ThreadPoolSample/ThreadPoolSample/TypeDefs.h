@@ -10,6 +10,7 @@
 #define ThreadPoolSample_TypeDefs_h
 
 #include <vector>
+#include <algorithm>
 
 class ITask;
 typedef ITask* ITaskPtr;
@@ -36,6 +37,7 @@ typedef AbstractMasterTask* AbstractMasterTaskPtr;
 typedef void* ResultPtr;
 
 typedef std::vector<ResultPtr> ResultStore;
+typedef ResultStore* ResultStorePtr;
 
 class AbstractRecursiveTask;
 typedef AbstractRecursiveTask* AbstractRecursiveTaskPtr;
@@ -49,6 +51,11 @@ typedef IResultSignalDelegate* IResultSignalDelegatePtr;
 
 class IResultWaitDelegate;
 typedef IResultWaitDelegate* IResultWaitDelegatePtr;
+
+typedef std::pair<IResultWaitDelegatePtr, IResultSignalDelegatePtr> IResultDelegatePtrPair;
+
+class IResultDelegatePairFactory;
+typedef IResultDelegatePairFactory* IResultDelegatePairFactoryPtr;
 
 class ResultSignalDelegate;
 typedef ResultSignalDelegate* ResultSignalDelegatePtr;

@@ -15,31 +15,37 @@
 
 class AbstractRecursiveTask : public ITask{
 public:
-    AbstractRecursiveTask(IResultWaitDelegatePtr subTaskResultsWaitPtr, ISubTaskDelegatePtr subTaskDelegatePtr, IResultSignalDelegatePtr resultSignalPtr, ResultStore& parentTaskResultStoreRef);
+    AbstractRecursiveTask();
     
     virtual ~AbstractRecursiveTask();
     
     //@Override
     virtual void execute();
     
+    virtual void setParentResultStorePtr(ResultStorePtr parentResultStorePtr);
+    virtual void setSubTaskDelegatePtr(ISubTaskDelegatePtr subTaskDelegatePtr);
+    virtual void setResultSignalDelegatePtr(IResultSignalDelegatePtr resultSignalPtr);
+    virtual void setResultDelegatePairFactoryPtr(IResultDelegatePairFactoryPtr resultDelegateFactoryPtr);
+    
 protected:
     virtual void prepare() = 0;
     
-    virtual void getSubTaskPtrs(AbstractRecursiveTaskPtrs subTaskPtrs) = 0;
-    virtual unsigned int executeSubTasks(const AbstractRecursiveTaskPtrs& subTaskPtrs);
-    virtual void waitForResults(const ResultStore& subResultStoreRef, const unsigned int numberOfJobTodo);
+    virtual void getSubTaskPtrs(AbstractRecursiveTaskPtrs& subTaskPtrs, ResultStore& resultStoreRef) = 0;
     
-    virtual ResultPtr collectResults() = 0;
+    virtual ResultPtr collectResults(const ResultStore& subTaskResultStore) = 0;
     
     virtual void releaseSubResults(const ResultStore& subResultStoreRef) = 0;
-    virtual void releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& subTaskPtrs);
     
-    virtual void reportResult(const ResultPtr resultPtr);
+private:
+    void executeSubTasks(AbstractRecursiveTaskPtrs& subTaskPtrs, ResultStore& resultStoreRef);
+    void waitForResults(IResultWaitDelegatePtr resultWaitDelegatePtr, const ResultStore& subResultStoreRef, const unsigned int numberOfJobTodo);
+    void releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& subTaskPtrs);
+    void reportResult(const ResultPtr resultPtr);
     
-    IResultWaitDelegatePtr m_subTaskResultsWaitDelegatePtr;
+    ResultStorePtr m_parentResultStorePtr;
+    IResultDelegatePairFactoryPtr m_resultDelegatePairFactoryPtr;
     ISubTaskDelegatePtr m_subTaskDelagatePtr;
     IResultSignalDelegatePtr m_resultSignalDelegatePtr;
-    ResultStore& m_parentResultStoreRef;
 };
 
 #endif /* defined(__ThreadPoolSample__AbstractRecursiveTask__) */

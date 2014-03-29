@@ -60,3 +60,10 @@ ThreadPoolErrorCode PThreadPool::destroy() {
     }
     return THREADPOOL_ERROR_NONE;
 }
+
+unsigned long PThreadPool::currentThreadId() {
+    pthread_t selfThread = pthread_self();
+    unsigned long long threadId;
+    pthread_threadid_np(selfThread, &threadId);
+    return threadId;
+}
