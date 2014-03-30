@@ -11,6 +11,7 @@
 #import "AdapterFactory.h"
 #import "ModelFactory.h"
 #import "ControllerFactory.h"
+#import "DBDocumentController.h"
 
 @interface AppDelegate (private)
 -(void) initResultTable;
@@ -52,10 +53,17 @@
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+-(void)applicationWillFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     [self initResultTable];
+    
+    NSDocumentController* documentController = [[DBDocumentController alloc] init];
+    [self setDbDocumentController:documentController];
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
@@ -63,15 +71,13 @@
 }
 
 - (IBAction)openDocument:(NSMenuItem *)sender {
-    NSDocumentController* documentController = [[NSDocumentController alloc] init];
-    [documentController documentClassForType:@".db"];
+    NSDocumentController* documentController = [NSDocumentController sharedDocumentController];
     [documentController openDocument:sender];
 }
 
 - (IBAction)onBtnExecuteClicked:(NSButtonCell *)sender {
 
     [self.priResultIndicator startAnimation:self];
-    //NSLog(@"Btn clicked, model data row :%lu", [[self.model m_data] count]);
     Command* command = [[Command alloc] init:COMMAND_CODE_DUMMY withString:@""];
     [self.resultTableController receiveCommand:command];
     [self.priResultIndicator stopAnimation:self];

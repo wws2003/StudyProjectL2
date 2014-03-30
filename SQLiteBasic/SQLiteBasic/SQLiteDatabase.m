@@ -42,11 +42,20 @@
 
 -(id)initByFilePath : (NSString*) filePath {
     if (self = [super init]) {
-        sqlite3* dbConnection;
-        if (sqlite3_open([filePath UTF8String], &dbConnection) != SQLITE_OK) {
-            NSLog(@"Can not open connection to DB");
+        @try {
+            sqlite3* dbConnection;
+            if (sqlite3_open([filePath UTF8String], &dbConnection) != SQLITE_OK) {
+                NSLog(@"Can not open connection to DB");
+            }
+            m_database = dbConnection;
         }
-        m_database = dbConnection;
+        @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        }
+        @finally {
+            
+        }
+       
     }
     return self;
 }

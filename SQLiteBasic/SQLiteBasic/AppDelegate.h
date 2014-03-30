@@ -23,6 +23,7 @@
 @property (assign) AppModel* model;
 @property (assign) NSObject<AppAdapter>* adapter;
 @property (assign) NSObject<AppController>* resultTableController;
+@property (assign) NSDocumentController* dbDocumentController;
 
 - (IBAction)onBtnExecuteClicked:(NSButtonCell *)sender;
 

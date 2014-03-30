@@ -31,14 +31,19 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
     
-    <key>CFBundleTypeName</key>
+    <key>CFBundleDocumentTypes</key>
     <array>
         <dict>
-            <key>CFBundleTypeExtensions</key>
+            <key>CFBundleTypeName</key>
+            <string>DB</string>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSItemContentTypes</key>
             <array>
-                <string>pdf</string>
-                <string>text</string>
+                <string>public.data</string>
             </array>
+            <key>NSDocumentClass</key>
+            <string>DBLoadDocument</string>
         </dict>
     </array>
     

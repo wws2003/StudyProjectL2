@@ -21,6 +21,10 @@
 		403799CF18B8D8D3008FB394 /* SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 403799CE18B8D8D3008FB394 /* SQLiteDatabase.m */; };
 		40BDDCAC18D897A80060956F /* ControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BDDCAB18D897A80060956F /* ControllerFactory.m */; };
 		40BDDCAF18D898920060956F /* AppControllerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BDDCAE18D898920060956F /* AppControllerImpl.m */; };
+		40E68A5418E725DC00DFE788 /* DBDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E68A5318E725DC00DFE788 /* DBDocumentController.m */; };
+		40E68A5D18E8607700DFE788 /* DBLoadDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E68A5B18E8607700DFE788 /* DBLoadDocument.m */; };
+		40E68A5E18E8607700DFE788 /* DBLoadDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E68A5C18E8607700DFE788 /* DBLoadDocument.xib */; };
+		40E68A6718E8694E00DFE788 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E68A6618E8694E00DFE788 /* MyApplication.m */; };
 		40E69C4418C1E2E1001237CE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E69C4318C1E2E1001237CE /* libsqlite3.0.dylib */; };
 		40E69C4C18C23777001237CE /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E69C4B18C23777001237CE /* Command.m */; };
 		40E69C5218C2606C001237CE /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E69C5118C2606C001237CE /* AppModel.m */; };
@@ -65,6 +69,13 @@
 		40BDDCAB18D897A80060956F /* ControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerFactory.m; sourceTree = "<group>"; };
 		40BDDCAD18D898920060956F /* AppControllerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppControllerImpl.h; sourceTree = "<group>"; };
 		40BDDCAE18D898920060956F /* AppControllerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppControllerImpl.m; sourceTree = "<group>"; };
+		40E68A5218E725DC00DFE788 /* DBDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBDocumentController.h; sourceTree = "<group>"; };
+		40E68A5318E725DC00DFE788 /* DBDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBDocumentController.m; sourceTree = "<group>"; };
+		40E68A5A18E8607700DFE788 /* DBLoadDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoadDocument.h; sourceTree = "<group>"; };
+		40E68A5B18E8607700DFE788 /* DBLoadDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoadDocument.m; sourceTree = "<group>"; };
+		40E68A5C18E8607700DFE788 /* DBLoadDocument.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBLoadDocument.xib; sourceTree = "<group>"; };
+		40E68A6518E8694E00DFE788 /* MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
+		40E68A6618E8694E00DFE788 /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
 		40E69C4318C1E2E1001237CE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		40E69C4918C2348D001237CE /* AppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		40E69C4A18C23777001237CE /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
@@ -146,14 +157,13 @@
 		4037999F18B8D87F008FB394 /* SQLiteBasic */ = {
 			isa = PBXGroup;
 			children = (
+				40E68A5F18E8608700DFE788 /* view */,
 				40E69C4D18C23EA0001237CE /* common */,
-				40E69C4818C23119001237CE /* adapter */,
 				40E69C4718C230C6001237CE /* factory */,
 				40E69C4618C230BB001237CE /* controller */,
 				40E69C4518C230B5001237CE /* model */,
 				403799AB18B8D87F008FB394 /* AppDelegate.h */,
 				403799AC18B8D87F008FB394 /* AppDelegate.m */,
-				403799AE18B8D87F008FB394 /* MainMenu.xib */,
 				403799B118B8D87F008FB394 /* Images.xcassets */,
 				403799A018B8D87F008FB394 /* Supporting Files */,
 				403799CD18B8D8D3008FB394 /* SQLiteDatabase.h */,
@@ -192,6 +202,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		40E68A5F18E8608700DFE788 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				403799AE18B8D87F008FB394 /* MainMenu.xib */,
+				40E68A5C18E8607700DFE788 /* DBLoadDocument.xib */,
+				40E69C4818C23119001237CE /* adapter */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		40E69C4518C230B5001237CE /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +219,8 @@
 				40E69C4B18C23777001237CE /* Command.m */,
 				40E69C5018C2606C001237CE /* AppModel.h */,
 				40E69C5118C2606C001237CE /* AppModel.m */,
+				40E68A6518E8694E00DFE788 /* MyApplication.h */,
+				40E68A6618E8694E00DFE788 /* MyApplication.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -209,6 +231,10 @@
 				40E69C4918C2348D001237CE /* AppController.h */,
 				40BDDCAD18D898920060956F /* AppControllerImpl.h */,
 				40BDDCAE18D898920060956F /* AppControllerImpl.m */,
+				40E68A5218E725DC00DFE788 /* DBDocumentController.h */,
+				40E68A5318E725DC00DFE788 /* DBDocumentController.m */,
+				40E68A5A18E8607700DFE788 /* DBLoadDocument.h */,
+				40E68A5B18E8607700DFE788 /* DBLoadDocument.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -323,6 +349,7 @@
 				403799A418B8D87F008FB394 /* InfoPlist.strings in Resources */,
 				403799B218B8D87F008FB394 /* Images.xcassets in Resources */,
 				403799AA18B8D87F008FB394 /* Credits.rtf in Resources */,
+				40E68A5E18E8607700DFE788 /* DBLoadDocument.xib in Resources */,
 				403799B018B8D87F008FB394 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +369,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E68A5D18E8607700DFE788 /* DBLoadDocument.m in Sources */,
+				40E68A6718E8694E00DFE788 /* MyApplication.m in Sources */,
 				40BDDCAC18D897A80060956F /* ControllerFactory.m in Sources */,
 				403799CF18B8D8D3008FB394 /* SQLiteDatabase.m in Sources */,
 				40E69C5618C353D0001237CE /* AppAdapterImpl.m in Sources */,
@@ -349,6 +378,7 @@
 				40E69C5918CB170A001237CE /* AdapterFactory.m in Sources */,
 				40BDDCAF18D898920060956F /* AppControllerImpl.m in Sources */,
 				403799AD18B8D87F008FB394 /* AppDelegate.m in Sources */,
+				40E68A5418E725DC00DFE788 /* DBDocumentController.m in Sources */,
 				40E69C5218C2606C001237CE /* AppModel.m in Sources */,
 				403799A618B8D87F008FB394 /* main.m in Sources */,
 				40E69C4C18C23777001237CE /* Command.m in Sources */,

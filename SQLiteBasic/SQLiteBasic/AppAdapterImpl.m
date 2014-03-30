@@ -60,10 +60,10 @@ static CGFloat const ROW_HEIGTH = 20;
                 NSTableColumn* newColumn = [[[NSTableColumn alloc] initWithIdentifier:columnIdentifier] autorelease];
                 [newColumn setWidth:COLUMN_WIDTH];
                 [tableView addTableColumn:newColumn];
-                NSLog(@"-------Data display size [%lf, %lf]", (i + 1) * COLUMN_WIDTH, numberOfRows * ROW_HEIGTH);
-                NSLog(@"-------Table size [%lf, %lf]", tableView.frame.size.width, tableView.frame.size.height);
-                NSLog(@"-------Superview class %s",[[[tableView superview] className] UTF8String]);
-                NSLog(@"-------Clipped size [%lf, %lf]", [tableView superview].frame.size.width, [tableView superview].frame.size.height);
+//                NSLog(@"-------Data display size [%lf, %lf]", (i + 1) * COLUMN_WIDTH, numberOfRows * ROW_HEIGTH);
+//                NSLog(@"-------Table size [%lf, %lf]", tableView.frame.size.width, tableView.frame.size.height);
+//                NSLog(@"-------Superview class %s",[[[tableView superview] className] UTF8String]);
+//                NSLog(@"-------Clipped size [%lf, %lf]", [tableView superview].frame.size.width, [tableView superview].frame.size.height);
                 [self.m_tableColumnIdentifiers setObject:[NSNumber numberWithInteger:i] forKey:columnIdentifier];
             }
         }
@@ -73,7 +73,7 @@ static CGFloat const ROW_HEIGTH = 20;
         exit(1);
     }
     
-    NSLog(@"Table size [%lf, %lf]", tableView.frame.size.width, tableView.frame.size.height);
+    //NSLog(@"Table size [%lf, %lf]", tableView.frame.size.width, tableView.frame.size.height);
 }
 
 -(NSUInteger)getColumnIndexByIdentifier:(NSString*)identifier {
