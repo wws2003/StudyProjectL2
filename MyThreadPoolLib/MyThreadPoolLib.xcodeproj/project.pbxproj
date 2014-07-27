@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4063E74718F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E71A18F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp */; };
+		4063E74818F9A15300C1C292 /* AbstractDelegatingMasterTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E71B18F9A15300C1C292 /* AbstractDelegatingMasterTask.h */; };
+		4063E74918F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E71C18F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp */; };
+		4063E74A18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E71D18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h */; };
+		4063E74B18F9A15300C1C292 /* AbstractRecursiveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E71E18F9A15300C1C292 /* AbstractRecursiveTask.cpp */; };
+		4063E74C18F9A15300C1C292 /* AbstractRecursiveTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E71F18F9A15300C1C292 /* AbstractRecursiveTask.h */; };
+		4063E74D18F9A15300C1C292 /* AbstractThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72018F9A15300C1C292 /* AbstractThreadPool.cpp */; };
+		4063E74E18F9A15300C1C292 /* AbstractThreadPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72118F9A15300C1C292 /* AbstractThreadPool.h */; };
+		4063E74F18F9A15300C1C292 /* ICondVar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72218F9A15300C1C292 /* ICondVar.h */; };
+		4063E75018F9A15300C1C292 /* IMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72318F9A15300C1C292 /* IMutex.h */; };
+		4063E75118F9A15300C1C292 /* IResultDelegatePairFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72418F9A15300C1C292 /* IResultDelegatePairFactory.h */; };
+		4063E75218F9A15300C1C292 /* IResultSignalDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72518F9A15300C1C292 /* IResultSignalDelegate.h */; };
+		4063E75318F9A15300C1C292 /* IResultWaitDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72618F9A15300C1C292 /* IResultWaitDelegate.h */; };
+		4063E75418F9A15300C1C292 /* ISubTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72718F9A15300C1C292 /* ISubTaskDelegate.h */; };
+		4063E75518F9A15300C1C292 /* ITask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72818F9A15300C1C292 /* ITask.h */; };
+		4063E75618F9A15300C1C292 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72918F9A15300C1C292 /* main.cpp */; };
+		4063E75718F9A15300C1C292 /* PCondVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72A18F9A15300C1C292 /* PCondVar.cpp */; };
+		4063E75818F9A15300C1C292 /* PCondVar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72B18F9A15300C1C292 /* PCondVar.h */; };
+		4063E75918F9A15300C1C292 /* PMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72C18F9A15300C1C292 /* PMutex.cpp */; };
+		4063E75A18F9A15300C1C292 /* PMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72D18F9A15300C1C292 /* PMutex.h */; };
+		4063E75B18F9A15300C1C292 /* PThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72E18F9A15300C1C292 /* PThreadPool.cpp */; };
+		4063E75C18F9A15300C1C292 /* PThreadPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72F18F9A15300C1C292 /* PThreadPool.h */; };
+		4063E75D18F9A15300C1C292 /* QuickSortRecursiveTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73018F9A15300C1C292 /* QuickSortRecursiveTask.cpp */; };
+		4063E75E18F9A15300C1C292 /* QuickSortRecursiveTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73118F9A15300C1C292 /* QuickSortRecursiveTask.h */; };
+		4063E75F18F9A15300C1C292 /* RecursiveTaskAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73218F9A15300C1C292 /* RecursiveTaskAssembler.cpp */; };
+		4063E76018F9A15300C1C292 /* RecursiveTaskAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73318F9A15300C1C292 /* RecursiveTaskAssembler.h */; };
+		4063E76118F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73418F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp */; };
+		4063E76218F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73518F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h */; };
+		4063E76318F9A15300C1C292 /* ResultSignalDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73618F9A15300C1C292 /* ResultSignalDelegate.cpp */; };
+		4063E76418F9A15300C1C292 /* ResultSignalDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73718F9A15300C1C292 /* ResultSignalDelegate.h */; };
+		4063E76518F9A15300C1C292 /* ResultWaitDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73818F9A15300C1C292 /* ResultWaitDelegate.cpp */; };
+		4063E76618F9A15300C1C292 /* ResultWaitDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73918F9A15300C1C292 /* ResultWaitDelegate.h */; };
+		4063E76718F9A15300C1C292 /* SimpleChildTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73A18F9A15300C1C292 /* SimpleChildTask.cpp */; };
+		4063E76818F9A15300C1C292 /* SimpleChildTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73B18F9A15300C1C292 /* SimpleChildTask.h */; };
+		4063E76918F9A15300C1C292 /* SubTaskDelegateImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73C18F9A15300C1C292 /* SubTaskDelegateImpl.cpp */; };
+		4063E76A18F9A15300C1C292 /* SubTaskDelegateImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73D18F9A15300C1C292 /* SubTaskDelegateImpl.h */; };
+		4063E76B18F9A15300C1C292 /* SumMasterTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E73E18F9A15300C1C292 /* SumMasterTask.cpp */; };
+		4063E76C18F9A15300C1C292 /* SumMasterTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E73F18F9A15300C1C292 /* SumMasterTask.h */; };
+		4063E76D18F9A15300C1C292 /* TaskGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E74018F9A15300C1C292 /* TaskGroup.cpp */; };
+		4063E76E18F9A15300C1C292 /* TaskGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74118F9A15300C1C292 /* TaskGroup.h */; };
+		4063E76F18F9A15300C1C292 /* TaskGroupFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E74218F9A15300C1C292 /* TaskGroupFactory.cpp */; };
+		4063E77018F9A15300C1C292 /* TaskGroupFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74318F9A15300C1C292 /* TaskGroupFactory.h */; };
+		4063E77118F9A15300C1C292 /* ThreadPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */; };
+		4063E77218F9A15300C1C292 /* ThreadPoolFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */; };
+		4063E77318F9A15300C1C292 /* TypeDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74618F9A15300C1C292 /* TypeDefs.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4063E71318F9A11700C1C292 /* libMyThreadPoolLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMyThreadPoolLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4063E71A18F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractDelegatingMasterTask.cpp; sourceTree = "<group>"; };
+		4063E71B18F9A15300C1C292 /* AbstractDelegatingMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDelegatingMasterTask.h; sourceTree = "<group>"; };
+		4063E71C18F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractDelegatingSlaveTask.cpp; sourceTree = "<group>"; };
+		4063E71D18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDelegatingSlaveTask.h; sourceTree = "<group>"; };
+		4063E71E18F9A15300C1C292 /* AbstractRecursiveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractRecursiveTask.cpp; sourceTree = "<group>"; };
+		4063E71F18F9A15300C1C292 /* AbstractRecursiveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractRecursiveTask.h; sourceTree = "<group>"; };
+		4063E72018F9A15300C1C292 /* AbstractThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractThreadPool.cpp; sourceTree = "<group>"; };
+		4063E72118F9A15300C1C292 /* AbstractThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractThreadPool.h; sourceTree = "<group>"; };
+		4063E72218F9A15300C1C292 /* ICondVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICondVar.h; sourceTree = "<group>"; };
+		4063E72318F9A15300C1C292 /* IMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMutex.h; sourceTree = "<group>"; };
+		4063E72418F9A15300C1C292 /* IResultDelegatePairFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResultDelegatePairFactory.h; sourceTree = "<group>"; };
+		4063E72518F9A15300C1C292 /* IResultSignalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResultSignalDelegate.h; sourceTree = "<group>"; };
+		4063E72618F9A15300C1C292 /* IResultWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResultWaitDelegate.h; sourceTree = "<group>"; };
+		4063E72718F9A15300C1C292 /* ISubTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISubTaskDelegate.h; sourceTree = "<group>"; };
+		4063E72818F9A15300C1C292 /* ITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITask.h; sourceTree = "<group>"; };
+		4063E72918F9A15300C1C292 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4063E72A18F9A15300C1C292 /* PCondVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCondVar.cpp; sourceTree = "<group>"; };
+		4063E72B18F9A15300C1C292 /* PCondVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCondVar.h; sourceTree = "<group>"; };
+		4063E72C18F9A15300C1C292 /* PMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMutex.cpp; sourceTree = "<group>"; };
+		4063E72D18F9A15300C1C292 /* PMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMutex.h; sourceTree = "<group>"; };
+		4063E72E18F9A15300C1C292 /* PThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PThreadPool.cpp; sourceTree = "<group>"; };
+		4063E72F18F9A15300C1C292 /* PThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PThreadPool.h; sourceTree = "<group>"; };
+		4063E73018F9A15300C1C292 /* QuickSortRecursiveTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuickSortRecursiveTask.cpp; sourceTree = "<group>"; };
+		4063E73118F9A15300C1C292 /* QuickSortRecursiveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickSortRecursiveTask.h; sourceTree = "<group>"; };
+		4063E73218F9A15300C1C292 /* RecursiveTaskAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RecursiveTaskAssembler.cpp; sourceTree = "<group>"; };
+		4063E73318F9A15300C1C292 /* RecursiveTaskAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecursiveTaskAssembler.h; sourceTree = "<group>"; };
+		4063E73418F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultDelegatePairFactoryImpl.cpp; sourceTree = "<group>"; };
+		4063E73518F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultDelegatePairFactoryImpl.h; sourceTree = "<group>"; };
+		4063E73618F9A15300C1C292 /* ResultSignalDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultSignalDelegate.cpp; sourceTree = "<group>"; };
+		4063E73718F9A15300C1C292 /* ResultSignalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultSignalDelegate.h; sourceTree = "<group>"; };
+		4063E73818F9A15300C1C292 /* ResultWaitDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultWaitDelegate.cpp; sourceTree = "<group>"; };
+		4063E73918F9A15300C1C292 /* ResultWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultWaitDelegate.h; sourceTree = "<group>"; };
+		4063E73A18F9A15300C1C292 /* SimpleChildTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleChildTask.cpp; sourceTree = "<group>"; };
+		4063E73B18F9A15300C1C292 /* SimpleChildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleChildTask.h; sourceTree = "<group>"; };
+		4063E73C18F9A15300C1C292 /* SubTaskDelegateImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubTaskDelegateImpl.cpp; sourceTree = "<group>"; };
+		4063E73D18F9A15300C1C292 /* SubTaskDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTaskDelegateImpl.h; sourceTree = "<group>"; };
+		4063E73E18F9A15300C1C292 /* SumMasterTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SumMasterTask.cpp; sourceTree = "<group>"; };
+		4063E73F18F9A15300C1C292 /* SumMasterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SumMasterTask.h; sourceTree = "<group>"; };
+		4063E74018F9A15300C1C292 /* TaskGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskGroup.cpp; sourceTree = "<group>"; };
+		4063E74118F9A15300C1C292 /* TaskGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroup.h; sourceTree = "<group>"; };
+		4063E74218F9A15300C1C292 /* TaskGroupFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskGroupFactory.cpp; sourceTree = "<group>"; };
+		4063E74318F9A15300C1C292 /* TaskGroupFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroupFactory.h; sourceTree = "<group>"; };
+		4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPoolFactory.cpp; sourceTree = "<group>"; };
+		4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThreadPoolFactory.h; path = /Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/ThreadPoolFactory.h; sourceTree = "<absolute>"; };
+		4063E74618F9A15300C1C292 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeDefs.h; path = /Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/TypeDefs.h; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4063E71018F9A11700C1C292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4063E70A18F9A11700C1C292 = {
+			isa = PBXGroup;
+			children = (
+				4063E77418F9A19900C1C292 /* include */,
+				4063E77518F9A19F00C1C292 /* src */,
+				4063E71418F9A11700C1C292 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4063E71418F9A11700C1C292 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4063E71318F9A11700C1C292 /* libMyThreadPoolLib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4063E77418F9A19900C1C292 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4063E77618F9A28300C1C292 /* common */,
+				4063E77718F9A29100C1C292 /* abstract */,
+				4063E77E18F9A49800C1C292 /* container */,
+				4063E77818F9A29700C1C292 /* implementation */,
+				4063E77B18F9A30D00C1C292 /* samples */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		4063E77518F9A19F00C1C292 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4063E71A18F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp */,
+				4063E71C18F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp */,
+				4063E71E18F9A15300C1C292 /* AbstractRecursiveTask.cpp */,
+				4063E72018F9A15300C1C292 /* AbstractThreadPool.cpp */,
+				4063E72918F9A15300C1C292 /* main.cpp */,
+				4063E72A18F9A15300C1C292 /* PCondVar.cpp */,
+				4063E72C18F9A15300C1C292 /* PMutex.cpp */,
+				4063E72E18F9A15300C1C292 /* PThreadPool.cpp */,
+				4063E73018F9A15300C1C292 /* QuickSortRecursiveTask.cpp */,
+				4063E73218F9A15300C1C292 /* RecursiveTaskAssembler.cpp */,
+				4063E73418F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp */,
+				4063E73618F9A15300C1C292 /* ResultSignalDelegate.cpp */,
+				4063E73818F9A15300C1C292 /* ResultWaitDelegate.cpp */,
+				4063E73A18F9A15300C1C292 /* SimpleChildTask.cpp */,
+				4063E73C18F9A15300C1C292 /* SubTaskDelegateImpl.cpp */,
+				4063E73E18F9A15300C1C292 /* SumMasterTask.cpp */,
+				4063E74018F9A15300C1C292 /* TaskGroup.cpp */,
+				4063E74218F9A15300C1C292 /* TaskGroupFactory.cpp */,
+				4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		4063E77618F9A28300C1C292 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4063E74618F9A15300C1C292 /* TypeDefs.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		4063E77718F9A29100C1C292 /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4063E71B18F9A15300C1C292 /* AbstractDelegatingMasterTask.h */,
+				4063E71D18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h */,
+				4063E71F18F9A15300C1C292 /* AbstractRecursiveTask.h */,
+				4063E72118F9A15300C1C292 /* AbstractThreadPool.h */,
+				4063E77A18F9A2F500C1C292 /* delegate */,
+				4063E77918F9A2EF00C1C292 /* factory */,
+				4063E72218F9A15300C1C292 /* ICondVar.h */,
+				4063E72318F9A15300C1C292 /* IMutex.h */,
+				4063E72818F9A15300C1C292 /* ITask.h */,
+			);
+			name = abstract;
+			sourceTree = "<group>";
+		};
+		4063E77818F9A29700C1C292 /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				4063E72D18F9A15300C1C292 /* PMutex.h */,
+				4063E72B18F9A15300C1C292 /* PCondVar.h */,
+				4063E72F18F9A15300C1C292 /* PThreadPool.h */,
+				4063E77D18F9A3E500C1C292 /* delegate */,
+				4063E77C18F9A3DF00C1C292 /* factory */,
+			);
+			name = implementation;
+			sourceTree = "<group>";
+		};
+		4063E77918F9A2EF00C1C292 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				4063E72418F9A15300C1C292 /* IResultDelegatePairFactory.h */,
+			);
+			name = factory;
+			sourceTree = "<group>";
+		};
+		4063E77A18F9A2F500C1C292 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4063E72718F9A15300C1C292 /* ISubTaskDelegate.h */,
+				4063E72618F9A15300C1C292 /* IResultWaitDelegate.h */,
+				4063E72518F9A15300C1C292 /* IResultSignalDelegate.h */,
+			);
+			name = delegate;
+			sourceTree = "<group>";
+		};
+		4063E77B18F9A30D00C1C292 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				4063E74118F9A15300C1C292 /* TaskGroup.h */,
+				4063E73F18F9A15300C1C292 /* SumMasterTask.h */,
+				4063E73B18F9A15300C1C292 /* SimpleChildTask.h */,
+				4063E73118F9A15300C1C292 /* QuickSortRecursiveTask.h */,
+			);
+			name = samples;
+			sourceTree = "<group>";
+		};
+		4063E77C18F9A3DF00C1C292 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				4063E73518F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h */,
+			);
+			name = factory;
+			sourceTree = "<group>";
+		};
+		4063E77D18F9A3E500C1C292 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4063E73718F9A15300C1C292 /* ResultSignalDelegate.h */,
+				4063E73918F9A15300C1C292 /* ResultWaitDelegate.h */,
+				4063E73D18F9A15300C1C292 /* SubTaskDelegateImpl.h */,
+			);
+			name = delegate;
+			sourceTree = "<group>";
+		};
+		4063E77E18F9A49800C1C292 /* container */ = {
+			isa = PBXGroup;
+			children = (
+				4063E74318F9A15300C1C292 /* TaskGroupFactory.h */,
+				4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */,
+				4063E73318F9A15300C1C292 /* RecursiveTaskAssembler.h */,
+			);
+			name = container;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4063E71118F9A11700C1C292 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4063E77318F9A15300C1C292 /* TypeDefs.h in Headers */,
+				4063E75E18F9A15300C1C292 /* QuickSortRecursiveTask.h in Headers */,
+				4063E76618F9A15300C1C292 /* ResultWaitDelegate.h in Headers */,
+				4063E75018F9A15300C1C292 /* IMutex.h in Headers */,
+				4063E74E18F9A15300C1C292 /* AbstractThreadPool.h in Headers */,
+				4063E74F18F9A15300C1C292 /* ICondVar.h in Headers */,
+				4063E75418F9A15300C1C292 /* ISubTaskDelegate.h in Headers */,
+				4063E74818F9A15300C1C292 /* AbstractDelegatingMasterTask.h in Headers */,
+				4063E76418F9A15300C1C292 /* ResultSignalDelegate.h in Headers */,
+				4063E77018F9A15300C1C292 /* TaskGroupFactory.h in Headers */,
+				4063E76818F9A15300C1C292 /* SimpleChildTask.h in Headers */,
+				4063E77218F9A15300C1C292 /* ThreadPoolFactory.h in Headers */,
+				4063E75C18F9A15300C1C292 /* PThreadPool.h in Headers */,
+				4063E76018F9A15300C1C292 /* RecursiveTaskAssembler.h in Headers */,
+				4063E76218F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h in Headers */,
+				4063E75818F9A15300C1C292 /* PCondVar.h in Headers */,
+				4063E75118F9A15300C1C292 /* IResultDelegatePairFactory.h in Headers */,
+				4063E76A18F9A15300C1C292 /* SubTaskDelegateImpl.h in Headers */,
+				4063E75518F9A15300C1C292 /* ITask.h in Headers */,
+				4063E75A18F9A15300C1C292 /* PMutex.h in Headers */,
+				4063E76C18F9A15300C1C292 /* SumMasterTask.h in Headers */,
+				4063E75318F9A15300C1C292 /* IResultWaitDelegate.h in Headers */,
+				4063E74C18F9A15300C1C292 /* AbstractRecursiveTask.h in Headers */,
+				4063E76E18F9A15300C1C292 /* TaskGroup.h in Headers */,
+				4063E75218F9A15300C1C292 /* IResultSignalDelegate.h in Headers */,
+				4063E74A18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4063E71218F9A11700C1C292 /* MyThreadPoolLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4063E71718F9A11700C1C292 /* Build configuration list for PBXNativeTarget "MyThreadPoolLib" */;
+			buildPhases = (
+				4063E70F18F9A11700C1C292 /* Sources */,
+				4063E71018F9A11700C1C292 /* Frameworks */,
+				4063E71118F9A11700C1C292 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyThreadPoolLib;
+			productName = MyThreadPoolLib;
+			productReference = 4063E71318F9A11700C1C292 /* libMyThreadPoolLib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4063E70B18F9A11700C1C292 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = wws2003;
+			};
+			buildConfigurationList = 4063E70E18F9A11700C1C292 /* Build configuration list for PBXProject "MyThreadPoolLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4063E70A18F9A11700C1C292;
+			productRefGroup = 4063E71418F9A11700C1C292 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4063E71218F9A11700C1C292 /* MyThreadPoolLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4063E70F18F9A11700C1C292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4063E75D18F9A15300C1C292 /* QuickSortRecursiveTask.cpp in Sources */,
+				4063E76318F9A15300C1C292 /* ResultSignalDelegate.cpp in Sources */,
+				4063E76118F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp in Sources */,
+				4063E75718F9A15300C1C292 /* PCondVar.cpp in Sources */,
+				4063E74918F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp in Sources */,
+				4063E76718F9A15300C1C292 /* SimpleChildTask.cpp in Sources */,
+				4063E76D18F9A15300C1C292 /* TaskGroup.cpp in Sources */,
+				4063E76B18F9A15300C1C292 /* SumMasterTask.cpp in Sources */,
+				4063E75B18F9A15300C1C292 /* PThreadPool.cpp in Sources */,
+				4063E76F18F9A15300C1C292 /* TaskGroupFactory.cpp in Sources */,
+				4063E75918F9A15300C1C292 /* PMutex.cpp in Sources */,
+				4063E76918F9A15300C1C292 /* SubTaskDelegateImpl.cpp in Sources */,
+				4063E76518F9A15300C1C292 /* ResultWaitDelegate.cpp in Sources */,
+				4063E74D18F9A15300C1C292 /* AbstractThreadPool.cpp in Sources */,
+				4063E74B18F9A15300C1C292 /* AbstractRecursiveTask.cpp in Sources */,
+				4063E77118F9A15300C1C292 /* ThreadPoolFactory.cpp in Sources */,
+				4063E75618F9A15300C1C292 /* main.cpp in Sources */,
+				4063E75F18F9A15300C1C292 /* RecursiveTaskAssembler.cpp in Sources */,
+				4063E74718F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4063E71518F9A11700C1C292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4063E71618F9A11700C1C292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4063E71818F9A11700C1C292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4063E71918F9A11700C1C292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4063E70E18F9A11700C1C292 /* Build configuration list for PBXProject "MyThreadPoolLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4063E71518F9A11700C1C292 /* Debug */,
+				4063E71618F9A11700C1C292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4063E71718F9A11700C1C292 /* Build configuration list for PBXNativeTarget "MyThreadPoolLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4063E71818F9A11700C1C292 /* Debug */,
+				4063E71918F9A11700C1C292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4063E70B18F9A11700C1C292 /* Project object */;
+}
