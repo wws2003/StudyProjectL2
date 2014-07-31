@@ -21,10 +21,11 @@ public:
     
     //@Override
     virtual ThreadPoolErrorCode initAndStart(bool wait = false);
-    //@Override
-    virtual ThreadPoolErrorCode destroy();
     
 private:
+    //@Override
+    virtual void joinAllThreads();
+    
     //@Override
     virtual unsigned long currentThreadId();
     std::vector<pthread_t> m_threads;

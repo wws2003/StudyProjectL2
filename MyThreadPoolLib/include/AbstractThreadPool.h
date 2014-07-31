@@ -19,15 +19,18 @@ public:
     virtual ~AbstractThreadPool();
     
     virtual ThreadPoolErrorCode initAndStart(bool wait = true) = 0;
-    virtual ThreadPoolErrorCode destroy() = 0;
+    virtual ThreadPoolErrorCode destroy();
     
     virtual void addTask(ITask* taskPtr);
     virtual unsigned int addTaskBatch(const ITaskPtrs& taskPtrs);
+    virtual void waitAllTaskComplete();
     
     //Each thread would run this method as main loop
     virtual void oneThreadJob();
     
 protected:
+    virtual void joinAllThreads() = 0;
+
     virtual unsigned long currentThreadId() = 0;
     
     int m_numberOfThreads;

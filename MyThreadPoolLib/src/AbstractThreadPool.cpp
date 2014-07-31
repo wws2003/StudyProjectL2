@@ -57,6 +57,24 @@ unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
     return numberOfTaskAdded;
 }
 
+void AbstractThreadPool::waitAllTaskComplete() {
+    m_taskMutexPtr->lock();
+    m_isStopped = true;
+    m_condVarPtr->broadcast();
+    m_taskMutexPtr->unlock();
+    joinAllThreads();
+    m_isStopped = false;
+}
+
+ThreadPoolErrorCode AbstractThreadPool::destroy() {
+    m_taskMutexPtr->lock();
+    m_isStopped = true;
+    m_condVarPtr->broadcast();
+    m_taskMutexPtr->unlock();
+    joinAllThreads();
+    return THREADPOOL_ERROR_NONE;
+}
+
 void AbstractThreadPool::oneThreadJob() {
     m_taskMutexPtr->lock();
     while (!m_isStopped) {

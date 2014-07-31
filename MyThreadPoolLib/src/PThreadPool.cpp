@@ -48,17 +48,12 @@ ThreadPoolErrorCode PThreadPool::initAndStart(bool wait) {
     return err;
 }
 
-ThreadPoolErrorCode PThreadPool::destroy() {
-    m_taskMutexPtr->lock();
-    m_isStopped = true;
-    m_condVarPtr->broadcast();
-    m_taskMutexPtr->unlock();
+void PThreadPool::joinAllThreads() {
     for (unsigned int i = 0; i < m_threads.size(); i++) {
         void* result = NULL;
         pthread_join(m_threads[i], &result);
         m_condVarPtr->broadcast();
     }
-    return THREADPOOL_ERROR_NONE;
 }
 
 unsigned long PThreadPool::currentThreadId() {
