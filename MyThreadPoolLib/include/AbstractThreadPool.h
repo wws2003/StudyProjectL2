@@ -21,7 +21,7 @@ public:
     virtual ThreadPoolErrorCode initAndStart(bool wait = true) = 0;
     virtual ThreadPoolErrorCode destroy();
     
-    virtual void addTask(ITask* taskPtr);
+    virtual void addTask(ITaskPtr taskPtr);
     virtual unsigned int addTaskBatch(const ITaskPtrs& taskPtrs);
     virtual void waitAllTaskComplete();
     

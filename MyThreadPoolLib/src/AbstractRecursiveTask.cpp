@@ -89,7 +89,7 @@ void AbstractRecursiveTask::waitForResults(IResultWaitDelegatePtr resultWaitDele
 
 void AbstractRecursiveTask::releaseSubTaskPtrs(const AbstractRecursiveTaskPtrs& subTaskPtrs) {
     for (unsigned int i = 0; i < subTaskPtrs.size(); i++) {
-        delete subTaskPtrs[i];
+        TASKPTR_DELETE(subTaskPtrs[i]);
     }
 }
 

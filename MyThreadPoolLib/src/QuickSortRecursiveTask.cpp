@@ -41,11 +41,11 @@ void QuickSortRecursiveTask::getSubTaskPtrs(AbstractRecursiveTaskPtrs& subTaskPt
     else {
         int* subArray1 = m_array;
         unsigned int subSize1 = m_pivot - start;
-        QuickSortRecursiveTask* subTaskPtr1 = new QuickSortRecursiveTask(subArray1, subSize1);
+        AbstractRecursiveTaskPtr subTaskPtr1(new QuickSortRecursiveTask(subArray1, subSize1));
         subTaskPtrs.push_back(subTaskPtr1);
         int* subArray2 = m_array + m_pivot + 1;
         unsigned int subSize2 = end - m_pivot;
-        QuickSortRecursiveTask* subTaskPtr2 = new QuickSortRecursiveTask(subArray2, subSize2);
+        AbstractRecursiveTaskPtr subTaskPtr2(new QuickSortRecursiveTask(subArray2, subSize2));
         subTaskPtrs.push_back(subTaskPtr2);
     }
 }

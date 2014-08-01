@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
     int array[] = {3, 4, 6, 2, 5, 1, 5, 64, 2, 0, 23, 2, -5, 5, 34, 23, 1, 42, 0, 44, 2, 12, 6, 7};
     int size = sizeof(array) / sizeof(int);
     
-    QuickSortRecursiveTask* quickSortTask = new QuickSortRecursiveTask(array, size);
+    AbstractRecursiveTaskPtr quickSortTask(new QuickSortRecursiveTask(array, size));
     RecursiveTaskAssembler* taskAssembler = new RecursiveTaskAssembler(4);
     taskAssembler->assembleRecursiveTask(quickSortTask);
     
@@ -28,7 +28,7 @@ int main(int argc, const char * argv[])
     }
     
     delete taskAssembler;
-    delete quickSortTask;
+    TASKPTR_DELETE(quickSortTask);
     return 0;
 }
 

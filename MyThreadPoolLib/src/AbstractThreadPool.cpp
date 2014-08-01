@@ -22,7 +22,7 @@ AbstractThreadPool::~AbstractThreadPool() {
     delete m_taskMutexPtr;
 }
 
-void AbstractThreadPool::addTask(ITask* taskPtr) {
+void AbstractThreadPool::addTask(ITaskPtr taskPtr) {
     m_taskMutexPtr->lock();
     
     m_taskPtrQueue.push_back(taskPtr);

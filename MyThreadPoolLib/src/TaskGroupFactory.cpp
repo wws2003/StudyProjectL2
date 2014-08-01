@@ -29,19 +29,19 @@ TaskGroupFactory::TaskGroupFactory(unsigned int numberOfThread, unsigned int num
 
     for (unsigned int i = 0; i < numberOfTask; i++) {
         IResultSignalDelegatePtr resultSignalDelegatePtr = new ResultSignalDelegate(m_jobMutexPtr, m_jobCondPtr);
-        AbstractDelegatingSlaveTaskPtr slaveTaskPtr = new SimpleChildTask(resultSignalDelegatePtr, m_resultStore, i);
+        AbstractDelegatingSlaveTaskPtr slaveTaskPtr(new SimpleChildTask(resultSignalDelegatePtr, m_resultStore, i));
         m_childTaskPtrs.push_back(slaveTaskPtr);
     }
     
     IResultWaitDelegatePtr resultWaitDelegatePtr = new ResultWaitDelegate(m_jobMutexPtr, m_jobCondPtr);
     
-    m_masterTaskPtr = new SumMasterTask(resultWaitDelegatePtr, m_resultStore, numberOfTask);
+    m_masterTaskPtr = AbstractDelegatingMasterTaskPtr(new SumMasterTask(resultWaitDelegatePtr, m_resultStore, numberOfTask));
 }
 
 TaskGroupFactory::~TaskGroupFactory() {
-    delete m_masterTaskPtr;
+    TASKPTR_DELETE(m_masterTaskPtr);
     for (unsigned int i = 0; i < m_childTaskPtrs.size(); i++) {
-        delete m_childTaskPtrs[i];
+        TASKPTR_DELETE(m_childTaskPtrs[i]);
     }
     m_childTaskPtrs.clear();
     delete m_jobCondPtr;
@@ -52,6 +52,6 @@ TaskGroupFactory::~TaskGroupFactory() {
 }
 
 TaskGroupPtr TaskGroupFactory::getSampleTaskGroupPtr() {
-    TaskGroupPtr taskGroupPtr = new TaskGroup(m_threadPoolPtr, m_masterTaskPtr, m_childTaskPtrs);
+    TaskGroupPtr taskGroupPtr(new TaskGroup(m_threadPoolPtr, m_masterTaskPtr, m_childTaskPtrs));
     return taskGroupPtr;
 }

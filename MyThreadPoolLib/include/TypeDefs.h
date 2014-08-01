@@ -11,10 +11,7 @@
 
 #include <vector>
 #include <algorithm>
-
-class ITask;
-typedef ITask* ITaskPtr;
-typedef std::vector<ITaskPtr> ITaskPtrs;
+#include <memory>
 
 class IMutex;
 typedef IMutex* IMutexPtr;
@@ -25,6 +22,12 @@ typedef ICondVar* ICondVarPtr;
 class AbstractThreadPool;
 typedef AbstractThreadPool* AbstractThreadPoolPtr;
 
+class ITask;
+
+#if SHARED_PTR == 0
+typedef ITask* ITaskPtr;
+typedef std::vector<ITaskPtr> ITaskPtrs;
+
 class TaskGroup;
 typedef TaskGroup* TaskGroupPtr;
 
@@ -34,14 +37,50 @@ typedef AbstractChildTask* AbstractChildTaskPtr;
 class AbstractMasterTask;
 typedef AbstractMasterTask* AbstractMasterTaskPtr;
 
+class AbstractRecursiveTask;
+typedef AbstractRecursiveTask* AbstractRecursiveTaskPtr;
+typedef std::vector<AbstractRecursiveTaskPtr> AbstractRecursiveTaskPtrs;
+
+class AbstractDelegatingSlaveTask;
+typedef AbstractDelegatingSlaveTask* AbstractDelegatingSlaveTaskPtr;
+typedef std::vector<AbstractDelegatingSlaveTaskPtr> AbstractDelegatingSlaveTaskPtrs;
+
+class AbstractDelegatingMasterTask;
+typedef AbstractDelegatingMasterTask* AbstractDelegatingMasterTaskPtr;
+
+#define TASKPTR_DELETE(taskPtr) delete taskPtr
+
+#else
+typedef std::shared_ptr<ITask> ITaskPtr;
+typedef std::vector<ITaskPtr> ITaskPtrs;
+
+class TaskGroup;
+typedef std::shared_ptr<TaskGroup> TaskGroupPtr;
+
+class AbstractChildTask;
+typedef std::shared_ptr<AbstractChildTask> AbstractChildTaskPtr;
+
+class AbstractMasterTask;
+typedef std::shared_ptr<AbstractMasterTask> AbstractMasterTaskPtr;
+
+class AbstractRecursiveTask;
+typedef std::shared_ptr<AbstractRecursiveTask> AbstractRecursiveTaskPtr;
+typedef std::vector<AbstractRecursiveTaskPtr> AbstractRecursiveTaskPtrs;
+
+class AbstractDelegatingSlaveTask;
+typedef std::shared_ptr<AbstractDelegatingSlaveTask> AbstractDelegatingSlaveTaskPtr;
+typedef std::vector<AbstractDelegatingSlaveTaskPtr> AbstractDelegatingSlaveTaskPtrs;
+
+class AbstractDelegatingMasterTask;
+typedef std::shared_ptr<AbstractDelegatingMasterTask> AbstractDelegatingMasterTaskPtr;
+
+#define TASKPTR_DELETE(taskPtr)
+#endif
+
 typedef void* ResultPtr;
 
 typedef std::vector<ResultPtr> ResultStore;
 typedef ResultStore* ResultStorePtr;
-
-class AbstractRecursiveTask;
-typedef AbstractRecursiveTask* AbstractRecursiveTaskPtr;
-typedef std::vector<AbstractRecursiveTaskPtr> AbstractRecursiveTaskPtrs;
 
 class ISubTaskDelegate;
 typedef ISubTaskDelegate* ISubTaskDelegatePtr;
@@ -62,13 +101,6 @@ typedef ResultSignalDelegate* ResultSignalDelegatePtr;
 
 class ResultWaitDelegate;
 typedef ResultWaitDelegate* ResultWaitDelegatePtr;
-
-class AbstractDelegatingSlaveTask;
-typedef AbstractDelegatingSlaveTask* AbstractDelegatingSlaveTaskPtr;
-typedef std::vector<AbstractDelegatingSlaveTaskPtr> AbstractDelegatingSlaveTaskPtrs;
-
-class AbstractDelegatingMasterTask;
-typedef AbstractDelegatingMasterTask* AbstractDelegatingMasterTaskPtr;
 
 enum CondVarErrorCode{
     COND_VAR_ERROR_NONE,
