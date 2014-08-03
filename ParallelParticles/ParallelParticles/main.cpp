@@ -136,7 +136,7 @@
 //    return 0;
 //}
 
-#include <iostream>
+/*#include <iostream>
 #include "RecursiveTaskAssembler.h"
 #include "QuickSortRecursiveTask.h"
 #include <unistd.h>
@@ -160,7 +160,35 @@ int main(int argc, const char * argv[])
     delete taskAssembler;
     TASKPTR_DELETE(quickSortTask);
     return 0;
+}*/
+#include <iostream>
+#include "PPTypeDefs.h"
+#include "ParticleProblem.h"
+#include "ParticlesExportResultAssembler.h"
+#include "ParticlesInitiatorAssembler.h"
+#include "ParticleMoveAlgorithmAssembler.h"
+
+int main(int argc, const char * argv[]) {
+    ParticlesInitiatorAssembler particlesInitiatorAssembler;
+    ParticleMoveAlgorithmAssembler particlesMoveAlgorithmAssembler;
+    ParticlesExportResultAssembler particlesExportResultAssembler;
+    
+    ParticlesInitiatorPtr pParticlesInitiator = particlesInitiatorAssembler.createInitiatorInstance();
+    ParticlesExportResultPtr pParticlesExportResult = particlesExportResultAssembler.createInitiatorInstance();
+    ParticleMoveAlgorithmPtr pParticleMoveAlgorithm = particlesMoveAlgorithmAssembler.createAlgorithmInstance();
+    
+    ParticleProblem problem;
+    problem.setParticleInitiatorPtr(pParticlesInitiator);
+    problem.setParticleExportResult(pParticlesExportResult);
+    problem.setParticleMoveAlgorithmPtr(pParticleMoveAlgorithm);
+    
+    PP_ERR err = problem.solve();
+    std::cout << "Problem solve result " << err << std::endl;
+    
+    particlesInitiatorAssembler.destroyInitiatorInstance(pParticlesInitiator);
+    particlesExportResultAssembler.destroyExportResultInstance(pParticlesExportResult);
+    particlesMoveAlgorithmAssembler.destroyAlgorithm(pParticleMoveAlgorithm);
+    
+    return 0;
 }
-
-
 

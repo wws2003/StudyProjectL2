@@ -11,7 +11,7 @@
 		40569D7B1988081800F63302 /* BinApplyForceTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D791988081800F63302 /* BinApplyForceTask.cpp */; };
 		40569D7E198940DD00F63302 /* BinClearTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D7C198940DD00F63302 /* BinClearTask.cpp */; };
 		40569D82198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */; };
-		40624415198E296800AEA22A /* ParticleExportResultAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */; };
+		40624415198E296800AEA22A /* ParticlesExportResultAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40624413198E296800AEA22A /* ParticlesExportResultAssembler.cpp */; };
 		4063E6FA18F93FC300C1C292 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E6F918F93FC300C1C292 /* main.cpp */; };
 		4063E6FC18F93FC300C1C292 /* ParallelParticles.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4063E6FB18F93FC300C1C292 /* ParallelParticles.1 */; };
 		4063E70718F9419F00C1C292 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E70218F9419F00C1C292 /* common.cpp */; };
@@ -19,7 +19,7 @@
 		408BF15A198E280700DF4282 /* ParticlesInitiatorAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */; };
 		40D4657D198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */; };
 		40D46581198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */; };
-		40D46584198E173A00D0FB09 /* AlgorithmAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */; };
+		40D46584198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D46582198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp */; };
 		40DBDD9A1986BB0700F3C070 /* ParticleProblem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDD991986BB0700F3C070 /* ParticleProblem.cpp */; };
 		40DBDD9F1987F0F000F3C070 /* Bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDD9D1987F0F000F3C070 /* Bin.cpp */; };
 		40DBDDA21987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDDA01987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp */; };
@@ -47,8 +47,8 @@
 		40569D7D198940DD00F63302 /* BinClearTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinClearTask.h; sourceTree = "<group>"; };
 		40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleMoveAndDistributeTask.cpp; sourceTree = "<group>"; };
 		40569D81198942FC00F63302 /* ParticleMoveAndDistributeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleMoveAndDistributeTask.h; sourceTree = "<group>"; };
-		40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleExportResultAssembler.cpp; sourceTree = "<group>"; };
-		40624414198E296800AEA22A /* ParticleExportResultAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleExportResultAssembler.h; sourceTree = "<group>"; };
+		40624413198E296800AEA22A /* ParticlesExportResultAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesExportResultAssembler.cpp; sourceTree = "<group>"; };
+		40624414198E296800AEA22A /* ParticlesExportResultAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesExportResultAssembler.h; sourceTree = "<group>"; };
 		4063E6F618F93FC300C1C292 /* ParallelParticles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ParallelParticles; sourceTree = BUILT_PRODUCTS_DIR; };
 		4063E6F918F93FC300C1C292 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4063E6FB18F93FC300C1C292 /* ParallelParticles.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ParallelParticles.1; sourceTree = "<group>"; };
@@ -61,8 +61,8 @@
 		40D4657C198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesRandomInitiatorImpl.h; sourceTree = "<group>"; };
 		40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesExportResultPrintImpl.cpp; sourceTree = "<group>"; };
 		40D46580198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesExportResultPrintImpl.h; sourceTree = "<group>"; };
-		40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmAssembler.cpp; sourceTree = "<group>"; };
-		40D46583198E173A00D0FB09 /* AlgorithmAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmAssembler.h; sourceTree = "<group>"; };
+		40D46582198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleMoveAlgorithmAssembler.cpp; sourceTree = "<group>"; };
+		40D46583198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleMoveAlgorithmAssembler.h; sourceTree = "<group>"; };
 		40DBDD951986B72400F3C070 /* IParticlesInitiator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IParticlesInitiator.h; sourceTree = "<group>"; };
 		40DBDD961986B80000F3C070 /* PPTypeDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPTypeDefs.h; sourceTree = "<group>"; };
 		40DBDD971986B89F00F3C070 /* IParticlesExportResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IParticlesExportResult.h; sourceTree = "<group>"; };
@@ -153,12 +153,12 @@
 		40D46579198D55D100D0FB09 /* assembler */ = {
 			isa = PBXGroup;
 			children = (
-				40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */,
-				40D46583198E173A00D0FB09 /* AlgorithmAssembler.h */,
+				40D46582198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp */,
+				40D46583198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.h */,
 				408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */,
 				408BF159198E280700DF4282 /* ParticlesInitiatorAssembler.h */,
-				40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */,
-				40624414198E296800AEA22A /* ParticleExportResultAssembler.h */,
+				40624413198E296800AEA22A /* ParticlesExportResultAssembler.cpp */,
+				40624414198E296800AEA22A /* ParticlesExportResultAssembler.h */,
 			);
 			name = assembler;
 			sourceTree = "<group>";
@@ -267,11 +267,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				40569D82198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp in Sources */,
-				40624415198E296800AEA22A /* ParticleExportResultAssembler.cpp in Sources */,
+				40624415198E296800AEA22A /* ParticlesExportResultAssembler.cpp in Sources */,
 				40569D781988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp in Sources */,
 				40D46581198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp in Sources */,
 				4063E70718F9419F00C1C292 /* common.cpp in Sources */,
-				40D46584198E173A00D0FB09 /* AlgorithmAssembler.cpp in Sources */,
+				40D46584198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp in Sources */,
 				40DBDD9F1987F0F000F3C070 /* Bin.cpp in Sources */,
 				40DBDD9A1986BB0700F3C070 /* ParticleProblem.cpp in Sources */,
 				40569D7E198940DD00F63302 /* BinClearTask.cpp in Sources */,
