@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40569D781988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D761988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp */; };
+		40569D7B1988081800F63302 /* BinApplyForceTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D791988081800F63302 /* BinApplyForceTask.cpp */; };
+		40569D7E198940DD00F63302 /* BinClearTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D7C198940DD00F63302 /* BinClearTask.cpp */; };
+		40569D82198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */; };
+		40624415198E296800AEA22A /* ParticleExportResultAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */; };
+		4063E6FA18F93FC300C1C292 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E6F918F93FC300C1C292 /* main.cpp */; };
+		4063E6FC18F93FC300C1C292 /* ParallelParticles.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4063E6FB18F93FC300C1C292 /* ParallelParticles.1 */; };
+		4063E70718F9419F00C1C292 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E70218F9419F00C1C292 /* common.cpp */; };
+		4063E78118FA544100C1C292 /* libMyThreadPoolLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4063E78018FA544100C1C292 /* libMyThreadPoolLib.dylib */; };
+		408BF15A198E280700DF4282 /* ParticlesInitiatorAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */; };
+		40D4657D198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */; };
+		40D46581198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */; };
+		40D46584198E173A00D0FB09 /* AlgorithmAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */; };
+		40DBDD9A1986BB0700F3C070 /* ParticleProblem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDD991986BB0700F3C070 /* ParticleProblem.cpp */; };
+		40DBDD9F1987F0F000F3C070 /* Bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDD9D1987F0F000F3C070 /* Bin.cpp */; };
+		40DBDDA21987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DBDDA01987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4063E6F418F93FC300C1C292 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				4063E6FC18F93FC300C1C292 /* ParallelParticles.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		40569D761988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinningAlgorithmMultiThreadImpl.cpp; sourceTree = "<group>"; };
+		40569D771988008100F63302 /* BinningAlgorithmMultiThreadImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinningAlgorithmMultiThreadImpl.h; sourceTree = "<group>"; };
+		40569D791988081800F63302 /* BinApplyForceTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinApplyForceTask.cpp; sourceTree = "<group>"; };
+		40569D7A1988081800F63302 /* BinApplyForceTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinApplyForceTask.h; sourceTree = "<group>"; };
+		40569D7C198940DD00F63302 /* BinClearTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinClearTask.cpp; sourceTree = "<group>"; };
+		40569D7D198940DD00F63302 /* BinClearTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinClearTask.h; sourceTree = "<group>"; };
+		40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleMoveAndDistributeTask.cpp; sourceTree = "<group>"; };
+		40569D81198942FC00F63302 /* ParticleMoveAndDistributeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleMoveAndDistributeTask.h; sourceTree = "<group>"; };
+		40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleExportResultAssembler.cpp; sourceTree = "<group>"; };
+		40624414198E296800AEA22A /* ParticleExportResultAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleExportResultAssembler.h; sourceTree = "<group>"; };
+		4063E6F618F93FC300C1C292 /* ParallelParticles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ParallelParticles; sourceTree = BUILT_PRODUCTS_DIR; };
+		4063E6F918F93FC300C1C292 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4063E6FB18F93FC300C1C292 /* ParallelParticles.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ParallelParticles.1; sourceTree = "<group>"; };
+		4063E70218F9419F00C1C292 /* common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = common.cpp; path = ../../../../Downloads/particles/common.cpp; sourceTree = "<group>"; };
+		4063E70318F9419F00C1C292 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = ../../../../Downloads/particles/common.h; sourceTree = "<group>"; };
+		4063E78018FA544100C1C292 /* libMyThreadPoolLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMyThreadPoolLib.dylib; path = ../../../Library/Developer/Xcode/DerivedData/Build/Products/Debug/libMyThreadPoolLib.dylib; sourceTree = "<group>"; };
+		408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesInitiatorAssembler.cpp; sourceTree = "<group>"; };
+		408BF159198E280700DF4282 /* ParticlesInitiatorAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesInitiatorAssembler.h; sourceTree = "<group>"; };
+		40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesRandomInitiatorImpl.cpp; sourceTree = "<group>"; };
+		40D4657C198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesRandomInitiatorImpl.h; sourceTree = "<group>"; };
+		40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesExportResultPrintImpl.cpp; sourceTree = "<group>"; };
+		40D46580198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesExportResultPrintImpl.h; sourceTree = "<group>"; };
+		40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmAssembler.cpp; sourceTree = "<group>"; };
+		40D46583198E173A00D0FB09 /* AlgorithmAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmAssembler.h; sourceTree = "<group>"; };
+		40DBDD951986B72400F3C070 /* IParticlesInitiator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IParticlesInitiator.h; sourceTree = "<group>"; };
+		40DBDD961986B80000F3C070 /* PPTypeDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPTypeDefs.h; sourceTree = "<group>"; };
+		40DBDD971986B89F00F3C070 /* IParticlesExportResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IParticlesExportResult.h; sourceTree = "<group>"; };
+		40DBDD981986B95800F3C070 /* ParticleProblem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleProblem.h; sourceTree = "<group>"; };
+		40DBDD991986BB0700F3C070 /* ParticleProblem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleProblem.cpp; sourceTree = "<group>"; };
+		40DBDD9B1987E32900F3C070 /* IParticleMoveAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IParticleMoveAlgorithm.h; sourceTree = "<group>"; };
+		40DBDD9D1987F0F000F3C070 /* Bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bin.cpp; sourceTree = "<group>"; };
+		40DBDD9E1987F0F000F3C070 /* Bin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bin.h; sourceTree = "<group>"; };
+		40DBDDA01987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractBinningAlgorithm.cpp; sourceTree = "<group>"; };
+		40DBDDA11987F3BA00F3C070 /* AbstractBinningAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBinningAlgorithm.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4063E6F318F93FC300C1C292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4063E78118FA544100C1C292 /* libMyThreadPoolLib.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40569D7F198942CA00F63302 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				40569D7A1988081800F63302 /* BinApplyForceTask.h */,
+				40569D791988081800F63302 /* BinApplyForceTask.cpp */,
+				40569D7C198940DD00F63302 /* BinClearTask.cpp */,
+				40569D7D198940DD00F63302 /* BinClearTask.h */,
+				40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */,
+				40569D81198942FC00F63302 /* ParticleMoveAndDistributeTask.h */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		4063E6ED18F93FC300C1C292 = {
+			isa = PBXGroup;
+			children = (
+				4063E78018FA544100C1C292 /* libMyThreadPoolLib.dylib */,
+				4063E6F818F93FC300C1C292 /* ParallelParticles */,
+				4063E6F718F93FC300C1C292 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4063E6F718F93FC300C1C292 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4063E6F618F93FC300C1C292 /* ParallelParticles */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4063E6F818F93FC300C1C292 /* ParallelParticles */ = {
+			isa = PBXGroup;
+			children = (
+				408BF154198E275E00DF4282 /* app */,
+				408BF153198E273100DF4282 /* implementation */,
+				40D46579198D55D100D0FB09 /* assembler */,
+				40DBDD941986B60A00F3C070 /* common */,
+				40DBDD921986B5F000F3C070 /* abstract */,
+				4063E6FB18F93FC300C1C292 /* ParallelParticles.1 */,
+			);
+			path = ParallelParticles;
+			sourceTree = "<group>";
+		};
+		408BF153198E273100DF4282 /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				40DBDD9C1987E59000F3C070 /* algo */,
+				40D4657A198D560000D0FB09 /* initiator */,
+				40D4657E198DEC6A00D0FB09 /* export */,
+			);
+			name = implementation;
+			sourceTree = "<group>";
+		};
+		408BF154198E275E00DF4282 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				4063E6F918F93FC300C1C292 /* main.cpp */,
+				40DBDD981986B95800F3C070 /* ParticleProblem.h */,
+				40DBDD991986BB0700F3C070 /* ParticleProblem.cpp */,
+			);
+			name = app;
+			sourceTree = "<group>";
+		};
+		40D46579198D55D100D0FB09 /* assembler */ = {
+			isa = PBXGroup;
+			children = (
+				40D46582198E173A00D0FB09 /* AlgorithmAssembler.cpp */,
+				40D46583198E173A00D0FB09 /* AlgorithmAssembler.h */,
+				408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */,
+				408BF159198E280700DF4282 /* ParticlesInitiatorAssembler.h */,
+				40624413198E296800AEA22A /* ParticleExportResultAssembler.cpp */,
+				40624414198E296800AEA22A /* ParticleExportResultAssembler.h */,
+			);
+			name = assembler;
+			sourceTree = "<group>";
+		};
+		40D4657A198D560000D0FB09 /* initiator */ = {
+			isa = PBXGroup;
+			children = (
+				40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */,
+				40D4657C198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.h */,
+			);
+			name = initiator;
+			sourceTree = "<group>";
+		};
+		40D4657E198DEC6A00D0FB09 /* export */ = {
+			isa = PBXGroup;
+			children = (
+				40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */,
+				40D46580198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.h */,
+			);
+			name = export;
+			sourceTree = "<group>";
+		};
+		40DBDD921986B5F000F3C070 /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				40DBDD951986B72400F3C070 /* IParticlesInitiator.h */,
+				40DBDD971986B89F00F3C070 /* IParticlesExportResult.h */,
+				40DBDD9B1987E32900F3C070 /* IParticleMoveAlgorithm.h */,
+			);
+			name = abstract;
+			sourceTree = "<group>";
+		};
+		40DBDD941986B60A00F3C070 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				4063E70218F9419F00C1C292 /* common.cpp */,
+				4063E70318F9419F00C1C292 /* common.h */,
+				40DBDD961986B80000F3C070 /* PPTypeDefs.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		40DBDD9C1987E59000F3C070 /* algo */ = {
+			isa = PBXGroup;
+			children = (
+				40DBDD9D1987F0F000F3C070 /* Bin.cpp */,
+				40DBDD9E1987F0F000F3C070 /* Bin.h */,
+				40DBDDA01987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp */,
+				40DBDDA11987F3BA00F3C070 /* AbstractBinningAlgorithm.h */,
+				40569D761988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp */,
+				40569D771988008100F63302 /* BinningAlgorithmMultiThreadImpl.h */,
+				40569D7F198942CA00F63302 /* Task */,
+			);
+			name = algo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4063E6F518F93FC300C1C292 /* ParallelParticles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4063E6FF18F93FC300C1C292 /* Build configuration list for PBXNativeTarget "ParallelParticles" */;
+			buildPhases = (
+				4063E6F218F93FC300C1C292 /* Sources */,
+				4063E6F318F93FC300C1C292 /* Frameworks */,
+				4063E6F418F93FC300C1C292 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParallelParticles;
+			productName = ParallelParticles;
+			productReference = 4063E6F618F93FC300C1C292 /* ParallelParticles */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4063E6EE18F93FC300C1C292 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = wws2003;
+			};
+			buildConfigurationList = 4063E6F118F93FC300C1C292 /* Build configuration list for PBXProject "ParallelParticles" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4063E6ED18F93FC300C1C292;
+			productRefGroup = 4063E6F718F93FC300C1C292 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4063E6F518F93FC300C1C292 /* ParallelParticles */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4063E6F218F93FC300C1C292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40569D82198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp in Sources */,
+				40624415198E296800AEA22A /* ParticleExportResultAssembler.cpp in Sources */,
+				40569D781988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp in Sources */,
+				40D46581198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp in Sources */,
+				4063E70718F9419F00C1C292 /* common.cpp in Sources */,
+				40D46584198E173A00D0FB09 /* AlgorithmAssembler.cpp in Sources */,
+				40DBDD9F1987F0F000F3C070 /* Bin.cpp in Sources */,
+				40DBDD9A1986BB0700F3C070 /* ParticleProblem.cpp in Sources */,
+				40569D7E198940DD00F63302 /* BinClearTask.cpp in Sources */,
+				4063E6FA18F93FC300C1C292 /* main.cpp in Sources */,
+				408BF15A198E280700DF4282 /* ParticlesInitiatorAssembler.cpp in Sources */,
+				40DBDDA21987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp in Sources */,
+				40D4657D198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp in Sources */,
+				40569D7B1988081800F63302 /* BinApplyForceTask.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4063E6FD18F93FC300C1C292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4063E6FE18F93FC300C1C292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4063E70018F93FC300C1C292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SHARED_PTR=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LD_DYLIB_INSTALL_NAME = "";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/wws2003/Library/Developer/Xcode/DerivedData/Build/Products/Debug/**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Build/Products/Debug",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/**";
+			};
+			name = Debug;
+		};
+		4063E70118F93FC300C1C292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD_DYLIB_INSTALL_NAME = "";
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/wws2003/Library/Developer/Xcode/DerivedData/Build/Products/Debug/**",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Build/Products/Debug",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4063E6F118F93FC300C1C292 /* Build configuration list for PBXProject "ParallelParticles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4063E6FD18F93FC300C1C292 /* Debug */,
+				4063E6FE18F93FC300C1C292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4063E6FF18F93FC300C1C292 /* Build configuration list for PBXNativeTarget "ParallelParticles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4063E70018F93FC300C1C292 /* Debug */,
+				4063E70118F93FC300C1C292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4063E6EE18F93FC300C1C292 /* Project object */;
+}
