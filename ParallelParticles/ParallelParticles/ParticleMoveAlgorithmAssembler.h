@@ -15,9 +15,14 @@
 
 class ParticleMoveAlgorithmAssembler {
 public:
+    enum AlgorithmType {
+        MULTI_THREAD,
+        SERIAL
+    };
+    
     ParticleMoveAlgorithmAssembler();
     virtual ~ParticleMoveAlgorithmAssembler();
-    ParticleMoveAlgorithmPtr createAlgorithmInstance();
+    ParticleMoveAlgorithmPtr createAlgorithmInstance(const int type = MULTI_THREAD);
     void destroyAlgorithm(ParticleMoveAlgorithmPtr pAlgorithm);
     
 private:

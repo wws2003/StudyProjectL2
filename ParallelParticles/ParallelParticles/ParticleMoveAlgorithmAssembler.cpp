@@ -9,20 +9,33 @@
 #include "ParticleMoveAlgorithmAssembler.h"
 #include "IParticleMoveAlgorithm.h"
 #include "BinningAlgorithmMultiThreadImpl.h"
+#include "BinningAlgorimthSerialImpl.h"
 #include "ThreadPoolFactory.h"
 #include "AbstractThreadPool.h"
 
-ParticleMoveAlgorithmAssembler::ParticleMoveAlgorithmAssembler() {
-    m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(4);
+ParticleMoveAlgorithmAssembler::ParticleMoveAlgorithmAssembler() : m_pThreadpool(NULL){
 }
 
 ParticleMoveAlgorithmAssembler::~ParticleMoveAlgorithmAssembler() {
-    m_pThreadpool->destroy();
-    delete  m_pThreadpool;
+    if (m_pThreadpool) {
+        m_pThreadpool->destroy();
+        delete  m_pThreadpool;
+    }
 }
 
-ParticleMoveAlgorithmPtr ParticleMoveAlgorithmAssembler::createAlgorithmInstance() {
-    ParticleMoveAlgorithmPtr pAlgorithm = new BinningAlgorithmMultiThreadImpl(m_pThreadpool);
+ParticleMoveAlgorithmPtr ParticleMoveAlgorithmAssembler::createAlgorithmInstance(const int type) {
+    ParticleMoveAlgorithmPtr pAlgorithm = NULL;
+    switch (type) {
+        case MULTI_THREAD:
+            m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(4);
+            pAlgorithm = new BinningAlgorithmMultiThreadImpl(m_pThreadpool);
+            break;
+        case SERIAL:
+            pAlgorithm = new BinningAlgorithmSerialImpl();
+            break;
+        default:
+            break;
+    }
     return pAlgorithm;
 }
 

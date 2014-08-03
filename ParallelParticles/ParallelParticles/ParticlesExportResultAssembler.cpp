@@ -11,7 +11,7 @@
 #include "ParticlesExportResultPrintImpl.h"
 
 ParticlesExportResultPtr ParticlesExportResultAssembler::createInitiatorInstance() {
-    return new ParticlesExportResultPrintImpl("/Users/wws2003/Desktop/Apps/ParallelParticles/output.txt");
+    return new ParticlesExportResultPrintImpl("/Users/wws2003/Downloads/visualize/output.txt");
 }
 
 void ParticlesExportResultAssembler::destroyExportResultInstance(ParticlesExportResultPtr pInstance) {

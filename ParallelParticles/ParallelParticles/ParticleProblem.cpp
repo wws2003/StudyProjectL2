@@ -14,6 +14,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <iostream>
 
 const int ParticleProblem::DT = 5;
 const int ParticleProblem::NSTEPS = 1000;
@@ -60,6 +61,7 @@ PP_ERR ParticleProblem::solve() {
     int t = 0;
     unsigned int i = 0;
     while (i < NSTEPS) {
+        std::cout << "Step " << i << std::endl;
         if (m_pMoveAlgorithm) {
             PP_ERR err = m_pMoveAlgorithm->moveParticles(DT);
             if (err != ERR_NONE) {

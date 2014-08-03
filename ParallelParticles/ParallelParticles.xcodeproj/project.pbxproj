@@ -17,6 +17,7 @@
 		4063E70718F9419F00C1C292 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E70218F9419F00C1C292 /* common.cpp */; };
 		4063E78118FA544100C1C292 /* libMyThreadPoolLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4063E78018FA544100C1C292 /* libMyThreadPoolLib.dylib */; };
 		408BF15A198E280700DF4282 /* ParticlesInitiatorAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */; };
+		40BA5795198E5016004C88D2 /* BinningAlgorimthSerialImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40BA5793198E5016004C88D2 /* BinningAlgorimthSerialImpl.cpp */; };
 		40D4657D198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */; };
 		40D46581198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */; };
 		40D46584198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D46582198E173A00D0FB09 /* ParticleMoveAlgorithmAssembler.cpp */; };
@@ -57,6 +58,8 @@
 		4063E78018FA544100C1C292 /* libMyThreadPoolLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMyThreadPoolLib.dylib; path = ../../../Library/Developer/Xcode/DerivedData/Build/Products/Debug/libMyThreadPoolLib.dylib; sourceTree = "<group>"; };
 		408BF158198E280700DF4282 /* ParticlesInitiatorAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesInitiatorAssembler.cpp; sourceTree = "<group>"; };
 		408BF159198E280700DF4282 /* ParticlesInitiatorAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesInitiatorAssembler.h; sourceTree = "<group>"; };
+		40BA5793198E5016004C88D2 /* BinningAlgorimthSerialImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinningAlgorimthSerialImpl.cpp; sourceTree = "<group>"; };
+		40BA5794198E5016004C88D2 /* BinningAlgorimthSerialImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinningAlgorimthSerialImpl.h; sourceTree = "<group>"; };
 		40D4657B198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesRandomInitiatorImpl.cpp; sourceTree = "<group>"; };
 		40D4657C198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlesRandomInitiatorImpl.h; sourceTree = "<group>"; };
 		40D4657F198DECBA00D0FB09 /* ParticlesExportResultPrintImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticlesExportResultPrintImpl.cpp; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				40DBDD9E1987F0F000F3C070 /* Bin.h */,
 				40DBDDA01987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp */,
 				40DBDDA11987F3BA00F3C070 /* AbstractBinningAlgorithm.h */,
+				40BA5793198E5016004C88D2 /* BinningAlgorimthSerialImpl.cpp */,
+				40BA5794198E5016004C88D2 /* BinningAlgorimthSerialImpl.h */,
 				40569D761988008100F63302 /* BinningAlgorithmMultiThreadImpl.cpp */,
 				40569D771988008100F63302 /* BinningAlgorithmMultiThreadImpl.h */,
 				40569D7F198942CA00F63302 /* Task */,
@@ -280,6 +285,7 @@
 				40DBDDA21987F3BA00F3C070 /* AbstractBinningAlgorithm.cpp in Sources */,
 				40D4657D198D56BD00D0FB09 /* ParticlesRandomInitiatorImpl.cpp in Sources */,
 				40569D7B1988081800F63302 /* BinApplyForceTask.cpp in Sources */,
+				40BA5795198E5016004C88D2 /* BinningAlgorimthSerialImpl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

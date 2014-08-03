@@ -189,7 +189,7 @@ int main(int argc, const char * argv[]) {
     
     ParticlesInitiatorPtr pParticlesInitiator = particlesInitiatorAssembler.createInitiatorInstance();
     ParticlesExportResultPtr pParticlesExportResult = particlesExportResultAssembler.createInitiatorInstance();
-    ParticleMoveAlgorithmPtr pParticleMoveAlgorithm = particlesMoveAlgorithmAssembler.createAlgorithmInstance();
+    ParticleMoveAlgorithmPtr pParticleMoveAlgorithm = particlesMoveAlgorithmAssembler.createAlgorithmInstance(ParticleMoveAlgorithmAssembler::SERIAL);
     
     ParticleProblem problem;
     problem.setParticleInitiatorPtr(pParticlesInitiator);
