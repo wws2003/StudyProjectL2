@@ -15,6 +15,7 @@ class IParticlesExportResult {
 public:
     IParticlesExportResult(){};
     virtual ~IParticlesExportResult(){};
+    virtual void setBasicInfo(const unsigned int& particleNumber, const double& spaceWidth, const double& spaceHeight) = 0;
     virtual PP_ERR exportParticlesResult(const ParticlePtrs& particles) = 0;
 };
 

@@ -55,6 +55,7 @@ PP_ERR ParticleProblem::solve() {
         return ERR_INVALID_PARAMS;
     }
     m_pMoveAlgorithm->setParticles(m_pParticles, spaceWidth, spaceHeight, density);
+    m_pExporter->setBasicInfo((int)m_pParticles.size(), spaceWidth, spaceHeight);
     
     int t = 0;
     unsigned int i = 0;

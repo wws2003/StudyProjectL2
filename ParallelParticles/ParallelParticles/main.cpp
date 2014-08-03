@@ -162,11 +162,25 @@ int main(int argc, const char * argv[])
     return 0;
 }*/
 #include <iostream>
+#include <time.h>
+#include <sys/time.h>
 #include "PPTypeDefs.h"
 #include "ParticleProblem.h"
 #include "ParticlesExportResultAssembler.h"
 #include "ParticlesInitiatorAssembler.h"
 #include "ParticleMoveAlgorithmAssembler.h"
+
+class Timer {
+public:
+    Timer(){gettimeofday(&m_tv, NULL);};
+    virtual ~Timer(){
+        struct timeval tv2;
+        gettimeofday(&tv2, NULL);
+        std::cout << "Run time " << ((tv2.tv_sec - m_tv.tv_sec) * 1e6 + (tv2.tv_usec - m_tv.tv_usec)) << std::endl;
+    };
+private:
+    struct timeval m_tv;
+};
 
 int main(int argc, const char * argv[]) {
     ParticlesInitiatorAssembler particlesInitiatorAssembler;
@@ -182,7 +196,11 @@ int main(int argc, const char * argv[]) {
     problem.setParticleExportResult(pParticlesExportResult);
     problem.setParticleMoveAlgorithmPtr(pParticleMoveAlgorithm);
     
-    PP_ERR err = problem.solve();
+    PP_ERR err = ERR_NONE;
+    {
+        Timer timer; //Just to measure run time
+        err = problem.solve();
+    }
     std::cout << "Problem solve result " << err << std::endl;
     
     particlesInitiatorAssembler.destroyInitiatorInstance(pParticlesInitiator);

@@ -17,6 +17,10 @@ class ParticlesExportResultPrintImpl : public IParticlesExportResult {
 public:
     ParticlesExportResultPrintImpl(const char* outputFileName);
     virtual ~ParticlesExportResultPrintImpl();
+    
+    //Override
+    void setBasicInfo(const unsigned int& particleNumber, const double& spaceWidth, const double& spaceHeight);
+    
     //Override
     virtual PP_ERR exportParticlesResult(const ParticlePtrs& particles);
     

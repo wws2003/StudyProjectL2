@@ -15,6 +15,7 @@
 PP_ERR ParticlesRandomInitiatorImpl::initParticles(ParticlePtrs& particles, double& rSpaceWidth, double& rSpaceHeight, double& density) {
     int n = 1000;
     density = 0.005;
+    
     double size = sqrt( density * n );
     rSpaceWidth = size;
     rSpaceHeight = size;

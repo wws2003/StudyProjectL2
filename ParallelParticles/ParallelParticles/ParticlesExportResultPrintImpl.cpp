@@ -20,13 +20,21 @@ ParticlesExportResultPrintImpl::~ParticlesExportResultPrintImpl() {
         m_fStream.close();
 }
 
+//Override
+void ParticlesExportResultPrintImpl::setBasicInfo(const unsigned int& particleNumber, const double& spaceWidth, const double& spaceHeight) {
+    if(m_fStream.is_open()) {
+        m_fStream << particleNumber << " " << spaceWidth << "\n";
+    }
+}
+
+//Override
 PP_ERR ParticlesExportResultPrintImpl::exportParticlesResult(const ParticlePtrs& particles) {
     if(!m_fStream.is_open())
     {
         return  ERR_EXPORT_RESULT_FAILED;
     }
     for (ParticlePtr pParticle : particles) {
-        m_fStream << pParticle->x << " " << pParticle->y << " " << pParticle->vx << " "  <<pParticle->vy << "\n";
+        m_fStream << pParticle->x << " " << pParticle->y << "\n";
     }
     return ERR_NONE;
 }
