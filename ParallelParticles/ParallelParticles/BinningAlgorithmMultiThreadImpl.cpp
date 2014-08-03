@@ -14,7 +14,7 @@
 
 
 BinningAlgorithmMultiThreadImpl::BinningAlgorithmMultiThreadImpl(AbstractThreadPoolPtr pThreadPool) : m_pThreadPool(pThreadPool){
-
+    m_pThreadPool->initAndStart(false);
 }
 
 BinningAlgorithmMultiThreadImpl::~BinningAlgorithmMultiThreadImpl() {
@@ -45,7 +45,7 @@ void BinningAlgorithmMultiThreadImpl::onBinsCleared() {
 
 //Override
 void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
-    const unsigned int numberOfThread = 4; //TODO Inject this dependency
+    const unsigned int numberOfThread = 2; //TODO Inject this dependency
     const unsigned int numberOfParticleInAThread = (unsigned int)pParticles.size() / numberOfThread;
     
     std::vector<ParticlePtrs> pParticlesVector;

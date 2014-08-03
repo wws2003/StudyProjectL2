@@ -33,9 +33,9 @@ void AbstractBinningAlgorithm::initBins() {
 
 //Override
 void AbstractBinningAlgorithm::setParticles(const ParticlePtrs& particles, const double& spaceWidth, const double& spaceHeight, const double& density) {
-    m_binSize = 1 / sqrt(density);
-    m_numberOfBinsOnWidth = spaceWidth / m_binSize;
-    m_numberOfBinsOnHeight = spaceHeight / m_binSize;
+    m_binSize = 1 / sqrt(density) / 5;
+    m_numberOfBinsOnWidth = (int)(spaceWidth / m_binSize + 0.5);
+    m_numberOfBinsOnHeight = (int)(spaceHeight / m_binSize + 0.5);
     
     int numberOfBins = m_numberOfBinsOnHeight * m_numberOfBinsOnWidth;
     for (int i = 0; i < numberOfBins; i++) {

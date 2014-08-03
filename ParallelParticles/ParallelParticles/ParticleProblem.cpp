@@ -17,7 +17,7 @@
 #include <iostream>
 
 const int ParticleProblem::DT = 5;
-const int ParticleProblem::NSTEPS = 1000;
+const int ParticleProblem::NSTEPS = 100;
 const long ParticleProblem::NAP_BETWEEN_STEP_IN_MILISECOND = 0;
 
 #define NAP_BETWEEN_SLEEP_IN_NANOSECOND NAP_BETWEEN_STEP_IN_MILISECOND * 1000

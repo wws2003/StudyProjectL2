@@ -27,7 +27,7 @@ ParticleMoveAlgorithmPtr ParticleMoveAlgorithmAssembler::createAlgorithmInstance
     ParticleMoveAlgorithmPtr pAlgorithm = NULL;
     switch (type) {
         case MULTI_THREAD:
-            m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(4);
+            m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(2);
             pAlgorithm = new BinningAlgorithmMultiThreadImpl(m_pThreadpool);
             break;
         case SERIAL:

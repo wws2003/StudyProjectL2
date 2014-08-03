@@ -8,6 +8,7 @@
 
 #include "BinClearTask.h"
 #include "Bin.h"
+#include <iostream>
 
 BinClearTask::BinClearTask(BinPtr pBin) : m_pBin(pBin){
     
@@ -15,5 +16,6 @@ BinClearTask::BinClearTask(BinPtr pBin) : m_pBin(pBin){
 
 //Override
 void BinClearTask::execute() {
+    //std::cout << "Executing task BinClearTask \n";
     m_pBin->clear();
 }

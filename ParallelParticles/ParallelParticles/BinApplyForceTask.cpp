@@ -8,13 +8,14 @@
 
 #include "BinApplyForceTask.h"
 #include "Bin.h"
+#include <iostream>
 
 BinApplyForceTask::BinApplyForceTask(BinPtr pBin, ParticlePtr pParticle) : m_pBin(pBin), m_pParticle(pParticle) {
     
 }
 
-
 //Override
 void BinApplyForceTask::execute() {
+    //std::cout << "Executing task BinApplyForceTask \n";
     m_pBin->applyForceToOneParticle(m_pParticle);
 }

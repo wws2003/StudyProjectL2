@@ -10,6 +10,7 @@
 #include "Bin.h"
 #include "common.h"
 #include "AbstractBinningAlgorithm.h"
+#include <iostream>
 
 ParticleMoveAndDistributeTask::ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, ParticlePtrs pParticles, const unsigned int& dt) : m_pAlgo(pAlgo), m_pParticles(pParticles), m_dt(dt) {
     
@@ -17,12 +18,12 @@ ParticleMoveAndDistributeTask::ParticleMoveAndDistributeTask(AbstractBinningAlgo
 
 //Override
 void ParticleMoveAndDistributeTask::execute() {
+    //std::cout << "Executing task ParticleMoveAndDistributeTask \n";
     double spaceWidth, spaceHeight;
     m_pAlgo->getSpaceSize(spaceWidth, spaceHeight);
     double size = spaceWidth; //Temporally assume the space is square
     
-    for (ParticlePtrs::iterator pIter = m_pParticles.begin(); pIter != m_pParticles.end(); pIter++) {
-        ParticlePtr pParticle = *pIter;
+    for (ParticlePtr pParticle : m_pParticles) {
         move(*pParticle, size, m_dt);
         BinPtr pBin = m_pAlgo->findBinByPosition(pParticle->x, pParticle->y);
         if (pBin) {
