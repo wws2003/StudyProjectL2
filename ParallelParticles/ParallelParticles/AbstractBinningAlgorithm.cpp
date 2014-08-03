@@ -95,7 +95,7 @@ void AbstractBinningAlgorithm::findAdjBins(const ParticlePtr pParticle, BinPtrs&
             const int x = binX + dx;
             const int y = binY + dy;
             if (isValidBinPosition(x, y)) {
-                pBins.push_back(pBins[calculateBinIndex(x, y)]);
+                pBins.push_back(m_pBins[calculateBinIndex(x, y)]);
             }
         }
     }
@@ -125,7 +125,7 @@ int AbstractBinningAlgorithm::calculateBinIndex(const int& binX, const int& binY
     return binX * m_numberOfBinsOnWidth + binY;
 }
 
-void AbstractBinningAlgorithm::getParticlesFromBins(ParticlePtrs pParticles) const {
+void AbstractBinningAlgorithm::getParticlesFromBins(ParticlePtrs& pParticles) const {
     pParticles.clear();
     for (BinPtr pBin : m_pBins) {
         pParticles.insert(pParticles.end(), pBin->getParticles().begin(), pBin->getParticles().end());

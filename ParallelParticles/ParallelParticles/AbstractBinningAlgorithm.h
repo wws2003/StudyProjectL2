@@ -47,7 +47,7 @@ private:
     bool isContaningData() const;
     bool isValidBinPosition(const int& binX, const int& binY) const;
     int calculateBinIndex(const int& binX, const int& binY) const;
-    void getParticlesFromBins(ParticlePtrs pParticles) const;
+    void getParticlesFromBins(ParticlePtrs& pParticles) const;
 };
 
 #endif /* defined(__ParallelParticles__AbstractBinningAlgorithm__) */

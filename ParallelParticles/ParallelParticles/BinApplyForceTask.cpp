@@ -16,6 +16,5 @@ BinApplyForceTask::BinApplyForceTask(BinPtr pBin, ParticlePtr pParticle) : m_pBi
 
 //Override
 void BinApplyForceTask::execute() {
-    //std::cout << "Executing task BinApplyForceTask \n";
     m_pBin->applyForceToOneParticle(m_pParticle);
 }

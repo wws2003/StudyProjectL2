@@ -57,6 +57,7 @@ void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs p
     for (unsigned int i = 0; i < pParticles.size(); i++) {
         if (p == numberOfParticleInAThread) {
             t++;
+            p = 0;
         }
         pParticlesVector[t].push_back(pParticles[i]);
         p++;
