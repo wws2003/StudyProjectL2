@@ -39,6 +39,9 @@ protected:
     volatile bool m_isStopped;
     
     std::deque<ITaskPtr> m_taskPtrQueue;
+    
+private:
+    int m_numberOfIncompletedTask;
 };
 
 
