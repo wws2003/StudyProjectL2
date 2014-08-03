@@ -17,6 +17,7 @@ ParticleMoveAlgorithmAssembler::ParticleMoveAlgorithmAssembler() {
 }
 
 ParticleMoveAlgorithmAssembler::~ParticleMoveAlgorithmAssembler() {
+    m_pThreadpool->destroy();
     delete  m_pThreadpool;
 }
 

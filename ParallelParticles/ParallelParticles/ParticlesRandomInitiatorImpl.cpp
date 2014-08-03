@@ -49,6 +49,8 @@ PP_ERR ParticlesRandomInitiatorImpl::initParticles(ParticlePtrs& particles, doub
         //
         pParticle->vx = drand48()*2-1;
         pParticle->vy = drand48()*2-1;
+        
+        particles.push_back(pParticle);
     }
     free( shuffle );
     return ERR_NONE;

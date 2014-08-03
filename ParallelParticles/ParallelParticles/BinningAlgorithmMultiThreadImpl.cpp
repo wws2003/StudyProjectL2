@@ -49,6 +49,9 @@ void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs p
     const unsigned int numberOfParticleInAThread = (unsigned int)pParticles.size() / numberOfThread;
     
     std::vector<ParticlePtrs> pParticlesVector;
+    for (unsigned int i = 0; i < numberOfThread; i++) {
+        pParticlesVector.push_back(ParticlePtrs());
+    }
     unsigned int t = 0;
     unsigned int p = 0;
     for (unsigned int i = 0; i < pParticles.size(); i++) {
