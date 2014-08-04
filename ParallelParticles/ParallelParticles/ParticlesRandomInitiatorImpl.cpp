@@ -51,6 +51,10 @@ PP_ERR ParticlesRandomInitiatorImpl::initParticles(ParticlePtrs& particles, doub
         pParticle->vx = drand48()*2-1;
         pParticle->vy = drand48()*2-1;
         
+        // accelerator should be zero at first
+        pParticle->ax = 0;
+        pParticle->ay = 0;
+        
         particles.push_back(pParticle);
     }
     free( shuffle );

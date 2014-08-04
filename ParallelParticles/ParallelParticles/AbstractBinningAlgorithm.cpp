@@ -39,8 +39,8 @@ void AbstractBinningAlgorithm::setParticles(const ParticlePtrs& particles, const
     
     int numberOfBins = m_numberOfBinsOnHeight * m_numberOfBinsOnWidth;
     for (int i = 0; i < numberOfBins; i++) {
-        int y = numberOfBins / m_numberOfBinsOnWidth;
-        int x = numberOfBins % m_numberOfBinsOnWidth;
+        int y = i / m_numberOfBinsOnWidth;
+        int x = i % m_numberOfBinsOnWidth;
         m_pBins.push_back(new Bin(x, y));
     }
     
@@ -62,20 +62,17 @@ PP_ERR AbstractBinningAlgorithm::moveParticles(unsigned int dt) {
     ParticlePtrs pParticles;
     getParticlesFromBins(pParticles);
     
-    for (ParticlePtrs::iterator pIter = pParticles.begin(); pIter != pParticles.end(); pIter++) {
-        ParticlePtr pParticle = *pIter;
+    for (ParticlePtr pParticle : pParticles) {
         BinPtrs pBins;
         findAdjBins(pParticle, pBins);
         
-        for (BinPtrs::iterator pBIter = pBins.begin(); pBIter != pBins.end(); pBIter++) {
-            BinPtr pBin = *pBIter;
+        for (BinPtr pBin : pBins) {
             onApplyBinForceToOnParticle(pBin, pParticle);
         }
         
         onParticleAppliedForce(pParticle);
     }
-    for (BinPtrs::iterator pBIter = m_pBins.begin(); pBIter != m_pBins.end(); pBIter++) {
-        BinPtr pBin = *pBIter;
+    for (BinPtr pBin : m_pBins) {
         onClearBin(pBin);
     }
     

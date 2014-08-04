@@ -18,7 +18,6 @@ ParticleMoveAndDistributeTask::ParticleMoveAndDistributeTask(AbstractBinningAlgo
 
 //Override
 void ParticleMoveAndDistributeTask::execute() {
-    //std::cout << "Executing task ParticleMoveAndDistributeTask \n";
     double spaceWidth, spaceHeight;
     m_pAlgo->getSpaceSize(spaceWidth, spaceHeight);
     double size = spaceWidth; //Temporally assume the space is square
@@ -26,6 +25,7 @@ void ParticleMoveAndDistributeTask::execute() {
     for (ParticlePtr pParticle : m_pParticles) {
         move(*pParticle, size, m_dt);
         BinPtr pBin = m_pAlgo->findBinByPosition(pParticle->x, pParticle->y);
+        //std::cout << "X " << pParticle->x << " Y " << pParticle->y << std::endl;
         if (pBin) {
             pBin->addParticle(pParticle);
         }

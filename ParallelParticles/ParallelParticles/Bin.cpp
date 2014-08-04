@@ -23,7 +23,9 @@ void Bin::addParticle(ParticlePtr pParticle) {
 
 void Bin::applyForceToOneParticle(ParticlePtr pParticle) {
     for (ParticlePtr pNeighbour : m_pParticles) {
-        apply_force(*pParticle, *pNeighbour);
+        if (pNeighbour != pParticle) {
+            apply_force(*pParticle, *pNeighbour);
+        }
     }
 }
 
