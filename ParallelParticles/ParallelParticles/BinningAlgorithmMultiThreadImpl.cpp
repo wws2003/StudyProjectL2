@@ -45,27 +45,18 @@ void BinningAlgorithmMultiThreadImpl::onBinsCleared() {
 
 //Override
 void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
-    const unsigned int numberOfThread = 2; //TODO Inject this dependency
+    const unsigned int numberOfThread = 4; //TODO Inject this dependency
     const unsigned int numberOfParticleInAThread = (unsigned int)pParticles.size() / numberOfThread;
     
-    std::vector<ParticlePtrs> pParticlesVector;
+    unsigned int startIndex = 0;
     for (unsigned int i = 0; i < numberOfThread; i++) {
-        pParticlesVector.push_back(ParticlePtrs());
-    }
-    unsigned int t = 0;
-    unsigned int p = 0;
-    for (unsigned int i = 0; i < pParticles.size(); i++) {
-        if (p == numberOfParticleInAThread) {
-            t++;
-            p = 0;
+        unsigned int endIndex = startIndex + numberOfParticleInAThread - 1;
+        if (i == numberOfThread - 1) {
+            endIndex += (unsigned int)pParticles.size() % numberOfThread;
         }
-        pParticlesVector[t].push_back(pParticles[i]);
-        p++;
-    }
-    
-    for (unsigned int i = 0; i < numberOfThread; i++) {
-        ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticlesVector[i], dt));
+        ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt, startIndex, endIndex));
         m_pThreadPool->addTask(pTask);
+        startIndex += numberOfParticleInAThread;
     }
     m_pThreadPool->waitAllTaskComplete();
 }

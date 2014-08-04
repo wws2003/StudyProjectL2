@@ -15,6 +15,7 @@ BinApplyForceTask::BinApplyForceTask(BinPtr pBin, ParticlePtr pParticle) : m_pBi
 }
 
 //Override
+//Can run on other thread
 void BinApplyForceTask::execute() {
     m_pBin->applyForceToOneParticle(m_pParticle);
 }

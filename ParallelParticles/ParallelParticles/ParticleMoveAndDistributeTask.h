@@ -16,7 +16,7 @@
 
 class ParticleMoveAndDistributeTask : public ITask{
 public:
-    ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, ParticlePtrs pParticles, const unsigned int& dt);
+    ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, const ParticlePtrs& pParticles, const unsigned int& dt, const unsigned int& startIndex = 0, const unsigned int& endIndex = 0);
     virtual ~ParticleMoveAndDistributeTask(){};
     
     //Override
@@ -25,6 +25,8 @@ public:
 private:
     AbstractBinningAlgorithmPtr m_pAlgo;
     const unsigned int m_dt;
+    const unsigned int m_startIndex;
+    const unsigned int m_endIndex;
     ParticlePtrs m_pParticles;
 };
 

@@ -15,6 +15,7 @@ BinClearTask::BinClearTask(BinPtr pBin) : m_pBin(pBin){
 }
 
 //Override
+//Can run on other thread
 void BinClearTask::execute() {
     //std::cout << "Executing task BinClearTask \n";
     m_pBin->clear();

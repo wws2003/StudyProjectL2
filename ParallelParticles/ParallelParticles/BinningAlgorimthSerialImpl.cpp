@@ -43,6 +43,6 @@ void BinningAlgorithmSerialImpl::onBinsCleared() {
 
 //Override
 void BinningAlgorithmSerialImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
-    ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt));
+    ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt, 0, (int)pParticles.size() - 1));
     pTask->execute();
 }
