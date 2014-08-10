@@ -1,0 +1,261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40B51759199769C600CB940D /* ObjectPoolManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B51757199769C600CB940D /* ObjectPoolManager.cpp */; };
+		40B5175C1997701300CB940D /* DerivedPoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5175A1997701300CB940D /* DerivedPoolObject.cpp */; };
+		40B5175F1997998200CB940D /* ObjectPoolSimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */; };
+		40C904DF19971FF0001465EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C904DE19971FF0001465EA /* main.cpp */; };
+		40C904E119971FF0001465EA /* TestObjectPool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 40C904E019971FF0001465EA /* TestObjectPool.1 */; };
+		40C904E919972034001465EA /* PoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C904E719972034001465EA /* PoolObject.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		40C904D919971FF0001465EA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				40C904E119971FF0001465EA /* TestObjectPool.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		40B517551997657300CB940D /* IObjectPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IObjectPool.h; sourceTree = "<group>"; };
+		40B51756199766EA00CB940D /* TypeDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
+		40B51757199769C600CB940D /* ObjectPoolManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolManager.cpp; sourceTree = "<group>"; };
+		40B51758199769C600CB940D /* ObjectPoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolManager.h; sourceTree = "<group>"; };
+		40B5175A1997701300CB940D /* DerivedPoolObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DerivedPoolObject.cpp; sourceTree = "<group>"; };
+		40B5175B1997701300CB940D /* DerivedPoolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DerivedPoolObject.h; sourceTree = "<group>"; };
+		40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolSimpleImpl.cpp; sourceTree = "<group>"; };
+		40B5175E1997998200CB940D /* ObjectPoolSimpleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolSimpleImpl.h; sourceTree = "<group>"; };
+		40C904DB19971FF0001465EA /* TestObjectPool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestObjectPool; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C904DE19971FF0001465EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		40C904E019971FF0001465EA /* TestObjectPool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TestObjectPool.1; sourceTree = "<group>"; };
+		40C904E719972034001465EA /* PoolObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PoolObject.cpp; sourceTree = "<group>"; };
+		40C904E819972034001465EA /* PoolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolObject.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40C904D819971FF0001465EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40C904D219971FF0001465EA = {
+			isa = PBXGroup;
+			children = (
+				40C904DD19971FF0001465EA /* TestObjectPool */,
+				40C904DC19971FF0001465EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		40C904DC19971FF0001465EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40C904DB19971FF0001465EA /* TestObjectPool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40C904DD19971FF0001465EA /* TestObjectPool */ = {
+			isa = PBXGroup;
+			children = (
+				40C904DE19971FF0001465EA /* main.cpp */,
+				40C904E019971FF0001465EA /* TestObjectPool.1 */,
+				40C904E719972034001465EA /* PoolObject.cpp */,
+				40C904E819972034001465EA /* PoolObject.h */,
+				40B517551997657300CB940D /* IObjectPool.h */,
+				40B51756199766EA00CB940D /* TypeDefs.h */,
+				40B51757199769C600CB940D /* ObjectPoolManager.cpp */,
+				40B51758199769C600CB940D /* ObjectPoolManager.h */,
+				40B5175A1997701300CB940D /* DerivedPoolObject.cpp */,
+				40B5175B1997701300CB940D /* DerivedPoolObject.h */,
+				40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */,
+				40B5175E1997998200CB940D /* ObjectPoolSimpleImpl.h */,
+			);
+			path = TestObjectPool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40C904DA19971FF0001465EA /* TestObjectPool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40C904E419971FF0001465EA /* Build configuration list for PBXNativeTarget "TestObjectPool" */;
+			buildPhases = (
+				40C904D719971FF0001465EA /* Sources */,
+				40C904D819971FF0001465EA /* Frameworks */,
+				40C904D919971FF0001465EA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestObjectPool;
+			productName = TestObjectPool;
+			productReference = 40C904DB19971FF0001465EA /* TestObjectPool */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40C904D319971FF0001465EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = wws2003;
+			};
+			buildConfigurationList = 40C904D619971FF0001465EA /* Build configuration list for PBXProject "TestObjectPool" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 40C904D219971FF0001465EA;
+			productRefGroup = 40C904DC19971FF0001465EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40C904DA19971FF0001465EA /* TestObjectPool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40C904D719971FF0001465EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40B5175F1997998200CB940D /* ObjectPoolSimpleImpl.cpp in Sources */,
+				40C904E919972034001465EA /* PoolObject.cpp in Sources */,
+				40B51759199769C600CB940D /* ObjectPoolManager.cpp in Sources */,
+				40B5175C1997701300CB940D /* DerivedPoolObject.cpp in Sources */,
+				40C904DF19971FF0001465EA /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		40C904E219971FF0001465EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		40C904E319971FF0001465EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		40C904E519971FF0001465EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		40C904E619971FF0001465EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40C904D619971FF0001465EA /* Build configuration list for PBXProject "TestObjectPool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40C904E219971FF0001465EA /* Debug */,
+				40C904E319971FF0001465EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40C904E419971FF0001465EA /* Build configuration list for PBXNativeTarget "TestObjectPool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40C904E519971FF0001465EA /* Debug */,
+				40C904E619971FF0001465EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40C904D319971FF0001465EA /* Project object */;
+}
