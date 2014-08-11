@@ -9,7 +9,9 @@
 #ifndef ThreadPoolSample_ITask_h
 #define ThreadPoolSample_ITask_h
 
-class ITask {
+#include "PoolObject.h"
+
+class ITask : public PoolObject {
 public:
     ITask(){};
     virtual ~ITask(){};

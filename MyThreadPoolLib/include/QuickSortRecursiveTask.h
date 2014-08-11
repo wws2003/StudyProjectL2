@@ -10,6 +10,7 @@
 #define __ThreadPoolSample__QuickSortRecursiveTask__
 
 #include <iostream>
+#include <new>
 #include "AbstractRecursiveTask.h"
 
 //Test simple recursive task with quick sort problem
@@ -18,6 +19,12 @@ class QuickSortRecursiveTask : public AbstractRecursiveTask {
 public:
     QuickSortRecursiveTask(int* array, unsigned int size);
     virtual ~QuickSortRecursiveTask();
+    
+    //@Override
+    void* operator new (size_t size) throw (std::bad_alloc);
+    
+    //@Override
+    void operator delete(void* objectPtr);
     
 protected:
     //@Override
@@ -31,11 +38,13 @@ protected:
     
     //@Override
     virtual void releaseSubResults(const ResultStore& subResultStoreRef);
+
     
 private:
     int* m_array;
     unsigned int m_size;
     int m_pivot;
+    static ObjectPoolPtr g_pObjectPool;
 };
 
 #endif /* defined(__ThreadPoolSample__SimpleRecursiveTask__) */

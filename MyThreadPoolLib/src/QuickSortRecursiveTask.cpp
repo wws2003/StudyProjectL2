@@ -7,6 +7,9 @@
 //
 
 #include "QuickSortRecursiveTask.h"
+#include "ObjectPoolFactory.h"
+
+ObjectPoolPtr QuickSortRecursiveTask::g_pObjectPool = ObjectPoolFactory::createObjectPool(SIMPLE);
 
 QuickSortRecursiveTask::QuickSortRecursiveTask(int* array, unsigned int size) : AbstractRecursiveTask(), m_array(array), m_size(size), m_pivot(0) {
     
@@ -15,6 +18,17 @@ QuickSortRecursiveTask::QuickSortRecursiveTask(int* array, unsigned int size) : 
 QuickSortRecursiveTask::~QuickSortRecursiveTask() {
     
 }
+
+//@Override
+void* QuickSortRecursiveTask::operator new (size_t size) throw (std::bad_alloc) {
+    return PoolObject::operator new(size, g_pObjectPool);
+}
+
+//@Override
+void QuickSortRecursiveTask::operator delete(void* objectPtr) {
+    return PoolObject::operator delete(objectPtr, g_pObjectPool);
+}
+
 
 //@Override
 void QuickSortRecursiveTask::prepare() {

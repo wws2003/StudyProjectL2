@@ -113,5 +113,18 @@ enum ThreadPoolErrorCode{
     INIT_THREAD_ERROR
 };
 
+class IObjectPool;
+typedef IObjectPool* ObjectPoolPtr;
+
+enum POOL_ERR {
+    POOL_ERR_NONE,
+    ADD_OBJECT_FAILED,
+    RETURN_OBJECT_FAILED
+};
+
+enum POOL_TYPE {
+    SIMPLE,
+    THREAD_SAFE
+};
 
 #endif

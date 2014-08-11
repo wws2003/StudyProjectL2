@@ -52,6 +52,13 @@
 		4063E77118F9A15300C1C292 /* ThreadPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */; };
 		4063E77218F9A15300C1C292 /* ThreadPoolFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */; };
 		4063E77318F9A15300C1C292 /* TypeDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E74618F9A15300C1C292 /* TypeDefs.h */; };
+		40B51764199922D200CB940D /* IObjectPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B51763199922D200CB940D /* IObjectPool.h */; };
+		40B517661999238300CB940D /* ObjectPoolFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B517651999238300CB940D /* ObjectPoolFactory.h */; };
+		40B51769199923D900CB940D /* PoolObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B51768199923D900CB940D /* PoolObject.h */; };
+		40B5176C1999241A00CB940D /* ObjectPoolSimpleImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B5176B1999241A00CB940D /* ObjectPoolSimpleImpl.h */; };
+		40B5176E1999243C00CB940D /* PoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5176D1999243C00CB940D /* PoolObject.cpp */; };
+		40B517701999244800CB940D /* ObjectPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5176F1999244800CB940D /* ObjectPoolFactory.cpp */; };
+		40B517721999245000CB940D /* ObjectPoolSimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B517711999245000CB940D /* ObjectPoolSimpleImpl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +108,13 @@
 		4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPoolFactory.cpp; sourceTree = "<group>"; };
 		4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThreadPoolFactory.h; path = /Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/ThreadPoolFactory.h; sourceTree = "<absolute>"; };
 		4063E74618F9A15300C1C292 /* TypeDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeDefs.h; path = /Users/wws2003/Desktop/Apps/MyThreadPoolLib/include/TypeDefs.h; sourceTree = "<absolute>"; };
+		40B51763199922D200CB940D /* IObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IObjectPool.h; sourceTree = "<group>"; };
+		40B517651999238300CB940D /* ObjectPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolFactory.h; sourceTree = "<group>"; };
+		40B51768199923D900CB940D /* PoolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolObject.h; sourceTree = "<group>"; };
+		40B5176B1999241A00CB940D /* ObjectPoolSimpleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolSimpleImpl.h; sourceTree = "<group>"; };
+		40B5176D1999243C00CB940D /* PoolObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PoolObject.cpp; sourceTree = "<group>"; };
+		40B5176F1999244800CB940D /* ObjectPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolFactory.cpp; sourceTree = "<group>"; };
+		40B517711999245000CB940D /* ObjectPoolSimpleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolSimpleImpl.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +179,9 @@
 				4063E74018F9A15300C1C292 /* TaskGroup.cpp */,
 				4063E74218F9A15300C1C292 /* TaskGroupFactory.cpp */,
 				4063E74418F9A15300C1C292 /* ThreadPoolFactory.cpp */,
+				40B5176D1999243C00CB940D /* PoolObject.cpp */,
+				40B5176F1999244800CB940D /* ObjectPoolFactory.cpp */,
+				40B517711999245000CB940D /* ObjectPoolSimpleImpl.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -184,11 +201,12 @@
 				4063E71D18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h */,
 				4063E71F18F9A15300C1C292 /* AbstractRecursiveTask.h */,
 				4063E72118F9A15300C1C292 /* AbstractThreadPool.h */,
-				4063E77A18F9A2F500C1C292 /* delegate */,
-				4063E77918F9A2EF00C1C292 /* factory */,
 				4063E72218F9A15300C1C292 /* ICondVar.h */,
 				4063E72318F9A15300C1C292 /* IMutex.h */,
 				4063E72818F9A15300C1C292 /* ITask.h */,
+				40B5176A199923F100CB940D /* objectpool */,
+				4063E77A18F9A2F500C1C292 /* delegate */,
+				4063E77918F9A2EF00C1C292 /* factory */,
 			);
 			name = abstract;
 			sourceTree = "<group>";
@@ -199,6 +217,11 @@
 				4063E72D18F9A15300C1C292 /* PMutex.h */,
 				4063E72B18F9A15300C1C292 /* PCondVar.h */,
 				4063E72F18F9A15300C1C292 /* PThreadPool.h */,
+				4063E74118F9A15300C1C292 /* TaskGroup.h */,
+				4063E73F18F9A15300C1C292 /* SumMasterTask.h */,
+				4063E73B18F9A15300C1C292 /* SimpleChildTask.h */,
+				4063E73118F9A15300C1C292 /* QuickSortRecursiveTask.h */,
+				40B51767199923A400CB940D /* objectpool */,
 				4063E77D18F9A3E500C1C292 /* delegate */,
 				4063E77C18F9A3DF00C1C292 /* factory */,
 			);
@@ -226,10 +249,6 @@
 		4063E77B18F9A30D00C1C292 /* samples */ = {
 			isa = PBXGroup;
 			children = (
-				4063E74118F9A15300C1C292 /* TaskGroup.h */,
-				4063E73F18F9A15300C1C292 /* SumMasterTask.h */,
-				4063E73B18F9A15300C1C292 /* SimpleChildTask.h */,
-				4063E73118F9A15300C1C292 /* QuickSortRecursiveTask.h */,
 			);
 			name = samples;
 			sourceTree = "<group>";
@@ -255,11 +274,29 @@
 		4063E77E18F9A49800C1C292 /* container */ = {
 			isa = PBXGroup;
 			children = (
+				40B517651999238300CB940D /* ObjectPoolFactory.h */,
 				4063E74318F9A15300C1C292 /* TaskGroupFactory.h */,
 				4063E74518F9A15300C1C292 /* ThreadPoolFactory.h */,
 				4063E73318F9A15300C1C292 /* RecursiveTaskAssembler.h */,
 			);
 			name = container;
+			sourceTree = "<group>";
+		};
+		40B51767199923A400CB940D /* objectpool */ = {
+			isa = PBXGroup;
+			children = (
+				40B5176B1999241A00CB940D /* ObjectPoolSimpleImpl.h */,
+			);
+			name = objectpool;
+			sourceTree = "<group>";
+		};
+		40B5176A199923F100CB940D /* objectpool */ = {
+			isa = PBXGroup;
+			children = (
+				40B51763199922D200CB940D /* IObjectPool.h */,
+				40B51768199923D900CB940D /* PoolObject.h */,
+			);
+			name = objectpool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +308,8 @@
 			files = (
 				4063E77318F9A15300C1C292 /* TypeDefs.h in Headers */,
 				4063E75E18F9A15300C1C292 /* QuickSortRecursiveTask.h in Headers */,
+				40B517661999238300CB940D /* ObjectPoolFactory.h in Headers */,
+				40B5176C1999241A00CB940D /* ObjectPoolSimpleImpl.h in Headers */,
 				4063E76618F9A15300C1C292 /* ResultWaitDelegate.h in Headers */,
 				4063E75018F9A15300C1C292 /* IMutex.h in Headers */,
 				4063E74E18F9A15300C1C292 /* AbstractThreadPool.h in Headers */,
@@ -283,6 +322,7 @@
 				4063E77218F9A15300C1C292 /* ThreadPoolFactory.h in Headers */,
 				4063E75C18F9A15300C1C292 /* PThreadPool.h in Headers */,
 				4063E76018F9A15300C1C292 /* RecursiveTaskAssembler.h in Headers */,
+				40B51769199923D900CB940D /* PoolObject.h in Headers */,
 				4063E76218F9A15300C1C292 /* ResultDelegatePairFactoryImpl.h in Headers */,
 				4063E75818F9A15300C1C292 /* PCondVar.h in Headers */,
 				4063E75118F9A15300C1C292 /* IResultDelegatePairFactory.h in Headers */,
@@ -295,6 +335,7 @@
 				4063E76E18F9A15300C1C292 /* TaskGroup.h in Headers */,
 				4063E75218F9A15300C1C292 /* IResultSignalDelegate.h in Headers */,
 				4063E74A18F9A15300C1C292 /* AbstractDelegatingSlaveTask.h in Headers */,
+				40B51764199922D200CB940D /* IObjectPool.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +393,9 @@
 				4063E75D18F9A15300C1C292 /* QuickSortRecursiveTask.cpp in Sources */,
 				4063E76318F9A15300C1C292 /* ResultSignalDelegate.cpp in Sources */,
 				4063E76118F9A15300C1C292 /* ResultDelegatePairFactoryImpl.cpp in Sources */,
+				40B517701999244800CB940D /* ObjectPoolFactory.cpp in Sources */,
 				4063E75718F9A15300C1C292 /* PCondVar.cpp in Sources */,
+				40B5176E1999243C00CB940D /* PoolObject.cpp in Sources */,
 				4063E74918F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp in Sources */,
 				4063E76718F9A15300C1C292 /* SimpleChildTask.cpp in Sources */,
 				4063E76D18F9A15300C1C292 /* TaskGroup.cpp in Sources */,
@@ -365,6 +408,7 @@
 				4063E74D18F9A15300C1C292 /* AbstractThreadPool.cpp in Sources */,
 				4063E74B18F9A15300C1C292 /* AbstractRecursiveTask.cpp in Sources */,
 				4063E77118F9A15300C1C292 /* ThreadPoolFactory.cpp in Sources */,
+				40B517721999245000CB940D /* ObjectPoolSimpleImpl.cpp in Sources */,
 				4063E75618F9A15300C1C292 /* main.cpp in Sources */,
 				4063E75F18F9A15300C1C292 /* RecursiveTaskAssembler.cpp in Sources */,
 				4063E74718F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp in Sources */,
@@ -447,7 +491,7 @@
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"SHARED_PTR=1",
+					"SHARED_PTR=0",
 					"DEBUG=1",
 					"$(inherited)",
 				);
