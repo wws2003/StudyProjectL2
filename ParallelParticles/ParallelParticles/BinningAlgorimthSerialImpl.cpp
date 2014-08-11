@@ -27,7 +27,7 @@ void BinningAlgorithmSerialImpl::onApplyBinForceToOnParticle(BinPtr pBin, Partic
 
 //Override
 void BinningAlgorithmSerialImpl::onParticleAppliedForce(ParticlePtr pParticle) {
-    
+     BinApplyForceTask::refreshPool();
 }
 
 //Override
@@ -38,11 +38,12 @@ void BinningAlgorithmSerialImpl::onClearBin(BinPtr pBin) {
 
 //Override
 void BinningAlgorithmSerialImpl::onBinsCleared() {
-    
+    BinClearTask::refreshPool();
 }
 
 //Override
 void BinningAlgorithmSerialImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
     ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt, 0, (int)pParticles.size() - 1));
     pTask->execute();
+    ParticleMoveAndDistributeTask::refreshPool();
 }

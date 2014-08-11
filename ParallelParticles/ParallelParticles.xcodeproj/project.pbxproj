@@ -93,8 +93,8 @@
 		40569D7F198942CA00F63302 /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				40569D7A1988081800F63302 /* BinApplyForceTask.h */,
 				40569D791988081800F63302 /* BinApplyForceTask.cpp */,
+				40569D7A1988081800F63302 /* BinApplyForceTask.h */,
 				40569D7C198940DD00F63302 /* BinClearTask.cpp */,
 				40569D7D198940DD00F63302 /* BinClearTask.h */,
 				40569D80198942FC00F63302 /* ParticleMoveAndDistributeTask.cpp */,
@@ -364,7 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"SHARED_PTR=1",
+					"SHARED_PTR=0",
 					"DEBUG=1",
 					"$(inherited)",
 				);

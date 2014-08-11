@@ -19,12 +19,21 @@ public:
     BinClearTask(BinPtr pBin);
     virtual ~BinClearTask(){};
     
+    //@Override
+    void* operator new (size_t size) throw (std::bad_alloc);
+    
+    //@Override
+    void operator delete(void* objectPtr);
+    
     //Override
     virtual void execute();
     
+    static void refreshPool();
+    
 private:
     BinPtr m_pBin;
-
+    
+    static ObjectPoolPtr g_pObjectPool;
 };
 
 #endif /* defined(__ParallelParticles__BinClearTask__) */

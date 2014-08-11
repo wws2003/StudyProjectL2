@@ -30,6 +30,7 @@ void BinningAlgorithmMultiThreadImpl::onApplyBinForceToOnParticle(BinPtr pBin, P
 
 void BinningAlgorithmMultiThreadImpl::onParticleAppliedForce(ParticlePtr pParticle) {
     m_pThreadPool->waitAllTaskComplete();
+    BinApplyForceTask::refreshPool();
 }
 
 //Override
@@ -41,6 +42,7 @@ void BinningAlgorithmMultiThreadImpl::onClearBin(BinPtr pBin) {
 //Override
 void BinningAlgorithmMultiThreadImpl::onBinsCleared() {
     m_pThreadPool->waitAllTaskComplete();
+    BinClearTask::refreshPool();
 }
 
 //Override
@@ -59,4 +61,5 @@ void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs p
         startIndex += numberOfParticleInAThread;
     }
     m_pThreadPool->waitAllTaskComplete();
+    ParticleMoveAndDistributeTask::refreshPool();
 }

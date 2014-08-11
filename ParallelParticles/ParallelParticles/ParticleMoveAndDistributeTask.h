@@ -19,8 +19,16 @@ public:
     ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, const ParticlePtrs& pParticles, const unsigned int& dt, const unsigned int& startIndex = 0, const unsigned int& endIndex = 0);
     virtual ~ParticleMoveAndDistributeTask(){};
     
+    //@Override
+    void* operator new (size_t size) throw (std::bad_alloc);
+    
+    //@Override
+    void operator delete(void* objectPtr);
+    
     //Override
     virtual void execute();
+    
+    static void refreshPool();
     
 private:
     AbstractBinningAlgorithmPtr m_pAlgo;
@@ -28,6 +36,8 @@ private:
     const unsigned int m_startIndex;
     const unsigned int m_endIndex;
     ParticlePtrs m_pParticles;
+    
+    static ObjectPoolPtr g_pObjectPool;
 };
 
 #endif /* defined(__ParallelParticles__ParticleMoveAndDistributeTask__) */

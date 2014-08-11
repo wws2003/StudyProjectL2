@@ -19,12 +19,22 @@ public:
     BinApplyForceTask(BinPtr pBin, ParticlePtr pParticle);
     virtual ~BinApplyForceTask(){};
     
+    //@Override
+    void* operator new (size_t size) throw (std::bad_alloc);
+    
+    //@Override
+    void operator delete(void* objectPtr);
+    
     //Override
     virtual void execute();
+    
+    static void refreshPool();
     
 private:
     BinPtr m_pBin;
     ParticlePtr m_pParticle;
+    
+    static ObjectPoolPtr g_pObjectPool;
 };
 
 

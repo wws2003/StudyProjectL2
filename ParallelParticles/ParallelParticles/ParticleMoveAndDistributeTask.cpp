@@ -10,10 +10,24 @@
 #include "Bin.h"
 #include "common.h"
 #include "AbstractBinningAlgorithm.h"
+#include "ObjectPoolFactory.h"
+#include "IObjectPool.h"
 #include <iostream>
+
+ObjectPoolPtr ParticleMoveAndDistributeTask::g_pObjectPool = ObjectPoolFactory::createObjectPool(SIMPLE);
 
 ParticleMoveAndDistributeTask::ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, const ParticlePtrs& pParticles, const unsigned int& dt, const unsigned int& startIndex, const unsigned int& endIndex) : m_pAlgo(pAlgo), m_pParticles(pParticles), m_dt(dt), m_startIndex(startIndex), m_endIndex(endIndex) {
     
+}
+
+//@Override
+void* ParticleMoveAndDistributeTask::operator new (size_t size) throw (std::bad_alloc) {
+    return PoolObject::operator new(size, g_pObjectPool);
+}
+
+//@Override
+void ParticleMoveAndDistributeTask::operator delete(void* objectPtr) {
+    return PoolObject::operator delete(objectPtr, g_pObjectPool);
 }
 
 //Override
@@ -31,5 +45,11 @@ void ParticleMoveAndDistributeTask::execute() {
         if (pBin) {
             pBin->addParticle(pParticle);
         }
+    }
+}
+
+void ParticleMoveAndDistributeTask::refreshPool() {
+    if (g_pObjectPool) {
+        g_pObjectPool->refresh();
     }
 }
