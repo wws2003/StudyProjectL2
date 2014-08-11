@@ -25,6 +25,7 @@ public:
     
 private:
     int m_property2;
+    static ObjectPoolPtr g_pObjectPool;
 };
 
 #endif /* defined(__TestObjectPool__DerivedPoolObject__) */

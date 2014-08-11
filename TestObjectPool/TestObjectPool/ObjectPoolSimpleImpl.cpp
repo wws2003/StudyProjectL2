@@ -48,6 +48,10 @@ POOL_ERR ObjectPoolSimpleImpl::returnObjectPtr(void* objectPtr) {
     return ERR_NONE;
 }
 
+void ObjectPoolSimpleImpl::refresh() {
+    m_indexOfLastObject = m_objectPtrs.size() - 1;
+}
+
 //Override
 void ObjectPoolSimpleImpl::drain() {
     std::nothrow_t t;

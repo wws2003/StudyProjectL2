@@ -17,12 +17,9 @@ public:
     PoolObject(int property);
     virtual ~PoolObject();
     
-    //Override placement operator new (this concept exist?)
-    void* operator new(std::size_t size, ObjectPoolPtr pPool) throw (std::bad_alloc);
-    
     //Override
-    void* operator new(std::size_t size) throw (std::bad_alloc);
-    
+    void* operator new(std::size_t size, ObjectPoolPtr pPool) throw (std::bad_alloc);
+   
     //Override
     void operator delete(void* objectPtr);
     
@@ -31,7 +28,6 @@ public:
     
 private:
     int m_property;
-    static ObjectPoolPtr g_pObjectPool;
 };
 
 #endif /* defined(__TestObjectPool__PoolObject__) */

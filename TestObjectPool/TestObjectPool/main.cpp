@@ -12,7 +12,6 @@
 #include "PoolObject.h"
 #include "DerivedPoolObject.h"
 #include "IObjectPool.h"
-#include "ObjectPoolManager.h"
 
 class Timer {
 public:
@@ -44,8 +43,6 @@ int main(int argc, const char * argv[])
     
     PoolObject* p2 = new DerivedPoolObject(3, 8);
     delete p2;
-    
-    ObjectPoolManager::getObjectPool()->drain();
     
     //int* pInt = new (int)(3);
     return 0;

@@ -8,10 +8,8 @@
 
 #include "PoolObject.h"
 #include "IObjectPool.h"
-#include "ObjectPoolManager.h"
+#include "ObjectPoolFactory.h"
 #include <iostream>
-
-ObjectPoolPtr PoolObject::g_pObjectPool = ObjectPoolManager::getObjectPool();
 
 PoolObject::PoolObject(int property) : m_property(property) {
     //std::cout << "Constructing new object with property " << property << " \n";
@@ -31,39 +29,14 @@ void* PoolObject::operator new(std::size_t size, ObjectPoolPtr pPool) throw (std
             size_t numberOfNewObjectToAdd = newCapacity - oldCapacity;
             pPool->reserve(newCapacity);
             for (int i = 0; i < numberOfNewObjectToAdd; i++) {
-                if (pPool->addObjectPtr(::operator new(size, pPool)) != ERR_NONE) {
+                if (pPool->addObjectPtr(::operator new(size)) != ERR_NONE) {
                     return NULL;
                 }
             }
+            ptr = pPool->getObjectPtr();
         }
-        return pPool->getObjectPtr();
-    }
-    return ::operator new(size);
-}
-
-//static in fact
-void* PoolObject::operator new(std::size_t size) throw (std::bad_alloc) {
-    //std::cout << "Creating new object with size " << size << " \n";
-    void* ptr = NULL;
-    if (g_pObjectPool) {
-        ptr = g_pObjectPool->getObjectPtr();
-        if (!ptr) {
-            size_t oldCapacity = g_pObjectPool->getSize();
-            size_t newCapacity = (oldCapacity == 0) ? 100 : oldCapacity * 1.5;
-            g_pObjectPool->reserve(newCapacity);
-            size_t numberOfNewObjectToAdd = newCapacity - oldCapacity;
-            for (int i = 0; i < numberOfNewObjectToAdd; i++) {
-                //std::cout << "Have to create a new object size = " << size << " \n";
-                if (g_pObjectPool->addObjectPtr(::operator new(size)) != ERR_NONE) {
-                    return NULL;
-                }
-            }
-            ptr = g_pObjectPool->getObjectPtr();
-            return ptr;
-        }
-        else {
-            return ptr;
-        }
+        return ptr;
+        
     }
     return ::operator new(size);
 }
@@ -71,10 +44,7 @@ void* PoolObject::operator new(std::size_t size) throw (std::bad_alloc) {
 //static in fact
 void PoolObject::operator delete(void* objectPtr) {
     //std::cout << "Deleting an object\n";
-    if (!g_pObjectPool || g_pObjectPool->returnObjectPtr(objectPtr) != ERR_NONE) {
-        ::operator delete(objectPtr);
-    }
-    return;
+    return ::operator delete(objectPtr);
 }
 
 //static in fact

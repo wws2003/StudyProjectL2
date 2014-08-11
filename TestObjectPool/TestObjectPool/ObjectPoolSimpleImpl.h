@@ -34,11 +34,14 @@ public:
     virtual POOL_ERR returnObjectPtr(void* objectPtr);
     
     //Override
+    virtual void refresh();
+    
+    //Override
     virtual void drain();
     
 private:
     std::vector<void*> m_objectPtrs;
-    int m_indexOfLastObject;
+    long m_indexOfLastObject;
 
 };
 

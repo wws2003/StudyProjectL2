@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40B51759199769C600CB940D /* ObjectPoolManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B51757199769C600CB940D /* ObjectPoolManager.cpp */; };
+		40B51759199769C600CB940D /* ObjectPoolFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B51757199769C600CB940D /* ObjectPoolFactory.cpp */; };
 		40B5175C1997701300CB940D /* DerivedPoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5175A1997701300CB940D /* DerivedPoolObject.cpp */; };
 		40B5175F1997998200CB940D /* ObjectPoolSimpleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */; };
+		40B5176219990BE800CB940D /* Derived2PoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40B5176019990BE800CB940D /* Derived2PoolObject.cpp */; };
 		40C904DF19971FF0001465EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C904DE19971FF0001465EA /* main.cpp */; };
 		40C904E119971FF0001465EA /* TestObjectPool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 40C904E019971FF0001465EA /* TestObjectPool.1 */; };
 		40C904E919972034001465EA /* PoolObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40C904E719972034001465EA /* PoolObject.cpp */; };
@@ -31,12 +32,14 @@
 /* Begin PBXFileReference section */
 		40B517551997657300CB940D /* IObjectPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IObjectPool.h; sourceTree = "<group>"; };
 		40B51756199766EA00CB940D /* TypeDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeDefs.h; sourceTree = "<group>"; };
-		40B51757199769C600CB940D /* ObjectPoolManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolManager.cpp; sourceTree = "<group>"; };
-		40B51758199769C600CB940D /* ObjectPoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolManager.h; sourceTree = "<group>"; };
+		40B51757199769C600CB940D /* ObjectPoolFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolFactory.cpp; sourceTree = "<group>"; };
+		40B51758199769C600CB940D /* ObjectPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolFactory.h; sourceTree = "<group>"; };
 		40B5175A1997701300CB940D /* DerivedPoolObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DerivedPoolObject.cpp; sourceTree = "<group>"; };
 		40B5175B1997701300CB940D /* DerivedPoolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DerivedPoolObject.h; sourceTree = "<group>"; };
 		40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectPoolSimpleImpl.cpp; sourceTree = "<group>"; };
 		40B5175E1997998200CB940D /* ObjectPoolSimpleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPoolSimpleImpl.h; sourceTree = "<group>"; };
+		40B5176019990BE800CB940D /* Derived2PoolObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Derived2PoolObject.cpp; sourceTree = "<group>"; };
+		40B5176119990BE800CB940D /* Derived2PoolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Derived2PoolObject.h; sourceTree = "<group>"; };
 		40C904DB19971FF0001465EA /* TestObjectPool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestObjectPool; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C904DE19971FF0001465EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		40C904E019971FF0001465EA /* TestObjectPool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TestObjectPool.1; sourceTree = "<group>"; };
@@ -75,13 +78,15 @@
 			isa = PBXGroup;
 			children = (
 				40C904DE19971FF0001465EA /* main.cpp */,
+				40B5176019990BE800CB940D /* Derived2PoolObject.cpp */,
+				40B5176119990BE800CB940D /* Derived2PoolObject.h */,
 				40C904E019971FF0001465EA /* TestObjectPool.1 */,
 				40C904E719972034001465EA /* PoolObject.cpp */,
 				40C904E819972034001465EA /* PoolObject.h */,
 				40B517551997657300CB940D /* IObjectPool.h */,
 				40B51756199766EA00CB940D /* TypeDefs.h */,
-				40B51757199769C600CB940D /* ObjectPoolManager.cpp */,
-				40B51758199769C600CB940D /* ObjectPoolManager.h */,
+				40B51757199769C600CB940D /* ObjectPoolFactory.cpp */,
+				40B51758199769C600CB940D /* ObjectPoolFactory.h */,
 				40B5175A1997701300CB940D /* DerivedPoolObject.cpp */,
 				40B5175B1997701300CB940D /* DerivedPoolObject.h */,
 				40B5175D1997998200CB940D /* ObjectPoolSimpleImpl.cpp */,
@@ -143,9 +148,10 @@
 			files = (
 				40B5175F1997998200CB940D /* ObjectPoolSimpleImpl.cpp in Sources */,
 				40C904E919972034001465EA /* PoolObject.cpp in Sources */,
-				40B51759199769C600CB940D /* ObjectPoolManager.cpp in Sources */,
+				40B51759199769C600CB940D /* ObjectPoolFactory.cpp in Sources */,
 				40B5175C1997701300CB940D /* DerivedPoolObject.cpp in Sources */,
 				40C904DF19971FF0001465EA /* main.cpp in Sources */,
+				40B5176219990BE800CB940D /* Derived2PoolObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

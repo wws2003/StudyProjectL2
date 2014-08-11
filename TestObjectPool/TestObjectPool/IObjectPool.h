@@ -21,9 +21,10 @@ public:
     virtual size_t getSize() = 0; //Return number of objects in pool
     virtual POOL_ERR addObjectPtr(void* objectPtr) = 0; //Add a object ptr to pool
     
-    virtual void* getObjectPtr() = 0;//Get an object ptr from pool
-    virtual POOL_ERR returnObjectPtr(void* objectPtr) = 0;//Return to pool an object ptr
+    virtual void* getObjectPtr() = 0; //Get an object ptr from pool
+    virtual POOL_ERR returnObjectPtr(void* objectPtr) = 0; //Return to pool an object ptr
     
+    virtual void refresh() = 0; //Make all object in pool avaiable to get
     virtual void drain() = 0; //deallocate all object in pool
 };
 

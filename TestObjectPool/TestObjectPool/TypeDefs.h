@@ -18,4 +18,9 @@ enum POOL_ERR {
     RETURN_OBJECT_FAILED
 };
 
+enum POOL_TYPE {
+    SIMPLE,
+    THREAD_SAFE
+};
+
 #endif
