@@ -14,7 +14,7 @@
 #include "TypeDefs.h"
 #include "ITask.h"
 
-class ParticleMoveAndDistributeTask : public ITask{
+class ParticleMoveAndDistributeTask : public ITask {
 public:
     ParticleMoveAndDistributeTask(AbstractBinningAlgorithmPtr pAlgo, const ParticlePtrs& pParticles, const unsigned int& dt, const unsigned int& startIndex = 0, const unsigned int& endIndex = 0);
     virtual ~ParticleMoveAndDistributeTask(){};

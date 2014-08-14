@@ -10,6 +10,7 @@
 #include "Bin.h"
 #include "common.h"
 #include <cmath>
+#include <cassert>
 
 AbstractBinningAlgorithm::AbstractBinningAlgorithm() : m_binSize(-1), m_numberOfBinsOnWidth(-1), m_numberOfBinsOnHeight(-1) {
 
@@ -33,7 +34,7 @@ void AbstractBinningAlgorithm::initBins() {
 
 //Override
 void AbstractBinningAlgorithm::setParticles(const ParticlePtrs& particles, const double& spaceWidth, const double& spaceHeight, const double& density) {
-    m_binSize = 1 / sqrt(density) / 5;
+    m_binSize = sqrt(particles.size()) / sqrt(density) / 5;
     m_numberOfBinsOnWidth = (int)(spaceWidth / m_binSize + 0.5);
     m_numberOfBinsOnHeight = (int)(spaceHeight / m_binSize + 0.5);
     
@@ -44,7 +45,7 @@ void AbstractBinningAlgorithm::setParticles(const ParticlePtrs& particles, const
         m_pBins.push_back(new Bin(x, y));
     }
     
-    onMoveAndPushParticleToBins(particles, 0);
+    onDistributeParticleToBin(particles);
 }
 
 BinPtr AbstractBinningAlgorithm::findBinByPosition(const double& x, const double& y) const {
@@ -62,6 +63,10 @@ PP_ERR AbstractBinningAlgorithm::moveParticles(unsigned int dt) {
     ParticlePtrs pParticles;
     getParticlesFromBins(pParticles);
     
+#if DEBUG
+    assert(pParticles.size() == 1000);
+#endif
+    
     for (ParticlePtr pParticle : pParticles) {
         BinPtrs pBins;
         findAdjBins(pParticle, pBins);
@@ -78,7 +83,11 @@ PP_ERR AbstractBinningAlgorithm::moveParticles(unsigned int dt) {
     
     onBinsCleared();
     
-    onMoveAndPushParticleToBins(pParticles, dt);
+    for (ParticlePtr pParticle : pParticles) {
+        onMoveParticle(pParticle, dt);
+    }
+    
+    onDistributeParticleToBin(pParticles);
     return ERR_NONE;
 }
 

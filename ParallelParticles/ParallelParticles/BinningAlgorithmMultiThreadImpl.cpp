@@ -10,8 +10,8 @@
 #include "BinApplyForceTask.h"
 #include "AbstractThreadPool.h"
 #include "BinClearTask.h"
-#include "ParticleMoveAndDistributeTask.h"
-
+#include "ParticleMoveTask.h"
+#include "ParticleDistributeTask.h"
 
 BinningAlgorithmMultiThreadImpl::BinningAlgorithmMultiThreadImpl(AbstractThreadPoolPtr pThreadPool) : m_pThreadPool(pThreadPool){
     m_pThreadPool->initAndStart(false);
@@ -46,20 +46,17 @@ void BinningAlgorithmMultiThreadImpl::onBinsCleared() {
 }
 
 //Override
-void BinningAlgorithmMultiThreadImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
-    const unsigned int numberOfThread = 4; //TODO Inject this dependency
-    const unsigned int numberOfParticleInAThread = (unsigned int)pParticles.size() / numberOfThread;
-    
-    unsigned int startIndex = 0;
-    for (unsigned int i = 0; i < numberOfThread; i++) {
-        unsigned int endIndex = startIndex + numberOfParticleInAThread - 1;
-        if (i == numberOfThread - 1) {
-            endIndex += (unsigned int)pParticles.size() % numberOfThread;
-        }
-        ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt, startIndex, endIndex));
-        m_pThreadPool->addTask(pTask);
-        startIndex += numberOfParticleInAThread;
-    }
+void BinningAlgorithmMultiThreadImpl::onMoveParticle(ParticlePtr pParticle, unsigned int dt) {
+    double w,h;
+    getSpaceSize(w, h);
+    ParticleMoveTaskPtr pTask(new ParticleMoveTask(dt, w, h, pParticle));
+    m_pThreadPool->addTask(pTask);
+}
+
+//Override
+void BinningAlgorithmMultiThreadImpl::onDistributeParticleToBin(const ParticlePtrs pParticles) {
     m_pThreadPool->waitAllTaskComplete();
-    ParticleMoveAndDistributeTask::refreshPool();
+    ParticleMoveTask::refreshPool();
+    ParticleDistributeTaskPtr pTask(new ParticleDistributeTask(this, pParticles));
+    pTask->execute();
 }

@@ -17,6 +17,7 @@ class ParticleMoveAlgorithmAssembler {
 public:
     enum AlgorithmType {
         MULTI_THREAD,
+        MULTI_THREAD_BATCH,
         SERIAL
     };
     

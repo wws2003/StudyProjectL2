@@ -34,7 +34,9 @@ protected:
     virtual void onParticleAppliedForce(ParticlePtr pParticle) = 0;
     virtual void onClearBin(BinPtr pBin) = 0;
     virtual void onBinsCleared() = 0;
-    virtual void onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) = 0;
+    
+    virtual void onMoveParticle(ParticlePtr pParticle, unsigned int dt) = 0;
+    virtual void onDistributeParticleToBin(const ParticlePtrs pParticles) = 0;
     
     virtual void findAdjBins(const ParticlePtr pParticle, BinPtrs& pBins) const;
     

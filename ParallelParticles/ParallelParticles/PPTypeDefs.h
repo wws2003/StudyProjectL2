@@ -56,6 +56,12 @@ typedef BinClearTask* BinClearTaskPtr;
 class ParticleMoveAndDistributeTask;
 typedef ParticleMoveAndDistributeTask* ParticleMoveAndDistributeTaskPtr;
 
+class ParticleMoveTask;
+typedef ParticleMoveTask* ParticleMoveTaskPtr;
+
+class ParticleDistributeTask;
+typedef ParticleDistributeTask* ParticleDistributeTaskPtr;
+
 #else
 
 class BinApplyForceTask;
@@ -67,6 +73,11 @@ typedef std::shared_ptr<BinClearTask> BinClearTaskPtr;
 class ParticleMoveAndDistributeTask;
 typedef std::shared_ptr<ParticleMoveAndDistributeTask> ParticleMoveAndDistributeTaskPtr;
 
+class ParticleMoveTask;
+typedef std::shared_ptr<ParticleMoveTask> ParticleMoveTaskPtr;
+
+class ParticleDistributeTask;
+typedef std::shared_ptr<ParticleDistributeTask> ParticleDistributeTaskPtr;
 #endif
 
 #endif

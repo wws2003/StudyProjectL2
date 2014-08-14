@@ -32,7 +32,10 @@ protected:
     virtual void onBinsCleared();
     
     //Override
-    virtual void onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt);
+    virtual void onMoveParticle(ParticlePtr pParticle, unsigned int dt);
+    
+    //Override
+    virtual void onDistributeParticleToBin(const ParticlePtrs pParticles);
 };
 
 #endif /* defined(__ParallelParticles__BinningAlgorimthSerialImpl__) */

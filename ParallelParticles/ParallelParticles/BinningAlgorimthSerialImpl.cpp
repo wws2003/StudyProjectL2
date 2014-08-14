@@ -9,6 +9,8 @@
 #include "BinClearTask.h"
 #include "BinningAlgorimthSerialImpl.h"
 #include "ParticleMoveAndDistributeTask.h"
+#include "ParticleMoveTask.h"
+#include "ParticleDistributeTask.h"
 
 BinningAlgorithmSerialImpl::BinningAlgorithmSerialImpl() {
     
@@ -42,8 +44,16 @@ void BinningAlgorithmSerialImpl::onBinsCleared() {
 }
 
 //Override
-void BinningAlgorithmSerialImpl::onMoveAndPushParticleToBins(ParticlePtrs pParticles, unsigned int dt) {
-    ParticleMoveAndDistributeTaskPtr pTask(new ParticleMoveAndDistributeTask(this, pParticles, dt, 0, (int)pParticles.size() - 1));
+void BinningAlgorithmSerialImpl::onMoveParticle(ParticlePtr pParticle, unsigned int dt) {
+    double w,h;
+    getSpaceSize(w, h);
+    ParticleMoveTaskPtr pTask(new ParticleMoveTask(dt, w, h, pParticle));
     pTask->execute();
-    ParticleMoveAndDistributeTask::refreshPool();
+}
+
+//Override
+void BinningAlgorithmSerialImpl::onDistributeParticleToBin(const ParticlePtrs pParticles) {
+    ParticleMoveTask::refreshPool();
+    ParticleDistributeTaskPtr pTask(new ParticleDistributeTask(this, pParticles));
+    pTask->execute();
 }

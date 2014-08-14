@@ -12,6 +12,7 @@
 #include "BinningAlgorimthSerialImpl.h"
 #include "ThreadPoolFactory.h"
 #include "AbstractThreadPool.h"
+#include "BinningAlgorithmMultithreadBatchImpl.h"
 
 ParticleMoveAlgorithmAssembler::ParticleMoveAlgorithmAssembler() : m_pThreadpool(NULL){
 }
@@ -29,6 +30,10 @@ ParticleMoveAlgorithmPtr ParticleMoveAlgorithmAssembler::createAlgorithmInstance
         case MULTI_THREAD:
             m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(4);
             pAlgorithm = new BinningAlgorithmMultiThreadImpl(m_pThreadpool);
+            break;
+        case MULTI_THREAD_BATCH:
+            m_pThreadpool = ThreadPoolFactory::getThreadPoolPtr(4);
+            pAlgorithm = new BinningAlgorithmMultithreadBatchImpl(m_pThreadpool);
             break;
         case SERIAL:
             pAlgorithm = new BinningAlgorithmSerialImpl();
