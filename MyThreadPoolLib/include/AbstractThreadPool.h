@@ -41,6 +41,7 @@ protected:
     std::deque<ITaskPtr> m_taskPtrQueue;
     
 private:
+    virtual void sleep(long microsecond) = 0;
     int m_numberOfIncompletedTask;
 };
 

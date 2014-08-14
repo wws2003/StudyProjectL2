@@ -41,7 +41,7 @@ unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
     m_taskMutexPtr->lock();
     
     unsigned int numberOfTaskAdded = 0;
-    const unsigned int MAX_TASK_CAN_ADD = m_numberOfThreads;
+    const unsigned int MAX_TASK_CAN_ADD = 10000000; //m_numberOfThreads;
     
     //To avoid deadlock, only conduct this operation if the task queue is empty
     
@@ -60,7 +60,9 @@ unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
 }
 
 void AbstractThreadPool::waitAllTaskComplete() {
-    while (m_numberOfIncompletedTask > 0);
+    while (m_numberOfIncompletedTask > 0) {
+        this->sleep(5);
+    }
 }
 
 ThreadPoolErrorCode AbstractThreadPool::destroy() {

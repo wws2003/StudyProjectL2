@@ -26,9 +26,14 @@ private:
     //@Override
     virtual void joinAllThreads();
     
+     //@Override
+    virtual void sleep(long microsecond);
+    
     //@Override
     virtual unsigned long currentThreadId();
     std::vector<pthread_t> m_threads;
+    
+    struct timespec m_tm1;
 };
 
 #endif /* defined(__ThreadPoolSample__PThreadPool__) */

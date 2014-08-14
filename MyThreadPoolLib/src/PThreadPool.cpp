@@ -21,7 +21,7 @@ void* start_thread(void* arg)
 }
 
 PThreadPool::PThreadPool(IMutexPtr mutexPtr, ICondVarPtr condVarPtr, int numberOfThreads) : AbstractThreadPool(mutexPtr, condVarPtr, numberOfThreads) {
-    
+    m_tm1.tv_sec = 0;
 }
 
 PThreadPool::~PThreadPool() {
@@ -54,6 +54,12 @@ void PThreadPool::joinAllThreads() {
         pthread_join(m_threads[i], &result);
         m_condVarPtr->broadcast();
     }
+}
+
+void PThreadPool::sleep(long microsecond) {
+    struct timespec tm2;
+    m_tm1.tv_nsec = microsecond * 1000;
+    nanosleep(&m_tm1, &tm2);
 }
 
 unsigned long PThreadPool::currentThreadId() {
