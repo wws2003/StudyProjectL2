@@ -22,7 +22,6 @@
 		4063E75318F9A15300C1C292 /* IResultWaitDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72618F9A15300C1C292 /* IResultWaitDelegate.h */; };
 		4063E75418F9A15300C1C292 /* ISubTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72718F9A15300C1C292 /* ISubTaskDelegate.h */; };
 		4063E75518F9A15300C1C292 /* ITask.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72818F9A15300C1C292 /* ITask.h */; };
-		4063E75618F9A15300C1C292 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72918F9A15300C1C292 /* main.cpp */; };
 		4063E75718F9A15300C1C292 /* PCondVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72A18F9A15300C1C292 /* PCondVar.cpp */; };
 		4063E75818F9A15300C1C292 /* PCondVar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4063E72B18F9A15300C1C292 /* PCondVar.h */; };
 		4063E75918F9A15300C1C292 /* PMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4063E72C18F9A15300C1C292 /* PMutex.cpp */; };
@@ -78,7 +77,6 @@
 		4063E72618F9A15300C1C292 /* IResultWaitDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResultWaitDelegate.h; sourceTree = "<group>"; };
 		4063E72718F9A15300C1C292 /* ISubTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISubTaskDelegate.h; sourceTree = "<group>"; };
 		4063E72818F9A15300C1C292 /* ITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITask.h; sourceTree = "<group>"; };
-		4063E72918F9A15300C1C292 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4063E72A18F9A15300C1C292 /* PCondVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCondVar.cpp; sourceTree = "<group>"; };
 		4063E72B18F9A15300C1C292 /* PCondVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCondVar.h; sourceTree = "<group>"; };
 		4063E72C18F9A15300C1C292 /* PMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PMutex.cpp; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				4063E71C18F9A15300C1C292 /* AbstractDelegatingSlaveTask.cpp */,
 				4063E71E18F9A15300C1C292 /* AbstractRecursiveTask.cpp */,
 				4063E72018F9A15300C1C292 /* AbstractThreadPool.cpp */,
-				4063E72918F9A15300C1C292 /* main.cpp */,
 				4063E72A18F9A15300C1C292 /* PCondVar.cpp */,
 				4063E72C18F9A15300C1C292 /* PMutex.cpp */,
 				4063E72E18F9A15300C1C292 /* PThreadPool.cpp */,
@@ -409,7 +406,6 @@
 				4063E74B18F9A15300C1C292 /* AbstractRecursiveTask.cpp in Sources */,
 				4063E77118F9A15300C1C292 /* ThreadPoolFactory.cpp in Sources */,
 				40B517721999245000CB940D /* ObjectPoolSimpleImpl.cpp in Sources */,
-				4063E75618F9A15300C1C292 /* main.cpp in Sources */,
 				4063E75F18F9A15300C1C292 /* RecursiveTaskAssembler.cpp in Sources */,
 				4063E74718F9A15300C1C292 /* AbstractDelegatingMasterTask.cpp in Sources */,
 			);

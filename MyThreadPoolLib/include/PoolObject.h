@@ -20,7 +20,7 @@ public:
     //Override
     void* operator new(std::size_t size, ObjectPoolPtr pPool) throw (std::bad_alloc);
    
-     //Override
+    //Override
     void* operator new(std::size_t size) throw (std::bad_alloc);
     
     //Override
