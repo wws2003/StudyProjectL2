@@ -30,6 +30,7 @@ void releaseTable(int** table, int numberOfRow);
 
 #define min(x,y) (x < y) ? x : y
 #define max(x,y) (x > y) ? x : y
+#define MAX_MISPAINTED INT16_MAX
 
 #if DEBUG
 #define PRINT_TABLE(table, numberOfRow, numberOfColumn) print(table, numberOfRow, numberOfColumn)
@@ -147,22 +148,19 @@ int calculateMinMispaintedFromMispaintedTable(int** mispaintedTable, int numberO
 
     for (int stroke = 2; stroke <= maxStroke; stroke++) {
         for (int start = 0; start < numberOfRow; start++) {
-            //TODO Consider the value of end respecting stroke
             int rowGap = max(1, stroke / numberOfColumn);
             for (int end = start + rowGap; end < numberOfRow; end++) {
-               int minMisPainted = min(g[stroke][start][start] + g[0][start + 1][end], g[0][start][end - 1] + g[stroke][end][end]);
-                
-               for (int l = start + rowGap; l < end; l++) {
-                   int leftMispainted = g[stroke - 1][start][l] + g[1][l + 1][end];
-                   int rightMispainted = g[1][start][l] + g[stroke - 1][l + 1][end];
-                   int tempMisPainted = min(leftMispainted, rightMispainted);
-                   minMisPainted = min(minMisPainted, tempMisPainted);
+                int minMispainted = MAX_MISPAINTED;
+                for (int strokeStart = 0; strokeStart <= stroke; strokeStart++) {
+                    for (int strokeEnd = 0; strokeEnd <= stroke - strokeStart; strokeEnd++) {
+                        int gStart = g[strokeStart][start][end - 1];
+                        int gEnd = g[strokeEnd][end][end];
+                        int tempMispainted = gStart + gEnd;
+                        minMispainted = min(minMispainted, tempMispainted);
+                        assert(minMispainted >= 0);
+                    }
                 }
-                
-                if (minMisPainted > g[stroke - 1][start][end]) {
-                    int d = 2222;
-                }
-                g[stroke][start][end] = minMisPainted;
+                g[stroke][start][end] = minMispainted;
             }
         }
     }
@@ -179,8 +177,16 @@ int calculateMinMispaintedFromMispaintedTable(int** mispaintedTable, int numberO
 
 void calculateGTableBaseValues(int*** g, int** mispaintedTable, int numberOfRow, int numberOfColumn, int maxStroke) {
     for (int stroke = 0; stroke <= maxStroke; stroke++) {
+        for (int row1 = 0; row1 < numberOfRow; row1++) {
+            for (int row2 = 0; row2 < numberOfRow; row2++) {
+                g[stroke][row1][row2] = MAX_MISPAINTED;
+            }
+        }
+    }
+
+    for (int stroke = 0; stroke <= maxStroke; stroke++) {
         for (int row = 0; row < numberOfRow; row++) {
-            g[stroke][row][row] = (stroke <= numberOfColumn) ? mispaintedTable[row][stroke] : INT32_MAX;
+            g[stroke][row][row] = (stroke <= numberOfColumn) ? mispaintedTable[row][stroke] : MAX_MISPAINTED;
         }
     }
     
