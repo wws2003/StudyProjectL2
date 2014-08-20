@@ -64,7 +64,11 @@ void PThreadPool::sleep(long microsecond) {
 
 unsigned long PThreadPool::currentThreadId() {
     pthread_t selfThread = pthread_self();
+#ifdef __APPLE__
     unsigned long long threadId;
     pthread_threadid_np(selfThread, &threadId);
     return threadId;
+#elif __linux
+    return (long)selfThread;
+#endif
 }
