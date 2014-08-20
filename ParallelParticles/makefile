@@ -1,7 +1,8 @@
 CC = g++
 CCFLAGS = std=c++11
-INCLUDE = ../MyThreadPoolLib/include/:ParallelParticles
-SRC = ParallelParticles
+INCLUDE1 = ../MyThreadPoolLib/include/
+INCLUDE2 = ./ParallelParticles
+SRC = ./ParallelParticles
 LIB = ../MyThreadPoolLib/build/
 LIBFLAG = MyThreadPoolLib
 DST = ./build
@@ -17,7 +18,7 @@ $(target): $(objectsInDst)
 $(objectsInDst): | OUTPUTDIR
 
 $(DST)/%.o: $(SRC)/%.cpp
-	$(CC) -c -fPIC -$(CCFLAGS) -I $(INCLUDE) $< -o $@
+	$(CC) -c -fPIC -$(CCFLAGS) -I $(INCLUDE1) -I $(INCLUDE2) $< -o $@
 
 OUTPUTDIR: 
 	mkdir -p $(DST)
