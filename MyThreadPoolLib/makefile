@@ -10,7 +10,7 @@ libMyThreadPool.so: $(objects)
 	$(CC) -shared -o libMyThreadPool.so $(objects)
 
 $(objects): %.o: $(SRC)/%.cpp
-	$(CC) -c -$(CCFLAGS) -I $(INCLUDE) $< -o $@
+	$(CC) -c -fPIC -$(CCFLAGS) -I $(INCLUDE) $< -o $@
 
 clean:
 	rm -rf *.o
