@@ -13,7 +13,7 @@ target = ParallelParticles
 all: $(target)
 
 $(target): $(objectsInDst)
-	$(CC) -L $(LIB) -l$(LIBFLAG) -o $(DST)/$(target) $(objectsInDst)
+	$(CC) -o $(DST)/$(target) $(objectsInDst) -L $(LIB) -l$(LIBFLAG)
 
 $(objectsInDst): | OUTPUTDIR
 
