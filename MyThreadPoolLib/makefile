@@ -7,7 +7,7 @@ objects = AbstractDelegatingMasterTask.o  RecursiveTaskAssembler.o AbstractDeleg
 all: libMyThreadPool.so
 
 libMyThreadPool.so: $(objects)
-	$(CC) -share -o libMyThreadPool.so $(objects)
+	$(CC) -shared -o libMyThreadPool.so $(objects)
 
 $(objects): %.o: $(SRC)/%.cpp
 	$(CC) -c -$(CCFLAGS) -I $(INCLUDE) $< -o $@
