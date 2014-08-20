@@ -2,15 +2,23 @@ CC = g++
 CCFLAGS = std=c++11
 INCLUDE = ./include
 SRC = ./src
+DST = ./build
 objects = AbstractDelegatingMasterTask.o  RecursiveTaskAssembler.o AbstractDelegatingSlaveTask.o   ResultDelegatePairFactoryImpl.o AbstractRecursiveTask.o ResultSignalDelegate.o AbstractThreadPool.o ResultWaitDelegate.o ObjectPoolFactory.o SimpleChildTask.o ObjectPoolSimpleImpl.o SubTaskDelegateImpl.o PCondVar.o SumMasterTask.o PMutex.o TaskGroup.o PThreadPool.o TaskGroupFactory.o PoolObject.o ThreadPoolFactory.o QuickSortRecursiveTask.o
+objectsInDst = $(addprefix $(DST)/,$(objects))
+target = libMyThreadPool.so
 
-all: libMyThreadPool.so
+all: $(target)
 
-libMyThreadPool.so: $(objects)
-	$(CC) -shared -o libMyThreadPool.so $(objects)
+$(target): $(objectsInDst)
+	$(CC) -shared -o $(DST)/$(target) $(objectsInDst)
 
-$(objects): %.o: $(SRC)/%.cpp
+$(objectsInDst): | OUTPUTDIR
+
+$(DST)/%.o: $(SRC)/%.cpp
 	$(CC) -c -fPIC -$(CCFLAGS) -I $(INCLUDE) $< -o $@
 
+OUTPUTDIR: 
+	mkdir -p $(DST)
+
 clean:
-	rm -rf *.o
+	rm -rf $(DST)
