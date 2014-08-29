@@ -34,8 +34,6 @@ public class TestJPA {
 			ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 			//applicationContext is also a bean factory...
 			mPersistenceService = applicationContext.getBean("persistenceService", IPersistenceService.class);
-			IPersistenceService persistenceService2 = applicationContext.getBean("persistenceService", IPersistenceService.class);
-			System.out.println("Bean1 " + mPersistenceService + " Bean2 "+ persistenceService2);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

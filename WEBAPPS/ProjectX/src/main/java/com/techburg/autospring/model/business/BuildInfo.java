@@ -5,9 +5,7 @@ import java.util.Date;
 public class BuildInfo {
 	public static class Status {
 		public static final int SUCCESSFUL = 0;
-		public static final int FAILED = -1;
-		public static final int BUILDING = 1;
-		public static final int WAITING = 2;
+		public static final int FAILED = 1;
 	}
 	
 	private long mId;

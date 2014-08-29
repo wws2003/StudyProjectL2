@@ -26,8 +26,12 @@
 		<property name="order" value="2"></property>
 	</bean>
 
-	<bean name="persistenceService" scope="prototype"
+	<bean name="persistenceService"
 		class="com.techburg.autospring.service.impl.PersistenceServiceJPAImpl">
+	</bean>
+	
+	<bean name="buildDataService"
+		class="com.techburg.autospring.service.impl.BuildDataServiceMockImpl">
 	</bean>
 
 	<bean name="entityManagerFactory" 
