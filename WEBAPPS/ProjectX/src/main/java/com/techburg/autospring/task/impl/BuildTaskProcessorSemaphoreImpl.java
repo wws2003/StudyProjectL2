@@ -1,22 +1,27 @@
 package com.techburg.autospring.task.impl;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.Semaphore;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.task.abstr.IBuildTask;
 import com.techburg.autospring.task.abstr.IBuildTaskProcessor;
+import com.techburg.autospring.task.abstr.IBuildTaskQueue;
 
-public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor {
+public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, DisposableBean {
 
 	public BuildTaskProcessorSemaphoreImpl() {
-		mWaitingTasks = new ArrayDeque<IBuildTask>();
-		mQueueSemaphore = new Semaphore(1);
-		mBuildThreadSemaphore = new Semaphore(1);
-		mBuildingTask = null;
+		mQueueSemaphore = new Semaphore(0);
+		mBuildThreadSemaphore = new Semaphore(1); //This semaphore actually works as a lock
 		mStopped = true;
+	}
+
+	@Autowired
+	public void setWaitingBuildTaskQueue(IBuildTaskQueue buildTaskQueue) {
+		mWaitingTaskQueue = buildTaskQueue;
 	}
 
 	@Override
@@ -34,6 +39,7 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor {
 						runBuildTasks();
 					}
 				};
+				mStopped = false;
 				mBuildTaskThread = new Thread(runnableTaskBuild);
 				mBuildTaskThread.start();
 			}
@@ -49,11 +55,10 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor {
 	@Override
 	public int addBuildTask(IBuildTask buildTask) {
 		try {
-			mQueueSemaphore.acquire();
-			mWaitingTasks.add(buildTask);
+			mWaitingTaskQueue.addBuildTaskToQueue(buildTask);
 			mQueueSemaphore.release();
 			return BuildTaskProcessorResult.ADD_TASK_SUCCESSFUL;
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return BuildTaskProcessorResult.ADD_TASK_FAILED;
 		}
@@ -81,6 +86,7 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor {
 			}
 			else {
 				mStopped = true;
+				mQueueSemaphore.release();
 				mBuildTaskThread.join();
 			}
 			mBuildThreadSemaphore.release();
@@ -88,64 +94,49 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor {
 			e.printStackTrace();
 			result = BuildTaskProcessorResult.STOP_FAILED;
 		}
-		
+
 		return result;
 	}
 
 	@Override
 	public void getBuildingBuildInfoList(List<BuildInfo> buildInfoList) {
 		buildInfoList.clear();
-		try {
-			mQueueSemaphore.acquire();
-			if(mBuildingTask != null) {
-				BuildInfo buildingBuildInfo = new BuildInfo();
-				mBuildingTask.storeToBuildInfo(buildingBuildInfo, false);
-				buildInfoList.add(buildingBuildInfo);
-			}
-			mQueueSemaphore.release();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		mWaitingTaskQueue.getBuildInfoListFromBuildingTask(buildInfoList);
 	}
 
 	@Override
 	public void getWaitingBuildInfoList(List<BuildInfo> buildInfoList) {
 		buildInfoList.clear();
-		try {
-			mQueueSemaphore.acquire();
-			for(IBuildTask waitingBuildTask : mWaitingTasks) {
-				BuildInfo waitingBuildInfo = new BuildInfo();
-				waitingBuildTask.storeToBuildInfo(waitingBuildInfo, false);
-				buildInfoList.add(waitingBuildInfo);
-			}
-			mQueueSemaphore.release();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		mWaitingTaskQueue.getBuildInfoListFromWaitingTaskList(buildInfoList);
+	}
+	
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("--------------------------To destroy the build task processor by stopping task build thread--------------------------");
+		int result = stop();
+		System.out.println("--------------------------Stop result " + result +" -------------------------");
 	}
 
 	private void runBuildTasks() {
 		while(!mStopped) {
 			try {
 				mQueueSemaphore.acquire();
-				IBuildTask nextBuildTask = mWaitingTasks.pop();
-				mQueueSemaphore.release();
-
+				IBuildTask nextBuildTask = mWaitingTaskQueue.popBuildTaskFromQueue();
 				if(nextBuildTask != null) {
-					mBuildingTask = nextBuildTask;
-					mBuildingTask.execute();
+					mWaitingTaskQueue.setBuildingTask(nextBuildTask);
+					nextBuildTask.execute();
 					BuildInfo buildInfo = new BuildInfo();
-					mBuildingTask.storeToBuildInfo(buildInfo, true);
+					nextBuildTask.storeToBuildInfo(buildInfo, true);
+					mWaitingTaskQueue.setBuildingTask(null);
 				}
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
 	private boolean mStopped;
-	private Deque<IBuildTask> mWaitingTasks;
-	private IBuildTask mBuildingTask;
+	private IBuildTaskQueue mWaitingTaskQueue; //Object with synchronized method
 	private Thread mBuildTaskThread = null;
 	private Semaphore mQueueSemaphore;
 	private Semaphore mBuildThreadSemaphore;

@@ -29,14 +29,29 @@
 	<bean name="persistenceService"
 		class="com.techburg.autospring.service.impl.PersistenceServiceJPAImpl">
 	</bean>
-	
+
 	<bean name="buildDataService"
-		class="com.techburg.autospring.service.impl.BuildDataServiceMockImpl">
+		class="com.techburg.autospring.service.impl.BuildDataServiceImpl">
 	</bean>
 
-	<bean name="entityManagerFactory" 
+	<bean name="buildTaskProcessor"
+		class="com.techburg.autospring.task.impl.BuildTaskProcessorSemaphoreImpl">
+	</bean>
+	
+	<bean name="waitingBuildTaskQueue"
+		class="com.techburg.autospring.task.impl.BuildTaskQueueDeImpl">
+	</bean>
+
+	<bean name="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="defaultManager" />
+	</bean>
+	
+	<bean name="buildTaskFactory"
+		class="com.techburg.autospring.factory.impl.BuildTaskFactoryImpl">
+	</bean>
+	
+	<bean class="com.techburg.autospring.custombean.TaskProcessorAutoStart">
 	</bean>
 
 </beans>

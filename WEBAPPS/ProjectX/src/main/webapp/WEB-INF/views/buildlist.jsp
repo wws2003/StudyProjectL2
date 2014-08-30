@@ -7,7 +7,7 @@
 		<c:when test="${serviceAvailable}">
 			Service available
 			<div>
-				Building list
+				<b>Building list</b>
 				<table>
 					<c:forEach items="${buildingList}" var="element">
 						<tr>
@@ -20,7 +20,7 @@
 				</table>
 			</div>
 			<div>
-				Waiting list
+				<b>Waiting list</b>
 				<table>
 					<c:forEach items="${waitingList}" var="element">
 						<tr>
@@ -33,7 +33,7 @@
 				</table>
 			</div>
 			<div>
-				Built list
+				<b>Built list</b>
 				<table>
 					<c:forEach items="${builtList}" var="element">
 						<tr>

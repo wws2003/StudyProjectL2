@@ -54,7 +54,7 @@ public class PersistenceServiceJPAImpl implements IPersistenceService {
 				@SuppressWarnings("unchecked")
 				List<BuildInfoEntity> entities = loadQuery.getResultList();
 				for(BuildInfoEntity entity : entities) {
-					System.out.println("Entity begin build timestamp " + entity.getBeginTimeStamp().getTime());
+					//System.out.println("Entity begin build timestamp " + entity.getBeginTimeStamp().getTime());
 					buildInfoList.add(getBusinessObjectFromEntity(entity));
 				}
 				return PersistenceResult.LOAD_SUCCESSFUL;

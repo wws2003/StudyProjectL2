@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class BuildInfo {
 	public static class Status {
-		public static final int SUCCESSFUL = 0;
-		public static final int FAILED = 1;
+		public static final int BUILD_SUCCESSFUL = 0;
+		public static final int BUILD_FAILED = 1;
 	}
 	
 	private long mId;

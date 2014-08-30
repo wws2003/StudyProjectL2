@@ -51,7 +51,7 @@ public class TestJPA {
 		assertNotNull(mPersistenceService);
 		BuildInfo buildInfo = new BuildInfo();
 		buildInfo.setLogFilePath("LogFilePath");
-		buildInfo.setStatus(Status.SUCCESSFUL);
+		buildInfo.setStatus(Status.BUILD_SUCCESSFUL);
 		buildInfo.setBeginTimeStamp(new Date());
 		buildInfo.setEndTimeStamp(new Date());
 		assertEquals(mPersistenceService.persistBuildInfo(buildInfo), PersistenceResult.PERSISTENCE_SUCCESSFUL);
