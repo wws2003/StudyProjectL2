@@ -1,11 +1,18 @@
 package com.techburg.autospring.controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,8 +21,10 @@ import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.service.abstr.IBuildDataService;
+import com.techburg.autospring.service.abstr.IPersistenceService;
 import com.techburg.autospring.task.abstr.IBuildTask;
 import com.techburg.autospring.task.abstr.IBuildTaskProcessor;
+import com.techburg.autospring.util.FileUtil;
 
 @Controller
 public class BuildController {
@@ -28,6 +37,7 @@ public class BuildController {
 	private IBuildDataService mBuildDataService;
 	private IBuildTaskProcessor mBuildTaskProcessor;
 	private IBuildTaskFactory mBuildTaskFactory;
+	private IPersistenceService mPersistenceService;
 	
 	@Autowired
 	public void setBuildDataService(IBuildDataService buildDataService) {
@@ -42,6 +52,11 @@ public class BuildController {
 	@Autowired
 	public void setBuildTaskFactory(IBuildTaskFactory buildTaskFactory) {
 		mBuildTaskFactory = buildTaskFactory;
+	}
+	
+	@Autowired
+	public void setPersistenceService(IPersistenceService persistenceService) {
+		mPersistenceService = persistenceService;
 	}
 	
 	@RequestMapping(value="/buildlist", method=RequestMethod.GET) 
@@ -102,5 +117,43 @@ public class BuildController {
 		model.addAttribute(gBuiltListAttributeName, builtList);
 		
 		return "buildlist";
+	}
+	
+	@RequestMapping(value="/log/{buildId}", method=RequestMethod.GET) 
+	public void showLog(@PathVariable long buildId, HttpServletResponse response) throws IOException {
+		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
+		query.mDataRange = DataRange.ID_MATCH;
+		query.id = buildId;
+				
+		List<BuildInfo> buildInfoList = new ArrayList<BuildInfo>();
+		mPersistenceService.loadBuildInfo(buildInfoList, query);
+		if (buildInfoList.size() > 0) {
+			BuildInfo buildInfo = buildInfoList.get(0);
+			String logFilePath = buildInfo.getLogFilePath();
+			try {
+				writeLogFileContentToServletResponse(logFilePath, response);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				response.getWriter().println("Some error occured");
+			}
+		}
+	}
+	
+	private void writeLogFileContentToServletResponse(String logFilePath, HttpServletResponse response) throws Exception {
+		InputStream logFileInputStream = null;
+		FileUtil fileUtil = new FileUtil();
+		try {
+			logFileInputStream = new BufferedInputStream(new FileInputStream(logFilePath));
+			StringBuilder outputBuilder = new StringBuilder();
+			fileUtil.getStringFromInputStream(logFileInputStream, outputBuilder);
+			response.getWriter().println(outputBuilder.toString());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			logFileInputStream.close();
+		}
 	}
 }

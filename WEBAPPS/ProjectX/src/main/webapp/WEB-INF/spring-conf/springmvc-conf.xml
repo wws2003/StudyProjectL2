@@ -15,6 +15,8 @@
 	<context:annotation-config />
 	<mvc:annotation-driven />
 
+	<context:property-placeholder location="classpath:locations.properties" />
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -37,7 +39,7 @@
 	<bean name="buildTaskProcessor"
 		class="com.techburg.autospring.task.impl.BuildTaskProcessorSemaphoreImpl">
 	</bean>
-	
+
 	<bean name="waitingBuildTaskQueue"
 		class="com.techburg.autospring.task.impl.BuildTaskQueueDeImpl">
 	</bean>
@@ -46,11 +48,17 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="defaultManager" />
 	</bean>
-	
+
 	<bean name="buildTaskFactory"
-		class="com.techburg.autospring.factory.impl.BuildTaskFactoryImpl">
+		class="com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl">
+		<property name="logFileLocation"
+			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.logFileLocation}"></property>
+		<property name="scriptFileLocation"
+			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.scriptFileLocation}"></property>
+		<property name="scriptFileName"
+			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.scriptFileName}"></property>
 	</bean>
-	
+
 	<bean class="com.techburg.autospring.custombean.TaskProcessorAutoStart">
 	</bean>
 

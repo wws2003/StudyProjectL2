@@ -63,6 +63,13 @@ public class PersistenceServiceJPAImpl implements IPersistenceService {
 				e.printStackTrace();
 				return PersistenceResult.INVALID_QUERY;
 			}
+		case DataRange.ID_MATCH:
+			long id = query.id;
+			BuildInfoEntity entity = mEntityManager.find(BuildInfoEntity.class, id);
+			if(entity != null) {
+				buildInfoList.add(getBusinessObjectFromEntity(entity));
+			}
+			return PersistenceResult.LOAD_SUCCESSFUL;
 		default:
 			return PersistenceResult.INVALID_QUERY;
 		}

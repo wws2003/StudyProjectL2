@@ -1,5 +1,6 @@
 package com.techburg.autospring.task.abstr;
 
+import java.io.File;
 import java.util.Date;
 
 import com.techburg.autospring.model.business.BuildInfo;
@@ -7,15 +8,21 @@ import com.techburg.autospring.service.abstr.IPersistenceService;
 
 public abstract class AbstractBuildTask implements IBuildTask{
 	protected long mId;
-	protected IPersistenceService mPersistenceService;
-
 	private int mStatus;
 	private Date mBeginBuildTime;
 	private Date mEndBuildTime;
-	private String mLogFilePathPrefix;
+	
+	private String mLogFileNamePrefix;
+	private String mLogFileNameExtension;
+	private String mLogFileLocation;
+	private static final String gUnknownLogFileName = "---";
 
-	public AbstractBuildTask(String logFilePathPrefix) {
-		mLogFilePathPrefix = logFilePathPrefix;
+	protected IPersistenceService mPersistenceService;
+	
+	public AbstractBuildTask(String logFilePathPrefix, String logFileNameExtension, String logFileLocation) {
+		mLogFileNamePrefix = logFilePathPrefix;
+		mLogFileNameExtension  = logFileNameExtension;
+		mLogFileLocation = logFileLocation;
 	}
 
 	public void setPersistenceService(IPersistenceService persistenceService) {
@@ -42,17 +49,27 @@ public abstract class AbstractBuildTask implements IBuildTask{
 		buildInfo.setEndTimeStamp(mEndBuildTime);
 		buildInfo.setStatus(mStatus);
 		
-		String logFilePath = "Not known yet";
-		//If this is already built, specified the log file path
-		if(toPersist && mBeginBuildTime != null)
-			logFilePath = mLogFilePathPrefix + "_" + mBeginBuildTime.getTime();
+		String logFilePath = (mBeginBuildTime != null) ? getLogFileFullPath() : gUnknownLogFileName;
 		buildInfo.setLogFilePath(logFilePath);
-
+		
 		if(toPersist && mPersistenceService != null) {
 			System.out.println("--------------------------Trying to persist new build info---------------------");
 			mPersistenceService.persistBuildInfo(buildInfo);
 		}
 	}
 
+	protected String getLogFileFullPath() {
+		StringBuilder logFileNameBuilder = new StringBuilder();
+		logFileNameBuilder.append(mLogFileLocation)
+						.append(File.separator)
+						.append(mLogFileNamePrefix)
+						.append("_")
+						.append(mBeginBuildTime.getTime())
+						.append(".")
+						.append(mLogFileNameExtension);
+	
+		return logFileNameBuilder.toString();
+	}
+	
 	protected abstract int mainExecute();
 }

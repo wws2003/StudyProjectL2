@@ -1,8 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-<head></head>
+<head>
+<style type="text/css">
+table, td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+td {
+	text-align: center;
+	padding-left: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-right: 20px;
+}
+</style>
+</head>
 <body>
-	<h2>Hello world</h2>
+	<h2>Simplest CI !</h2>
 	<c:choose>
 		<c:when test="${serviceAvailable}">
 			Service available
@@ -42,6 +56,8 @@
 							<td>${element.beginTimeStamp}</td>
 							<td>${element.endTimeStamp}</td>
 							<td>${element.logFilePath}</td>
+							<c:url value="/log/${element.id}" var="logUrl"></c:url>
+							<td><a href='${logUrl}'>Detail</a></td>
 						</tr>
 					</c:forEach>
 				</table>

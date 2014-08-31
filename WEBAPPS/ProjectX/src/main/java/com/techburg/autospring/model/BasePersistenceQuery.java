@@ -6,8 +6,9 @@ public class BasePersistenceQuery {
 		public static final int FIRST_MATCH = 1;
 		public static final int ANY_MATCH = 2;
 		public static final int LIMITED_MATCH = 3;
+		public static final int ID_MATCH = 4;
 	}
 	
 	public int mDataRange;
-	public int mId;
+	public long id;
 }

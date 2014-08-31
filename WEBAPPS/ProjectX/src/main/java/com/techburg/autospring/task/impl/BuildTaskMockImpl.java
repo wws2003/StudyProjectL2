@@ -5,8 +5,8 @@ import com.techburg.autospring.task.abstr.AbstractBuildTask;
 
 public class BuildTaskMockImpl extends AbstractBuildTask {
 
-	public BuildTaskMockImpl(String logFilePathPrefix) {
-		super(logFilePathPrefix);
+	public BuildTaskMockImpl(String logFilePathPrefix, String logFileExtension) {
+		super(logFilePathPrefix, logFileExtension, "");
 	}
 
 	@Override
