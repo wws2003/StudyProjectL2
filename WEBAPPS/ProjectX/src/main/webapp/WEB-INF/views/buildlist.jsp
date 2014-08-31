@@ -2,11 +2,12 @@
 <html>
 <head>
 <style type="text/css">
-table, td {
+table,td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
 }
-td {
+
+td, th {
 	text-align: center;
 	padding-left: 20px;
 	margin-left: 0px;
@@ -23,6 +24,12 @@ td {
 			<div>
 				<b>Building list</b>
 				<table>
+					<tr>
+						<th>Id</th>
+						<th>Status</th>
+						<th>Begin time</th>
+						<th>Log file path</th>
+					</tr>
 					<c:forEach items="${buildingList}" var="element">
 						<tr>
 							<td>${element.id}</td>
@@ -36,12 +43,14 @@ td {
 			<div>
 				<b>Waiting list</b>
 				<table>
+					<tr>
+						<th>Id</th>
+						<th>Status</th>
+					</tr>
 					<c:forEach items="${waitingList}" var="element">
 						<tr>
 							<td>${element.id}</td>
 							<td>${element.status}</td>
-							<td>${element.beginTimeStamp}</td>
-							<td>${element.logFilePath}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -49,10 +58,18 @@ td {
 			<div>
 				<b>Built list</b>
 				<table>
+					<tr>
+						<th>Id</th>
+						<th>Status</th>
+						<th>Begin time</th>
+						<th>End time</th>
+						<th>Log file path</th>
+						<th>Log detail</th>
+					</tr>
 					<c:forEach items="${builtList}" var="element">
 						<tr>
 							<td>${element.id}</td>
-							<td>${element.status}</td>
+							<td>${element.status == 0 ? "OK" : "NG"}</td>
 							<td>${element.beginTimeStamp}</td>
 							<td>${element.endTimeStamp}</td>
 							<td>${element.logFilePath}</td>

@@ -27,13 +27,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 
 	@Override
 	protected int mainExecute() {
-		try {
-			System.out.println("--------------------------Build task to be executed---------------------");
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+		
 		List<String> commandsAndArguments = new ArrayList<String>();
 		commandsAndArguments.add(gCommand);
 		commandsAndArguments.add(mScriptFileLocation + File.separator + mScriptFileName);

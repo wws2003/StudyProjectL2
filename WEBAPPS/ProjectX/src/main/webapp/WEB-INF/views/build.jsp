@@ -5,7 +5,7 @@
 	<h2>Hello world</h2>
 	<c:choose>
 		<c:when test="${serviceAvailable}">
-			Service available
+			Service available. To build please use post request
 		</c:when>
 		<c:otherwise>
 			Service not available
