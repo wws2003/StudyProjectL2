@@ -31,6 +31,7 @@ public:
 protected:
     virtual void joinAllThreads() = 0;
 
+    //Get the current thread id. This value is platform-dependent
     virtual unsigned long currentThreadId() = 0;
     
     int m_numberOfThreads;
