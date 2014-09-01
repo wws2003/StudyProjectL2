@@ -29,8 +29,7 @@ PThreadPool::~PThreadPool() {
     assert(m_isStopped);
 }
 
-//Change to force a failed compile
-ThreadPoolErrorCode PThreadPool::initAndStart(bool wait_) {
+ThreadPoolErrorCode PThreadPool::initAndStart(bool wait) {
     ThreadPoolErrorCode err = THREADPOOL_ERROR_NONE;
     m_isStopped = false;
     for (unsigned int i = 0; i < m_numberOfThreads; i++) {
