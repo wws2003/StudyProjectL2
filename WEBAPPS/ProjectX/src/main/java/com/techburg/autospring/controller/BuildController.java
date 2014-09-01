@@ -86,37 +86,20 @@ public class BuildController {
 	}
 
 
-	@RequestMapping(value="/testbuild", method=RequestMethod.GET) 
-	public String testBuild(Model model) {
-
-		//Assume 10 build tasks added
-		for(int i = 0; i < 10; i++) {
-			IBuildTask buildTask = mBuildTaskFactory.getNewBuildTask();
-			mBuildTaskProcessor.addBuildTask(buildTask);
-		}
+	@RequestMapping(value="/testbuild/{numberOfBuildTask}", method=RequestMethod.GET) 
+	public String testBuild(@PathVariable int numberOfBuildTask, Model model) {
 
 		if(mBuildDataService == null) {
 			model.addAttribute(gServiceAvailableAttributeName, false);
 			return "buildlist";
 		}
-		model.addAttribute(gServiceAvailableAttributeName, true);
-
-		List<BuildInfo> buildingList = new ArrayList<BuildInfo>();
-		List<BuildInfo> waitingList = new ArrayList<BuildInfo>();
-		List<BuildInfo> builtList = new ArrayList<BuildInfo>();
-
-		mBuildDataService.getBuildingBuildInfoList(buildingList);
-		mBuildDataService.getWaitingBuildInfoList(waitingList);
-
-		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
-		query.mDataRange = DataRange.ALL;
-		mBuildDataService.getBuiltBuildInfoList(builtList, query);
-
-		model.addAttribute(gBuildingListAttributeName, buildingList);
-		model.addAttribute(gWaitingListAttributeName, waitingList);
-		model.addAttribute(gBuiltListAttributeName, builtList);
-
-		return "buildlist";
+		
+		for(int i = 0; i < numberOfBuildTask; i++) {
+			IBuildTask buildTask = mBuildTaskFactory.getNewBuildTask();
+			mBuildTaskProcessor.addBuildTask(buildTask);
+		}
+		
+		return "redirect:/buildlist";
 	}
 
 	@RequestMapping(value="/build", method=RequestMethod.GET) 

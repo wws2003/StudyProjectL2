@@ -34,9 +34,9 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 		ProcessBuilder processBuilder = new ProcessBuilder(commandsAndArguments);
 
 		StringBuilder outputBuilder = new StringBuilder();
-
+		int result = BuildTaskResult.SUCCESSFUL;
 		try {
-			startProcessAndGetOutputString(processBuilder, outputBuilder);
+			result = startProcessAndGetOutputString(processBuilder, outputBuilder);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 
 		try {
 			writeOutputToLogFile(outputBuilder.toString());
-			return BuildTaskResult.SUCCESSFUL;
+			return result;
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 		}
 	}
 
-	private void startProcessAndGetOutputString(ProcessBuilder processBuilder, StringBuilder outputBuilder) throws Exception {
+	private int startProcessAndGetOutputString(ProcessBuilder processBuilder, StringBuilder outputBuilder) throws Exception {
 		FileUtil fileUtil = new FileUtil();
 		InputStream processBufferedOutputStream = null;
 		try {
@@ -62,9 +62,16 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 
 			processBufferedOutputStream = new BufferedInputStream(process.getInputStream());
 			fileUtil.getStringFromInputStream(processBufferedOutputStream, outputBuilder);
+		
+			process.waitFor();
+			int processExitValue = process.exitValue();
+			System.out.println("Process exit value: " + processExitValue);
+			
+			return processExitValue;
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
+			return -1;
 		}
 		finally {
 			processBufferedOutputStream.close();
