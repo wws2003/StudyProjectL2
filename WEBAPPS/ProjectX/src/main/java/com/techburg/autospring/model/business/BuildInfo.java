@@ -13,6 +13,7 @@ public class BuildInfo {
 	private Date mBeginBuildTime;
 	private Date mEndBuildTime;
 	private String mLogFilePath;
+	private BuildScript mBuildScript = null;
 	
 	public long getId() {
 		return mId;
@@ -43,5 +44,11 @@ public class BuildInfo {
 	}
 	public void setLogFilePath(String mLogFilePath) {
 		this.mLogFilePath = mLogFilePath;
+	}
+	public BuildScript getBuildScript() {
+		return mBuildScript;
+	}
+	public void setBuildScript(BuildScript mBuildScript) {
+		this.mBuildScript = mBuildScript;
 	}
 }

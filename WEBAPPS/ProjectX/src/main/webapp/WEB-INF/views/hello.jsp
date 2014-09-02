@@ -22,6 +22,11 @@
 				href="<c:url value="/buildlist"></c:url>"><c:url
 					value="/buildlist"></c:url></a>
 		</div>
+		<div style="margin-bottom: 20px;">
+			Edit the build script here: <br> <a
+				href="<c:url value="/script/edit"></c:url>"><c:url
+					value="/script/edit"></c:url></a>
+		</div>
 		<div>
 			You can test this webapp by adding 5 build tasks and waiting for them to be
 			built. The auto-build can also be triggered by a Git push hook: <br>

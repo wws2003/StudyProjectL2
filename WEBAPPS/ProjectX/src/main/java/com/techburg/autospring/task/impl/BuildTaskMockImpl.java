@@ -1,6 +1,7 @@
 package com.techburg.autospring.task.impl;
 
 import com.techburg.autospring.model.business.BuildInfo.Status;
+import com.techburg.autospring.model.business.BuildScript;
 import com.techburg.autospring.task.abstr.AbstractBuildTask;
 
 public class BuildTaskMockImpl extends AbstractBuildTask {
@@ -18,6 +19,11 @@ public class BuildTaskMockImpl extends AbstractBuildTask {
 			e.printStackTrace();
 		}
 		return Status.BUILD_SUCCESSFUL;
+	}
+
+	@Override
+	public void setBuildScript(BuildScript buildScript) {
+		
 	}
 
 }

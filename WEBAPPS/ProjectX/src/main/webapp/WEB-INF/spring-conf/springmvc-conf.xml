@@ -28,8 +28,20 @@
 		<property name="order" value="2"></property>
 	</bean>
 
-	<bean name="persistenceService"
-		class="com.techburg.autospring.service.impl.PersistenceServiceJPAImpl">
+	<bean name="buildInfoPersistenceService"
+		class="com.techburg.autospring.service.impl.BuildInfoPersistenceServiceJPAImpl">
+	</bean>
+	
+	<bean name="buildScriptPersistenceService"
+		class="com.techburg.autospring.service.impl.BuildScriptPersistenceServiceJPAImpl">
+	</bean>
+	
+	<bean name="buildScriptBo"
+		class="com.techburg.autospring.bo.impl.BuildScriptBoImpl">
+	</bean>
+	
+	<bean name="buildInfoBo"
+		class="com.techburg.autospring.bo.impl.BuildInfoBoImpl">
 	</bean>
 
 	<bean name="buildDataService"
@@ -53,10 +65,10 @@
 		class="com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl">
 		<property name="logFileLocation"
 			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.logFileLocation}"></property>
-		<property name="scriptFileLocation"
-			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.scriptFileLocation}"></property>
-		<property name="scriptFileName"
-			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.scriptFileName}"></property>
+		<property name="defaultScriptFileLocation"
+			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.defaultScriptFileLocation}"></property>
+		<property name="defaultScriptFileName"
+			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.defaultScriptFileName}"></property>
 	</bean>
 
 	<bean class="com.techburg.autospring.custombean.TaskProcessorAutoStart">

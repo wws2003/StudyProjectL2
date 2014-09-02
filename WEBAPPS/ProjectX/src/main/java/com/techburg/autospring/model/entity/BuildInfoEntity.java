@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +28,10 @@ public class BuildInfoEntity {
 	
 	@Column(name = "log_file_path")
 	private String logFilePath;
+	
+	@ManyToOne(targetEntity = BuildScriptEntity.class)
+	@JoinColumn(name = "build_script_id")
+	private BuildScriptEntity mBuildScriptEntity;
 	
 	public BuildInfoEntity() {
 		
@@ -69,5 +75,13 @@ public class BuildInfoEntity {
 
 	public void setLogFilePath(String logFilePath) {
 		this.logFilePath = logFilePath;
+	}
+	
+	public void setBuildScriptEntity(BuildScriptEntity buildScriptEntity) {
+		mBuildScriptEntity = buildScriptEntity;
+	}
+	
+	public BuildScriptEntity getBuildScriptEntity() {
+		return mBuildScriptEntity;
 	}
 }

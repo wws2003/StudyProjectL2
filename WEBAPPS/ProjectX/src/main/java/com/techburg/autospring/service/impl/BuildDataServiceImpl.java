@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.service.abstr.IBuildDataService;
-import com.techburg.autospring.service.abstr.IPersistenceService;
+import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
 import com.techburg.autospring.task.abstr.IBuildTaskProcessor;
 
 public class BuildDataServiceImpl implements IBuildDataService {
 
-	private IPersistenceService mPersistenceService = null;
+	private IBuildInfoPersistenceService mPersistenceService = null;
 	private IBuildTaskProcessor mBuildTaskProcessor = null;
 	
 	@Autowired
-	public void setPersistenceService(IPersistenceService persistenceService) {
+	public void setBuildInfoPersistenceService(IBuildInfoPersistenceService persistenceService) {
 		mPersistenceService = persistenceService;
 	}
 	

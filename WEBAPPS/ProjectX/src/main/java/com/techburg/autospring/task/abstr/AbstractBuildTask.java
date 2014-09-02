@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.service.abstr.IPersistenceService;
+import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
 
 public abstract class AbstractBuildTask implements IBuildTask{
 	protected long mId;
@@ -17,7 +17,7 @@ public abstract class AbstractBuildTask implements IBuildTask{
 	private String mLogFileLocation;
 	private static final String gUnknownLogFileName = "---";
 
-	protected IPersistenceService mPersistenceService;
+	protected IBuildInfoPersistenceService mPersistenceService;
 	
 	public AbstractBuildTask(String logFilePathPrefix, String logFileNameExtension, String logFileLocation) {
 		mLogFileNamePrefix = logFilePathPrefix;
@@ -25,7 +25,7 @@ public abstract class AbstractBuildTask implements IBuildTask{
 		mLogFileLocation = logFileLocation;
 	}
 
-	public void setPersistenceService(IPersistenceService persistenceService) {
+	public void setBuildInfoPersistenceService(IBuildInfoPersistenceService persistenceService) {
 		mPersistenceService = persistenceService;
 	}
 

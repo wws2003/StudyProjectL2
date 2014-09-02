@@ -47,7 +47,7 @@ public class TestJPA2 {
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
 		query.mDataRange = DataRange.ALL;
 		mBuildDataService.getBuiltBuildInfoList(builtList, query);
-		assertEquals(builtList.size(), 3);
+		assertEquals(builtList.size(), 61);
 	}
 
 }
