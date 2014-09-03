@@ -20,18 +20,26 @@ import com.techburg.autospring.util.FileUtil;
 public class ScriptController {
 	private static final String gScriptFileAvailable = "scriptFileAvailable";
 	private static final String gScriptFileContent = "scriptFileContent";
-	
+	private static final String gScriptFileContentUpdated = "scriptFileContentUpdated";
+
 	private IBuildScriptPersistenceService mBuildScriptPersistenceService;
-	
+
 	@Autowired
 	public void setBuildScriptPersistenceService(IBuildScriptPersistenceService buildScriptPersistenceService) {
 		mBuildScriptPersistenceService = buildScriptPersistenceService;
 	}
-	
+
 	@RequestMapping(value="/script/edit", method=RequestMethod.GET)
-	public String editScriptContent(Model model) {
+	public String editScriptContent(
+			@RequestParam(value = gScriptFileContentUpdated, required = false) boolean scriptFileContentUpdated,
+			Model model) {
+		
+		//Detect if redirected from successful edit submission
+		model.addAttribute(gScriptFileContentUpdated, scriptFileContentUpdated);
+		
 		long id = 1; //TODO In the future, id will be read from proper parameters
 		BuildScript buildScript = getBuildScriptbyId(id);
+		
 		if(buildScript != null) {
 			String scriptFilePath = buildScript.getScriptFilePath();
 			FileUtil fileUtil = new FileUtil();
@@ -50,16 +58,21 @@ public class ScriptController {
 		}
 		return "script";
 	}
-	
+
 	@RequestMapping(value="/script/submit", method=RequestMethod.POST)
 	public String submitScriptContent(
 			@RequestParam(value = "content", required = true) String content,
 			Model model) {
-		//TODO Add task to processor to avoid concurrency
+		//TODO Avoid concurrency when read/write file
 		long id = 1; //TODO In the future, id will be read from proper parameters
 		BuildScript buildScript = getBuildScriptbyId(id);
+		
 		if(buildScript != null) {
 			String scriptFilePath = buildScript.getScriptFilePath();
+			
+			//Avoid script run error due to \r character
+			content = content.replace("\r\n", "\n");
+			
 			FileUtil fileUtil = new FileUtil();
 			try {
 				fileUtil.storeContentToFile(content, scriptFilePath);
@@ -67,10 +80,11 @@ public class ScriptController {
 			catch (Exception e) {
 				return "home";
 			}
+			model.addAttribute(gScriptFileContentUpdated, true);
 		}
 		return "redirect:/script/edit";
 	}
-	
+
 	private BuildScript getBuildScriptbyId(long id) {
 		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
 		if(mBuildScriptPersistenceService != null) {

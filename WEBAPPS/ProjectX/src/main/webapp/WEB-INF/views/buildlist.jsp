@@ -79,6 +79,7 @@ td, th {
 					</c:forEach>
 				</table>
 			</div>
+			<a href='<c:url value="/home"></c:url>'>To home page</a>
 		</c:when>
 		<c:otherwise>
 			Service not available
