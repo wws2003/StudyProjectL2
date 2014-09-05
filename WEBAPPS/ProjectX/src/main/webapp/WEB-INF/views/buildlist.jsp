@@ -2,17 +2,22 @@
 <html>
 <head>
 <style type="text/css">
-table,td, th {
+table,td,th {
 	border-collapse: collapse;
 	border: 1px solid black;
 }
 
-td, th {
+td,th {
 	text-align: center;
 	padding-left: 20px;
 	margin-left: 0px;
 	margin-right: 0px;
 	padding-right: 20px;
+}
+.page_line {
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 </style>
 </head>
@@ -66,7 +71,7 @@ td, th {
 						<th>Log file path</th>
 						<th>Log detail</th>
 					</tr>
-					<c:forEach items="${builtList}" var="element">
+					<c:forEach items="${builtInfoPage.builtInfoList}" var="element">
 						<tr>
 							<td>${element.id}</td>
 							<td>${element.status == 0 ? "OK" : "NG"}</td>
@@ -79,7 +84,14 @@ td, th {
 					</c:forEach>
 				</table>
 			</div>
-			<a href='<c:url value="/home"></c:url>'>To home page</a>
+			<div class="page_line">
+				<c:if test="${builtInfoPage.page > 1}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page - 1}"></c:url>'>Prev </a></c:if>
+				<c:out value="(${builtInfoPage.firstId} - ${builtInfoPage.lastId}) / ${builtInfoPage.maxId}"></c:out>
+				<c:if test="${builtInfoPage.lastId < builtInfoPage.maxId}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page + 1}"></c:url>'>Next </a></c:if>
+			</div>
+			<div>
+				<a href='<c:url value="/home"></c:url>'>To home page</a>
+			</div>
 		</c:when>
 		<c:otherwise>
 			Service not available

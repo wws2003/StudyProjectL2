@@ -3,8 +3,6 @@ package com.techburg.autospring.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
-import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.service.abstr.IBuildDataService;
 
@@ -21,16 +19,6 @@ public class BuildDataServiceMockImpl implements IBuildDataService {
 		buildInfoList.clear();
 		for(int i = 0; i < 5; i++)
 			buildInfoList.add(createSampleBuildInfo());
-	}
-
-	@Override
-	public void getBuiltBuildInfoList(List<BuildInfo> buildInfoList,
-			BuildInfoPersistenceQuery query) {
-		buildInfoList.clear();
-		if (query.mDataRange == DataRange.ALL) {
-			for(int i = 0; i < 5; i++)
-				buildInfoList.add(createSampleBuildInfo());
-		}
 	}
 
 	private BuildInfo createSampleBuildInfo() {

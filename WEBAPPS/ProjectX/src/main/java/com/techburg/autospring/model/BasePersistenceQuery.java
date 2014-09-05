@@ -9,6 +9,8 @@ public class BasePersistenceQuery {
 		public static final int ID_MATCH = 4;
 	}
 	
-	public int mDataRange;
+	public int dataRange;
 	public long id;
+	public long firstId;
+	public long lastId;
 }

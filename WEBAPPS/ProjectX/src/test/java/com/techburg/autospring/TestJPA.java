@@ -57,9 +57,9 @@ public class TestJPA {
 		assertEquals(mPersistenceService.persistBuildInfo(buildInfo), PersistenceResult.PERSISTENCE_SUCCESSFUL);
 		List<BuildInfo> buildInfoList = new ArrayList<BuildInfo>();
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
-		query.mDataRange = DataRange.ALL;
+		query.dataRange = DataRange.ALL;
 		try {
-			mPersistenceService.loadBuildInfo(buildInfoList, query);
+			mPersistenceService.loadPersistedBuildInfo(buildInfoList, query);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

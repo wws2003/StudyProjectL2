@@ -89,7 +89,7 @@ public class ScriptController {
 		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
 		if(mBuildScriptPersistenceService != null) {
 			BuildScriptPersistenceQuery query = new BuildScriptPersistenceQuery();
-			query.mDataRange = DataRange.ID_MATCH;
+			query.dataRange = DataRange.ID_MATCH;
 			query.id = id;
 			mBuildScriptPersistenceService.loadBuildScript(buildScripts, query);
 			return buildScripts.isEmpty() ? null : buildScripts.get(0);

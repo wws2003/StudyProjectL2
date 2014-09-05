@@ -15,12 +15,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.service.abstr.IBuildDataService;
+import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
+import com.techburg.autospring.service.abstr.PersistenceResult;
 
 public class TestJPA2 {
 
-	private IBuildDataService mBuildDataService;
-
+	private IBuildInfoPersistenceService mBuildInfoPersistenceService;
+	private static final long PERSISTED_BUILD_INFO_NUMBER = 23;
+	
 	@Before
 	public void setUp() throws Exception {
 		//Retrieve mPersistenceService by factory method
@@ -28,7 +30,7 @@ public class TestJPA2 {
 		try {
 			ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 			//applicationContext is also a bean factory...
-			mBuildDataService = applicationContext.getBean("buildDataService", IBuildDataService.class);
+			mBuildInfoPersistenceService = applicationContext.getBean("buildInfoPersistenceService", IBuildInfoPersistenceService.class);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -42,12 +44,16 @@ public class TestJPA2 {
 
 	@Test
 	public void test() {
-		assertNotNull(mBuildDataService);
+		assertNotNull(mBuildInfoPersistenceService);
 		List<BuildInfo> builtList = new ArrayList<BuildInfo>();
+		long numberOfPersistedBuildInfo = mBuildInfoPersistenceService.getNumberOfPersistedBuildInfo();
+		assertEquals(PERSISTED_BUILD_INFO_NUMBER, numberOfPersistedBuildInfo);
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
-		query.mDataRange = DataRange.ALL;
-		mBuildDataService.getBuiltBuildInfoList(builtList, query);
-		assertEquals(builtList.size(), 61);
+		query.dataRange = DataRange.LIMITED_MATCH;
+		query.firstId = 1;
+		query.lastId = 12;
+		assertEquals(PersistenceResult.LOAD_SUCCESSFUL, mBuildInfoPersistenceService.loadPersistedBuildInfo(builtList, query));
+		assertEquals(12, builtList.size());
 	}
 
 }

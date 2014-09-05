@@ -75,7 +75,7 @@ public class BuildScriptPersistenceServiceJPAImpl implements IBuildScriptPersist
 		buildInfoList.clear();
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
 	
-		switch (query.mDataRange) {
+		switch (query.dataRange) {
 		case DataRange.ALL:
 			loadQuery = entityManager.createNativeQuery("select * from build_script;", BuildScriptEntity.class);
 			try {

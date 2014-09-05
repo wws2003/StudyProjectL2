@@ -59,7 +59,7 @@ public class TestJPA3 {
 		
 		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
 		BuildScriptPersistenceQuery query2 = new BuildScriptPersistenceQuery();
-		query2.mDataRange = DataRange.ID_MATCH;
+		query2.dataRange = DataRange.ID_MATCH;
 		query2.id = 1;
 		mBuildScriptPersistenceService.loadBuildScript(buildScripts, query2);
 		
@@ -76,8 +76,8 @@ public class TestJPA3 {
 	
 		List<BuildInfo> buildInfoList = new ArrayList<BuildInfo>();
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
-		query.mDataRange = DataRange.ALL;
-		mBuildInfoPersistenceService.loadBuildInfo(buildInfoList, query);
+		query.dataRange = DataRange.ALL;
+		mBuildInfoPersistenceService.loadPersistedBuildInfo(buildInfoList, query);
 		
 		assertEquals(1, buildInfoList.size());
 		BuildScript targetBuildScript = buildInfoList.get(0).getBuildScript();
@@ -93,7 +93,7 @@ public class TestJPA3 {
 
 		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
 		BuildScriptPersistenceQuery query2 = new BuildScriptPersistenceQuery();
-		query2.mDataRange = DataRange.ALL;
+		query2.dataRange = DataRange.ALL;
 		mBuildScriptPersistenceService.loadBuildScript(buildScripts, query2);
 		
 		assertEquals(1, buildScripts.size());

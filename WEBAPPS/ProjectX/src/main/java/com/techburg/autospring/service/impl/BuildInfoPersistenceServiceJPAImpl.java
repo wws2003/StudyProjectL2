@@ -22,17 +22,17 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 
 	private EntityManagerFactory mEntityManagerFactory;
 	private IBuildInfoBo mBuildInfoBo = null;
-	
+
 	@Autowired
 	public BuildInfoPersistenceServiceJPAImpl(EntityManagerFactory entityManagerFactory) {
 		mEntityManagerFactory = entityManagerFactory;
 	}
-	
+
 	@Autowired
 	public void setBuildInfoBo(IBuildInfoBo buildInfoBo) {
 		mBuildInfoBo = buildInfoBo;
 	}
-	
+
 	@Override
 	public int persistBuildInfo(BuildInfo buildInfo) {
 		BuildInfoEntity entity = mBuildInfoBo.getEntityFromBusinessObject(buildInfo);
@@ -54,13 +54,41 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 	}
 
 	@Override
-	public int loadBuildInfo(List<BuildInfo> buildInfoList,	BuildInfoPersistenceQuery query) {
+	public int loadPersistedBuildInfo(List<BuildInfo> buildInfoList,	BuildInfoPersistenceQuery query) {
 		Query loadQuery = null;
 		buildInfoList.clear();
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
-		switch (query.mDataRange) {
+
+		switch (query.dataRange) {
 		case DataRange.ALL:
 			loadQuery = entityManager.createNativeQuery("select * from build_info;", BuildInfoEntity.class);
+			try {
+				@SuppressWarnings("unchecked")
+				List<BuildInfoEntity> entities = loadQuery.getResultList();
+				for(BuildInfoEntity entity : entities) {
+					entityManager.detach(entity);
+					buildInfoList.add(mBuildInfoBo.getBusinessObjectFromEntity(entity));
+				}
+				return PersistenceResult.LOAD_SUCCESSFUL;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return PersistenceResult.INVALID_QUERY;
+			}
+		case DataRange.LIMITED_MATCH:
+			long firstId = query.firstId;
+			long lastId = query.lastId;
+			StringBuilder queryStringBuilder = new StringBuilder();
+			queryStringBuilder.append("select * from build_info")
+			.append(" ")
+			.append("where id between")
+			.append(" ")
+			.append(firstId)
+			.append(" ")
+			.append("and")
+			.append(" ")
+			.append(lastId);
+			loadQuery = entityManager.createNativeQuery(queryStringBuilder.toString(), BuildInfoEntity.class);
 			try {
 				@SuppressWarnings("unchecked")
 				List<BuildInfoEntity> entities = loadQuery.getResultList();
@@ -101,5 +129,14 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 		transition.commit();
 		entityManager.close();
 		return ret;
+	}
+
+	@Override
+	public long getNumberOfPersistedBuildInfo() {
+		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
+		Query loadQuery = entityManager.createNativeQuery("select count(id) from build_info");
+		long numberOfPersistedBuildInfo = (Integer) loadQuery.getSingleResult();
+		entityManager.close();
+		return numberOfPersistedBuildInfo;
 	}
 }

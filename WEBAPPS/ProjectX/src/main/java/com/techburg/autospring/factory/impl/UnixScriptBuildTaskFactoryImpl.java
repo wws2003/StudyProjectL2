@@ -63,7 +63,7 @@ public class UnixScriptBuildTaskFactoryImpl implements IBuildTaskFactory, Initia
 		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
 		if(mBuildScriptPersistenceService != null) {
 			BuildScriptPersistenceQuery query = new BuildScriptPersistenceQuery();
-			query.mDataRange = DataRange.ID_MATCH;
+			query.dataRange = DataRange.ID_MATCH;
 			query.id = 1;
 			mBuildScriptPersistenceService.loadBuildScript(buildScripts, query);
 			if(buildScripts.isEmpty()) {
