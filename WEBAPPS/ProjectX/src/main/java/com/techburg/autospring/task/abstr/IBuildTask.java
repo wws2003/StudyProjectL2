@@ -10,6 +10,8 @@ public interface IBuildTask {
 	}
 	
 	void setBuildScript(BuildScript buildScript);
+	BuildScript getBuildScript();
+	
 	int execute();
 	void storeToBuildInfo(BuildInfo buildInfo, boolean toPersist);
 	long getId();

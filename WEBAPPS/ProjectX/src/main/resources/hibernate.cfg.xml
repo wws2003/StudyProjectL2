@@ -14,6 +14,6 @@
 
 		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
 
-		<mapping class="com.techburg.autospring.model.entity.BuildInfoEntity" />
+		<mapping package="com.techburg.autospring.model.entity"/>
 	</session-factory>
 </hibernate-configuration>

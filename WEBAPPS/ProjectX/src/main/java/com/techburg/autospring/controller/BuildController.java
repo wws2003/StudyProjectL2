@@ -84,16 +84,18 @@ public class BuildController {
 
 		List<BuildInfo> buildingList = new ArrayList<BuildInfo>();
 		List<BuildInfo> waitingList = new ArrayList<BuildInfo>();
-		
+
 		mBuildDataService.getBuildingBuildInfoList(buildingList);
 		mBuildDataService.getWaitingBuildInfoList(waitingList);
 		model.addAttribute(gBuildingListAttributeName, buildingList);
 		model.addAttribute(gWaitingListAttributeName, waitingList);
 
-		BuiltInfoPage builtInfoPage = getBuiltInfoPage(page);
-		if(builtInfoPage != null)
-			model.addAttribute(gBuiltInfoPage, builtInfoPage);
-
+		//Temporally solution for SQLite, which is not safe to read while writing
+		if(buildingList.isEmpty() && waitingList.isEmpty()) {
+			BuiltInfoPage builtInfoPage = getBuiltInfoPage(page);
+			if(builtInfoPage != null)
+				model.addAttribute(gBuiltInfoPage, builtInfoPage);
+		}
 		return "buildlist";
 	}
 

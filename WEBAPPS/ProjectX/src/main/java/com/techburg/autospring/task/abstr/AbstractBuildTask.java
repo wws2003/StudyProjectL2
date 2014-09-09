@@ -48,6 +48,7 @@ public abstract class AbstractBuildTask implements IBuildTask{
 		buildInfo.setBeginTimeStamp(mBeginBuildTime);
 		buildInfo.setEndTimeStamp(mEndBuildTime);
 		buildInfo.setStatus(mStatus);
+		buildInfo.setBuildScript(getBuildScript());
 		
 		String logFilePath = (mBeginBuildTime != null) ? getLogFileFullPath() : gUnknownLogFileName;
 		buildInfo.setLogFilePath(logFilePath);

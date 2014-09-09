@@ -8,9 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "findNumberOfRecords",
+			query = "select count(bi.id) from BuildInfoEntity bi"),
+})
+
 @Table(name = "build_info")
 public class BuildInfoEntity {
 	@Id

@@ -60,35 +60,37 @@ td,th {
 					</c:forEach>
 				</table>
 			</div>
-			<div>
-				<b>Built list</b>
-				<table>
-					<tr>
-						<th>Id</th>
-						<th>Status</th>
-						<th>Begin time</th>
-						<th>End time</th>
-						<th>Log file path</th>
-						<th>Log detail</th>
-					</tr>
-					<c:forEach items="${builtInfoPage.builtInfoList}" var="element">
+			<c:if test="${not empty builtInfoPage}">
+				<div>
+					<b>Built list</b>
+					<table>
 						<tr>
-							<td>${element.id}</td>
-							<td>${element.status == 0 ? "OK" : "NG"}</td>
-							<td>${element.beginTimeStamp}</td>
-							<td>${element.endTimeStamp}</td>
-							<td>${element.logFilePath}</td>
-							<c:url value="/log/${element.id}" var="logUrl"></c:url>
-							<td><a href='${logUrl}'>Detail</a></td>
+							<th>Id</th>
+							<th>Status</th>
+							<th>Begin time</th>
+							<th>End time</th>
+							<th>Log file path</th>
+							<th>Log detail</th>
 						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div class="page_line">
-				<c:if test="${builtInfoPage.page > 1}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page - 1}"></c:url>'>Prev </a></c:if>
-				<c:out value="(${builtInfoPage.firstId} - ${builtInfoPage.lastId}) / ${builtInfoPage.maxId}"></c:out>
-				<c:if test="${builtInfoPage.lastId < builtInfoPage.maxId}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page + 1}"></c:url>'>Next </a></c:if>
-			</div>
+						<c:forEach items="${builtInfoPage.builtInfoList}" var="element">
+							<tr>
+								<td>${element.id}</td>
+								<td>${element.status == 0 ? "OK" : "NG"}</td>
+								<td>${element.beginTimeStamp}</td>
+								<td>${element.endTimeStamp}</td>
+								<td>${element.logFilePath}</td>
+								<c:url value="/log/${element.id}" var="logUrl"></c:url>
+								<td><a href='${logUrl}'>Detail</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div class="page_line">
+					<c:if test="${builtInfoPage.page > 1}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page - 1}"></c:url>'>Prev </a></c:if>
+					<c:out value="(${builtInfoPage.firstId} - ${builtInfoPage.lastId}) / ${builtInfoPage.maxId}"></c:out>
+					<c:if test="${builtInfoPage.lastId < builtInfoPage.maxId}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page + 1}"></c:url>'>Next </a></c:if>
+				</div>
+			</c:if>
 			<div>
 				<a href='<c:url value="/home"></c:url>'>To home page</a>
 			</div>

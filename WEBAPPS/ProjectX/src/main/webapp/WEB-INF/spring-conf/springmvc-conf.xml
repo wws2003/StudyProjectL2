@@ -31,17 +31,15 @@
 	<bean name="buildInfoPersistenceService"
 		class="com.techburg.autospring.service.impl.BuildInfoPersistenceServiceJPAImpl">
 	</bean>
-	
+
 	<bean name="buildScriptPersistenceService"
 		class="com.techburg.autospring.service.impl.BuildScriptPersistenceServiceJPAImpl">
 	</bean>
-	
-	<bean name="buildScriptBo"
-		class="com.techburg.autospring.bo.impl.BuildScriptBoImpl">
+
+	<bean name="buildScriptBo" class="com.techburg.autospring.bo.impl.BuildScriptBoImpl">
 	</bean>
-	
-	<bean name="buildInfoBo"
-		class="com.techburg.autospring.bo.impl.BuildInfoBoImpl">
+
+	<bean name="buildInfoBo" class="com.techburg.autospring.bo.impl.BuildInfoBoImpl">
 	</bean>
 
 	<bean name="buildDataService"
@@ -69,6 +67,24 @@
 			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.defaultScriptFileLocation}"></property>
 		<property name="defaultScriptFileName"
 			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.defaultScriptFileName}"></property>
+	</bean>
+
+	<bean name="browsingService"
+		class="com.techburg.autospring.service.impl.BrowsingServiceImpl">
+	</bean>
+
+	<bean name="browsingServiceDelegate"
+		class="com.techburg.autospring.service.impl.BrowsingServiceDelegateImpl">
+		<property name="browsingRootPath"
+			value="${com.techburg.autospring.service.impl.BrowsingServiceDelegateImpl.browsingRootPath}"></property>
+	</bean>
+
+	<bean name="browsingObjectPersistentService"
+		class="com.techburg.autospring.service.impl.BrowsingObjectPersistentJPAImpl">
+	</bean>
+
+	<bean name="browsingObjectBo"
+		class="com.techburg.autospring.bo.impl.BrowsingObjectBoImpl">
 	</bean>
 
 	<bean class="com.techburg.autospring.custombean.TaskProcessorAutoStart">

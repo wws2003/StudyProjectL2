@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.techburg.autospring.model.business.BuildInfo;
+import com.techburg.autospring.service.abstr.IBrowsingService;
 import com.techburg.autospring.task.abstr.IBuildTask;
 import com.techburg.autospring.task.abstr.IBuildTaskProcessor;
 import com.techburg.autospring.task.abstr.IBuildTaskQueue;
 
-public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, DisposableBean {
+public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, DisposableBean, InitializingBean {
 
+	private IBrowsingService mBrowsingService;
+	
 	public BuildTaskProcessorSemaphoreImpl() {
 		mQueueSemaphore = new Semaphore(0);
 		mBuildThreadSemaphore = new Semaphore(1); //This semaphore actually works as a lock
@@ -24,6 +28,11 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 		mWaitingTaskQueue = buildTaskQueue;
 	}
 
+	@Autowired
+	public void setBrowsingService(IBrowsingService browsingService) {
+		mBrowsingService = browsingService;
+	}
+	
 	@Override
 	public int start() {
 		int result = BuildTaskProcessorResult.START_SUCCESSFUL;
@@ -33,13 +42,13 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 				result = BuildTaskProcessorResult.ALREADY_STARTED;
 			}
 			else {
+				mStopped = false;
 				Runnable runnableTaskBuild = new Runnable() {	
 					@Override
 					public void run() {
 						runBuildTasks();
 					}
 				};
-				mStopped = false;
 				mBuildTaskThread = new Thread(runnableTaskBuild);
 				mBuildTaskThread.start();
 			}
@@ -118,6 +127,11 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 	}
 
 	private void runBuildTasks() {
+		try {
+			recontructBrowsingStructure();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		while(!mStopped) {
 			try {
 				mQueueSemaphore.acquire();
@@ -128,9 +142,22 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 					BuildInfo buildInfo = new BuildInfo();
 					nextBuildTask.storeToBuildInfo(buildInfo, true);
 					mWaitingTaskQueue.setBuildingTask(null);
+					recontructBrowsingStructure();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void recontructBrowsingStructure() throws Exception {
+		if(mBrowsingService != null) {
+			try {
+				mBrowsingService.acquireWriteLock();
+				mBrowsingService.construct();
+			}
+			finally {
+				mBrowsingService.releaseWriteLock();
 			}
 		}
 	}
@@ -140,4 +167,10 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 	private Thread mBuildTaskThread = null;
 	private Semaphore mQueueSemaphore;
 	private Semaphore mBuildThreadSemaphore;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Property set!$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + this);
+		start();
+	}
 }

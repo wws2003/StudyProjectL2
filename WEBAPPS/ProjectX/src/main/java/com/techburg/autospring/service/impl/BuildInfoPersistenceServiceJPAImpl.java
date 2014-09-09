@@ -1,6 +1,7 @@
 package com.techburg.autospring.service.impl;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +23,8 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 
 	private EntityManagerFactory mEntityManagerFactory;
 	private IBuildInfoBo mBuildInfoBo = null;
-
+	private ReentrantReadWriteLock mLock = new ReentrantReadWriteLock();
+	
 	@Autowired
 	public BuildInfoPersistenceServiceJPAImpl(EntityManagerFactory entityManagerFactory) {
 		mEntityManagerFactory = entityManagerFactory;
@@ -35,26 +37,30 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 
 	@Override
 	public int persistBuildInfo(BuildInfo buildInfo) {
+		mLock.writeLock().lock();
 		BuildInfoEntity entity = mBuildInfoBo.getEntityFromBusinessObject(buildInfo);
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
+		EntityTransaction tx = entityManager.getTransaction();
 		try {
-			EntityTransaction tx = entityManager.getTransaction();
 			tx.begin();
 			entityManager.persist(entity);
 			entityManager.detach(entity); //Do not need to manage this object longer !
 			tx.commit();
 		}
 		catch (PersistenceException pe) {
+			pe.printStackTrace();
+			tx.rollback();
 			return PersistenceResult.PERSISTENCE_FAILED;
 		}
 		finally {
+			mLock.writeLock().unlock();
 			entityManager.close();
 		}
 		return PersistenceResult.PERSISTENCE_SUCCESSFUL;
 	}
 
 	@Override
-	public int loadPersistedBuildInfo(List<BuildInfo> buildInfoList,	BuildInfoPersistenceQuery query) {
+	public int loadPersistedBuildInfo(List<BuildInfo> buildInfoList, BuildInfoPersistenceQuery query) {
 		Query loadQuery = null;
 		buildInfoList.clear();
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
@@ -133,10 +139,12 @@ public class BuildInfoPersistenceServiceJPAImpl implements IBuildInfoPersistence
 
 	@Override
 	public long getNumberOfPersistedBuildInfo() {
+		mLock.readLock().lock();
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
-		Query loadQuery = entityManager.createNativeQuery("select count(id) from build_info");
-		long numberOfPersistedBuildInfo = (Integer) loadQuery.getSingleResult();
+		Query loadQuery = entityManager.createNamedQuery("findNumberOfRecords");
+		long numberOfPersistedBuildInfo = (Long) loadQuery.getSingleResult();
 		entityManager.close();
+		mLock.readLock().unlock();
 		return numberOfPersistedBuildInfo;
 	}
 }

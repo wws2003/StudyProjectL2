@@ -18,7 +18,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 	private String mDefaultScriptFileLocation;
 	private String mDefaultScriptFileName;
 	private BuildScript mBuildScript;
-	
+
 	private static final String gCommand = "/bin/bash";
 
 	public BuildTaskUnixScriptImpl(String logFilePathPrefix, String logFileExtension, String logFileLocation, String scriptFileLocation, String scriptFileName) {
@@ -32,6 +32,12 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 		mBuildScript = buildScript;
 	}
 	
+	@Override
+	public BuildScript getBuildScript() {
+		return mBuildScript;
+	}
+
+
 	@Override
 	protected int mainExecute() {
 		List<String> commandsAndArguments = new ArrayList<String>();
@@ -69,11 +75,11 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 
 			processBufferedOutputStream = new BufferedInputStream(process.getInputStream());
 			fileUtil.getStringFromInputStream(processBufferedOutputStream, outputBuilder);
-		
+
 			process.waitFor();
 			int processExitValue = process.exitValue();
 			System.out.println("Process exit value: " + processExitValue);
-			
+
 			return processExitValue;
 		} 
 		catch (Exception e) {
@@ -84,7 +90,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 			processBufferedOutputStream.close();
 		}
 	}
-	
+
 	private void writeOutputToLogFile(String output) throws Exception {
 		FileUtil fileUtil = new FileUtil();
 		OutputStream logFileOutputStream = null;
@@ -100,5 +106,4 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 			logFileOutputStream.close();
 		}
 	}
-
 }

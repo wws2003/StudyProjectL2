@@ -21,7 +21,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-conf/springmvc-conf.xml</param-value>
+			<param-value>/WEB-INF/spring-conf/springmvc-servlet-conf.xml</param-value>
 		</init-param>
 	</servlet>
 

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.techburg.autospring.factory.abstr.IBuildTaskFactory;
-import com.techburg.autospring.model.BuildScriptPersistenceQuery;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
+import com.techburg.autospring.model.BuildScriptPersistenceQuery;
 import com.techburg.autospring.model.business.BuildScript;
 import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
 import com.techburg.autospring.service.abstr.IBuildScriptPersistenceService;

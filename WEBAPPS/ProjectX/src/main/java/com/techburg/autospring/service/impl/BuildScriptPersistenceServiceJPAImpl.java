@@ -37,14 +37,16 @@ public class BuildScriptPersistenceServiceJPAImpl implements IBuildScriptPersist
 	public int persistBuildScript(BuildScript buildScript) {
 		BuildScriptEntity entity = mBuildScriptBo.getEntityFromBusinessObject(buildScript);
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
+		EntityTransaction ts = entityManager.getTransaction();
 		try {
-			EntityTransaction ts = entityManager.getTransaction();
 			ts.begin();
 			entityManager.persist(entity);
 			entityManager.detach(entity); //Do not need to manage this object longer !
 			ts.commit();
 		}
 		catch (PersistenceException pe) {
+			pe.printStackTrace();
+			ts.rollback();
 			return PersistenceResult.PERSISTENCE_FAILED;
 		}
 		finally {
