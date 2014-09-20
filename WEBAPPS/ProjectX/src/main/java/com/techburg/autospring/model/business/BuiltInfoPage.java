@@ -45,4 +45,13 @@ public class BuiltInfoPage {
 		this.mBuiltInfoList = buildInfoList;
 	}
 	
+	public int getLastPage() {
+		int page = (int) (mMaxId / BUILD_INFO_PER_PAGE);
+		return mMaxId % BUILD_INFO_PER_PAGE == 0 ? page : page + 1;
+	}
+	
+	public int getFirstPage() {
+		return 1;
+	}
+	
 }

@@ -106,6 +106,7 @@ public class BrowsingObjectPersistentJPAImpl implements IBrowsingObjectPersisten
 			tx.commit();
 		}
 		catch (PersistenceException pe) {
+			pe.printStackTrace();
 			tx.rollback();
 			return PersistenceResult.REMOVE_FAILED;
 		}

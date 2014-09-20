@@ -87,7 +87,4 @@
 		class="com.techburg.autospring.bo.impl.BrowsingObjectBoImpl">
 	</bean>
 
-	<bean class="com.techburg.autospring.custombean.TaskProcessorAutoStart">
-	</bean>
-
 </beans>

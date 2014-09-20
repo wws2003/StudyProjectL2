@@ -64,6 +64,7 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 	@Override
 	public int addBuildTask(IBuildTask buildTask) {
 		try {
+			buildTask.setIdInQueue(mWaitingTaskQueue.genNextQueueId());
 			mWaitingTaskQueue.addBuildTaskToQueue(buildTask);
 			mQueueSemaphore.release();
 			return BuildTaskProcessorResult.ADD_TASK_SUCCESSFUL;
@@ -75,8 +76,9 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 
 	@Override
 	public int cancelTask(long taskId) {
-		// TODO Auto-generated method stub
-		return 0;
+		mWaitingTaskQueue.markBuildTaskToBeCancelled(taskId);
+		mQueueSemaphore.release();
+		return BuildTaskProcessorResult.CANCEL_TASK_SUCCESSFUL;
 	}
 
 	@Override
@@ -135,6 +137,14 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 		while(!mStopped) {
 			try {
 				mQueueSemaphore.acquire();
+				
+				long cancelledTaskId = mWaitingTaskQueue.getCancelledBuildTaskId();
+				//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Cancelled task Id " + cancelledTaskId);
+				if(cancelledTaskId > 0) {
+					mWaitingTaskQueue.cancelBuildTask(cancelledTaskId);
+					continue;
+				}
+				
 				IBuildTask nextBuildTask = mWaitingTaskQueue.popBuildTaskFromQueue();
 				if(nextBuildTask != null) {
 					mWaitingTaskQueue.setBuildingTask(nextBuildTask);

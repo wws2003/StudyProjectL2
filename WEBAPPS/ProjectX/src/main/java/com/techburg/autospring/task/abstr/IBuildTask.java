@@ -7,12 +7,17 @@ public interface IBuildTask {
 	public static class BuildTaskResult {
 		public static final int SUCCESSFUL = 0;
 		public static final int FAILED = 1;
+		public static final int CANCELLED = 2;
 	}
 	
 	void setBuildScript(BuildScript buildScript);
 	BuildScript getBuildScript();
 	
+	void cancel();
 	int execute();
+	
 	void storeToBuildInfo(BuildInfo buildInfo, boolean toPersist);
-	long getId();
+	
+	void setIdInQueue(long id);
+	long getIdInQueue();
 }

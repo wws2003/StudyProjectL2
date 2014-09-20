@@ -145,6 +145,12 @@ public class BuildController {
 		return "hello";
 	}
 
+	@RequestMapping(value="/cancel/{taskId}", method=RequestMethod.GET)
+	public String cancelBuildTask(@PathVariable long taskId) {
+		mBuildTaskProcessor.cancelTask(taskId);
+		return "cancel";
+	}
+	
 	@RequestMapping(value="/log/{buildId}", method=RequestMethod.GET) 
 	public void showLog(@PathVariable long buildId, HttpServletResponse response) throws IOException {
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();

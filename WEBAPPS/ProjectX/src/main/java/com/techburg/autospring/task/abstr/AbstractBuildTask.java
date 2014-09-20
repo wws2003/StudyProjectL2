@@ -30,12 +30,25 @@ public abstract class AbstractBuildTask implements IBuildTask{
 	}
 
 	@Override
-	public long getId() {
+	public void setIdInQueue(long id) {
+		mId = id;
+	}
+	
+	@Override
+	public long getIdInQueue() {
 		return mId;
 	}
 
 	@Override
+	public void cancel() {
+		mStatus = BuildTaskResult.CANCELLED;
+	}
+	
+	@Override
 	public int execute() {
+		if(mStatus == BuildTaskResult.CANCELLED) {
+			return BuildTaskResult.CANCELLED;
+		}
 		mBeginBuildTime = new Date();
 		int ret = mainExecute();
 		mEndBuildTime = new Date();
@@ -49,7 +62,9 @@ public abstract class AbstractBuildTask implements IBuildTask{
 		buildInfo.setEndTimeStamp(mEndBuildTime);
 		buildInfo.setStatus(mStatus);
 		buildInfo.setBuildScript(getBuildScript());
-		
+		if(!toPersist) {
+			buildInfo.setId(mId);
+		}
 		String logFilePath = (mBeginBuildTime != null) ? getLogFileFullPath() : gUnknownLogFileName;
 		buildInfo.setLogFilePath(logFilePath);
 		
