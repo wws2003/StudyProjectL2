@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.techburg.autospring.factory.abstr.IBuildTaskFactory;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
@@ -143,6 +144,28 @@ public class BuildController {
 		mBuildTaskProcessor.addBuildTask(buildTask);
 
 		return "hello";
+	}
+	
+	@RequestMapping(value="/buildlist/{lastReceivedId}", method=RequestMethod.GET)
+	public @ResponseBody List<BuildInfo> listBuildInfoFromLastId(@PathVariable long lastReceivedId) {
+		List<BuildInfo> buildInfoList = new ArrayList<BuildInfo>();
+		
+		List<BuildInfo> buildingList = new ArrayList<BuildInfo>();
+		List<BuildInfo> waitingList = new ArrayList<BuildInfo>();
+
+		mBuildDataService.getBuildingBuildInfoList(buildingList);
+		mBuildDataService.getWaitingBuildInfoList(waitingList);
+		
+		//Temporally solution for SQLite, which is not safe to read while writing
+		if(buildingList.isEmpty() && waitingList.isEmpty()) {
+			BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
+			query.dataRange = DataRange.LIMITED_MATCH;
+			query.firstId = lastReceivedId + 1;
+			query.lastId = Long.MAX_VALUE;
+			mBuildInfoPersistenceService.loadPersistedBuildInfo(buildInfoList, query);
+		}
+		
+		return buildInfoList;
 	}
 
 	@RequestMapping(value="/cancel/{taskId}", method=RequestMethod.GET)
