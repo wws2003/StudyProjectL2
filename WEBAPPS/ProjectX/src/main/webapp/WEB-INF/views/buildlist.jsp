@@ -4,91 +4,80 @@
 <c:if test="${empty builtInfoPage}">
 <meta http-equiv="refresh" content="5;url=<c:url value="/buildlist"></c:url>">
 </c:if>
-<style type="text/css">
-table,td,th {
-	border-collapse: collapse;
-	border: 1px solid black;
-}
-
-td,th {
-	text-align: center;
-	padding-left: 20px;
-	margin-left: 0px;
-	margin-right: 0px;
-	padding-right: 20px;
-}
-.page_line {
-	display: inline-block;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/buildlist.css'></c:url>"></link> 
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/common.css'></c:url>"></link> 
 </head>
 <body>
-	<h2>Simplest CI !</h2>
+<div class="container">
+<div class="sidebar"></div>
+<div class="container_header">Simplest CI !</div>
+<div class="main_content">
 	<c:choose>
 		<c:when test="${serviceAvailable}">
-			Service available
-			<div>
+			<!-- Service available -->
+			
+			<div class="build_list_div">
+			<!-- TODO Try to use div instead of tables -->
 				<b>Building list</b>
-				<table>
-					<tr>
-						<th>Id</th>
-						<th>Status</th>
-						<th>Begin time</th>
-						<th>Log file path</th>
-					</tr>
-					<c:forEach items="${buildingList}" var="element">
-						<tr>
-							<td>${element.id}</td>
-							<td>Building</td>
-							<td>${element.beginTimeStamp}</td>
-							<td>${element.logFilePath}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div>
-				<b>Waiting list</b>
-				<table>
-					<tr>
-						<th>Id</th>
-						<th>Status</th>
-					</tr>
-					<c:forEach items="${waitingList}" var="element">
-						<tr>
-							<td>${element.id}</td>
-							<td>${element.status == 0 ? "Waiting" : "Cancelled"}</td>
-							<td><a href='<c:url value="/cancel/${element.id}"></c:url>'>Cancel</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<c:if test="${not empty builtInfoPage}">
-				<div>
-					<b>Built list</b>
-					<table>
-						<tr>
-							<th>Id</th>
-							<th>Status</th>
-							<th>Begin time</th>
-							<th>End time</th>
-							<th>Log file path</th>
-							<th>Log detail</th>
-						</tr>
-						<c:forEach items="${builtInfoPage.builtInfoList}" var="element">
-							<tr>
-								<td>${element.id}</td>
-								<td>${element.status == 0 ? "OK" : (element.status == 2 && empty element.beginTimeStamp ? "Cancelled by user" : "NG")}</td>
-								<td>${element.beginTimeStamp}</td>
-								<td>${element.endTimeStamp}</td>
-								<td>${element.logFilePath}</td>
-								<c:url value="/log/${element.id}" var="logUrl"></c:url>
-								<td><c:if test="${not empty element.beginTimeStamp}"><a href='${logUrl}'>Detail</a></c:if></td>
-							</tr>
-						</c:forEach>
-					</table>
+				<div class="build_list_row build_list_head">
+					<div>Id</div>
+					<div>Status</div>
+					<div>Begin time</div>
+					<div style="width: 48%">Log file path</div>
 				</div>
+			
+				<c:forEach items="${buildingList}" var="element">
+					<div class="build_list_row">
+						<div>${element.id}</div>
+						<div>Building</div>
+						<div>${element.beginTimeStamp}</div>
+						<div style="width: 48%">${element.logFilePath}</div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<div class="build_list_div">
+			<!-- TODO Try to use div instead of tables -->
+				<b>Waiting list</b>
+				<div class="build_list_row build_list_head">
+					<div>Id</div>
+					<div>Status</div>
+				</div>
+				<c:forEach items="${waitingList}" var="element">
+					<div class="build_list_row">
+						<div>${element.id}</div>
+						<div>${element.status == 0 ? "Waiting" : "Cancelled"}</div>
+						<div><a href='<c:url value="/cancel/${element.id}"></c:url>'>Cancel</a></div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<c:if test="${not empty builtInfoPage}">
+				<div class="build_list_div">
+					<b>Built list</b>
+					
+					<div class="build_list_row build_list_head">
+						<div>Id</div>
+						<div>Status</div>
+						<div>Begin time</div>
+						<div>End time</div>
+						<div>Log file path</div>
+						<div>Log detail</div>
+					</div>
+					
+					<c:forEach items="${builtInfoPage.builtInfoList}" var="element">
+							<div class=<c:choose><c:when test="${element.status == 0}">"build_list_row"</c:when><c:otherwise>"build_list_row error"</c:otherwise></c:choose>>
+								<div>${element.id}</div>
+								<div>${element.status == 0 ? "OK" : (element.status == 2 && empty element.beginTimeStamp ? "Cancelled by user" : "NG")}</div>
+								<div>${not empty element.beginTimeStamp ? element.beginTimeStamp : "---"}</div>
+								<div>${not empty element.endTimeStamp ? element.endTimeStamp : "---"}</div>
+								<div>${element.logFilePath}</div>
+								<c:url value="/log/${element.id}" var="logUrl"></c:url>
+								<div><c:choose><c:when test="${not empty element.beginTimeStamp}"><a href='${logUrl}'>Detail</a></c:when><c:otherwise>---</c:otherwise></c:choose></div>
+							</div>
+					</c:forEach>
+				</div>
+				
 				<div class="page_line">
 					<a href='<c:url value="/buildlist/?page=1"></c:url>'>First </a>
 					&nbsp;
@@ -100,6 +89,7 @@ td,th {
 					&nbsp;
 					<a href='<c:url value="/buildlist/?page=${builtInfoPage.lastPage}"></c:url>'> Last</a>
 				</div>
+				
 			</c:if>
 			<div>
 				<a href='<c:url value="/home"></c:url>'>To home page</a>
@@ -109,5 +99,7 @@ td,th {
 			Service not available
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </body>
 </html>

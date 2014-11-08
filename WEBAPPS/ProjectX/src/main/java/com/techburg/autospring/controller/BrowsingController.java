@@ -20,6 +20,7 @@ import com.techburg.autospring.util.FileUtil;
 public class BrowsingController {
 
 	private static final String gChildBrowsingObjectsAttribute = "childBrowsingObjects";
+	private static final String gBrowsingObjectPathAttribute = "browsingObjectPath";
 	private static final String gIsFileObjectAttribute = "isFileObject";
 	private static final String gObjectContentAttribute = "objectContent";
 	private static final String gObjectCanOpened = "objectCanOpened";
@@ -45,6 +46,7 @@ public class BrowsingController {
 			try {
 				BrowsingObject browsingObject = mBrowsingService.getBrowsingObjectById(id);
 				if(browsingObject != null) {
+					model.addAttribute(gBrowsingObjectPathAttribute, browsingObject.getAbsolutePath());
 					model.addAttribute(gIsFileObjectAttribute, browsingObject.getObjectType() == ObjectType.TYPE_FILE);
 					List<BrowsingObject> childBrowsingObjects = new LinkedList<BrowsingObject>();
 					mBrowsingService.getChildBrowsingObject(browsingObject, childBrowsingObjects);

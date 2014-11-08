@@ -29,7 +29,7 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
 	<session-config>
 		<session-timeout>720</session-timeout>
 	</session-config>
