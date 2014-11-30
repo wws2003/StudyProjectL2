@@ -3,17 +3,17 @@ package com.techburg.autospring.bo.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.techburg.autospring.bo.abstr.IBuildInfoBo;
-import com.techburg.autospring.bo.abstr.IBuildScriptBo;
+import com.techburg.autospring.bo.abstr.IWorkspaceBo;
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.model.entity.BuildInfoEntity;
 
 public class BuildInfoBoImpl implements IBuildInfoBo {
 	
-	private IBuildScriptBo mBuildScriptBo;
+	private IWorkspaceBo mWorkspaceBo;
 	
 	@Autowired
-	public void setBuildScriptBo(IBuildScriptBo buildScriptBo) {
-		mBuildScriptBo = buildScriptBo;
+	public void setWorkspaceBo(IWorkspaceBo workspaceBo) {
+		mWorkspaceBo = workspaceBo;
 	}
 	
 	public BuildInfoEntity getEntityFromBusinessObject(BuildInfo buildInfo) {
@@ -23,7 +23,7 @@ public class BuildInfoBoImpl implements IBuildInfoBo {
 		entity.setId(buildInfo.getId());
 		entity.setStatus(buildInfo.getStatus());
 		entity.setLogFilePath(buildInfo.getLogFilePath());
-		entity.setBuildScriptEntity(mBuildScriptBo.getEntityFromBusinessObject(buildInfo.getBuildScript()));
+		entity.setWorkspaceEntity(mWorkspaceBo.getEntityFromBusinessObject(buildInfo.getWorkspace()));
 		return entity;
 	}
 
@@ -34,7 +34,7 @@ public class BuildInfoBoImpl implements IBuildInfoBo {
 		buildInfo.setId(entity.getId());
 		buildInfo.setStatus(entity.getStatus());
 		buildInfo.setLogFilePath(entity.getLogFilePath());
-		buildInfo.setBuildScript(mBuildScriptBo.getBusinessObjectFromEntity(entity.getBuildScriptEntity()));
+		buildInfo.setWorkspace(mWorkspaceBo.getBusinessObjectFromEntity(entity.getWorkspaceEntity()));
 		return buildInfo;
 	}
 }

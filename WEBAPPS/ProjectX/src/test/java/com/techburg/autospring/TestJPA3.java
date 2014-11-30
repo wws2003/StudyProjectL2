@@ -14,18 +14,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
-import com.techburg.autospring.model.BuildScriptPersistenceQuery;
+import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.model.business.BuildScript;
+import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.model.business.BuildInfo.Status;
 import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
-import com.techburg.autospring.service.abstr.IBuildScriptPersistenceService;
+import com.techburg.autospring.service.abstr.IWorkspacePersistenceService;
 import com.techburg.autospring.service.abstr.PersistenceResult;
 
 public class TestJPA3 {
 
 	private IBuildInfoPersistenceService mBuildInfoPersistenceService;
-	private IBuildScriptPersistenceService mBuildScriptPersistenceService;
+	private IWorkspacePersistenceService mBuildScriptPersistenceService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -35,7 +35,7 @@ public class TestJPA3 {
 			ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 			//applicationContext is also a bean factory...
 			mBuildInfoPersistenceService = applicationContext.getBean("buildInfoPersistenceService", IBuildInfoPersistenceService.class);
-			mBuildScriptPersistenceService = applicationContext.getBean("buildScriptPersistenceService", IBuildScriptPersistenceService.class);
+			mBuildScriptPersistenceService = applicationContext.getBean("buildScriptPersistenceService", IWorkspacePersistenceService.class);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -52,16 +52,16 @@ public class TestJPA3 {
 		assertNotNull(mBuildInfoPersistenceService);
 		assertNotNull(mBuildScriptPersistenceService);
 		
-		BuildScript buildScript = new BuildScript();
+		Workspace buildScript = new Workspace();
 		buildScript.setScriptFilePath("gafin.vn");
-		assertEquals(mBuildScriptPersistenceService.persistBuildScript(buildScript), PersistenceResult.PERSISTENCE_SUCCESSFUL);
+		assertEquals(mBuildScriptPersistenceService.persistWorkspace(buildScript), PersistenceResult.PERSISTENCE_SUCCESSFUL);
 
 		
-		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
-		BuildScriptPersistenceQuery query2 = new BuildScriptPersistenceQuery();
+		List<Workspace> buildScripts = new ArrayList<Workspace>();
+		WorkspacePersistenceQuery query2 = new WorkspacePersistenceQuery();
 		query2.dataRange = DataRange.ID_MATCH;
 		query2.id = 1;
-		mBuildScriptPersistenceService.loadBuildScript(buildScripts, query2);
+		mBuildScriptPersistenceService.loadWorkspace(buildScripts, query2);
 		
 		assertEquals(buildScripts.size(), 1);
 		
@@ -70,7 +70,7 @@ public class TestJPA3 {
 		buildInfo.setStatus(Status.BUILD_SUCCESSFUL);
 		buildInfo.setBeginTimeStamp(new Date());
 		buildInfo.setEndTimeStamp(new Date());
-		buildInfo.setBuildScript(buildScripts.get(0));
+		buildInfo.setWorkspace(buildScripts.get(0));
 		
 		assertEquals(mBuildInfoPersistenceService.persistBuildInfo(buildInfo), PersistenceResult.PERSISTENCE_SUCCESSFUL);
 	
@@ -80,27 +80,27 @@ public class TestJPA3 {
 		mBuildInfoPersistenceService.loadPersistedBuildInfo(buildInfoList, query);
 		
 		assertEquals(1, buildInfoList.size());
-		BuildScript targetBuildScript = buildInfoList.get(0).getBuildScript();
+		Workspace targetBuildScript = buildInfoList.get(0).getWorkspace();
 		assertNotNull(targetBuildScript);
 		assertEquals("gafin.vn", targetBuildScript.getScriptFilePath());
 	}
 	
 	@Test
 	public void testUpdate() {
-		BuildScript buildScript = new BuildScript();
+		Workspace buildScript = new Workspace();
 		buildScript.setScriptFilePath("gafin.vn");
-		assertEquals(mBuildScriptPersistenceService.persistBuildScript(buildScript), PersistenceResult.PERSISTENCE_SUCCESSFUL);
+		assertEquals(mBuildScriptPersistenceService.persistWorkspace(buildScript), PersistenceResult.PERSISTENCE_SUCCESSFUL);
 
-		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
-		BuildScriptPersistenceQuery query2 = new BuildScriptPersistenceQuery();
+		List<Workspace> buildScripts = new ArrayList<Workspace>();
+		WorkspacePersistenceQuery query2 = new WorkspacePersistenceQuery();
 		query2.dataRange = DataRange.ALL;
-		mBuildScriptPersistenceService.loadBuildScript(buildScripts, query2);
+		mBuildScriptPersistenceService.loadWorkspace(buildScripts, query2);
 		
 		assertEquals(1, buildScripts.size());
-		BuildScript buildScriptToUpdate = buildScripts.get(0);
+		Workspace buildScriptToUpdate = buildScripts.get(0);
 		buildScriptToUpdate.setScriptFilePath("cafef.vn");
 		
-		assertEquals(PersistenceResult.UPDATE_SUCCESSFUL, mBuildScriptPersistenceService.updateBuildScript(buildScriptToUpdate));
+		assertEquals(PersistenceResult.UPDATE_SUCCESSFUL, mBuildScriptPersistenceService.updateWorkspace(buildScriptToUpdate));
 	}
 
 }

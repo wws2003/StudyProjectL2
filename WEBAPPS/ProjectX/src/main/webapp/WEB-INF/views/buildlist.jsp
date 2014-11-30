@@ -17,7 +17,6 @@
 			<!-- Service available -->
 			
 			<div class="build_list_div">
-			<!-- TODO Try to use div instead of tables -->
 				<b>Building list</b>
 				<div class="build_list_row build_list_head">
 					<div>Id</div>
@@ -37,7 +36,6 @@
 			</div>
 			
 			<div class="build_list_div">
-			<!-- TODO Try to use div instead of tables -->
 				<b>Waiting list</b>
 				<div class="build_list_row build_list_head">
 					<div>Id</div>

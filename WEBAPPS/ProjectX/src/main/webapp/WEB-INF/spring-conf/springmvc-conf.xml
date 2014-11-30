@@ -32,14 +32,20 @@
 		class="com.techburg.autospring.service.impl.BuildInfoPersistenceServiceJPAImpl">
 	</bean>
 
-	<bean name="buildScriptPersistenceService"
-		class="com.techburg.autospring.service.impl.BuildScriptPersistenceServiceJPAImpl">
+	<bean name="workspacePersistenceService"
+		class="com.techburg.autospring.service.impl.WorkspacePersistenceServiceJPAImpl">
 	</bean>
 
-	<bean name="buildScriptBo" class="com.techburg.autospring.bo.impl.BuildScriptBoImpl">
+	<bean name="workspaceBo" class="com.techburg.autospring.bo.impl.WorkspaceBoImpl">
 	</bean>
 
 	<bean name="buildInfoBo" class="com.techburg.autospring.bo.impl.BuildInfoBoImpl">
+	</bean>
+
+	<bean name="dBTaskLockFactory" class="com.techburg.autospring.factory.impl.DBTaskLockFactorySimpleImpl"></bean>
+	
+	<bean name="dBTaskExecutor"
+		class="com.techburg.autospring.db.task.impl.ThreadPoolDBTaskExecutorImpl">
 	</bean>
 
 	<bean name="buildDataService"
@@ -69,6 +75,14 @@
 			value="${com.techburg.autospring.factory.impl.UnixScriptBuildTaskFactoryImpl.defaultScriptFileName}"></property>
 	</bean>
 
+	<bean name="workspaceFactory"
+		class="com.techburg.autospring.factory.impl.WorkspaceFactoryImpl">
+		<property name="workspaceDefaultDirectoryPath"
+			value="${com.techburg.autospring.factory.impl.WorkspaceFactoryImpl.workspaceDefaultDirectoryPath}"></property>
+		<property name="workspaceDefaultBuildScriptFileName"
+			value="${com.techburg.autospring.factory.impl.WorkspaceFactoryImpl.workspaceDefaultBuildScriptFileName}"></property>
+	</bean>
+
 	<bean name="browsingService"
 		class="com.techburg.autospring.service.impl.BrowsingServiceImpl">
 	</bean>
@@ -83,8 +97,7 @@
 		class="com.techburg.autospring.service.impl.BrowsingObjectPersistentJPAImpl">
 	</bean>
 
-	<bean name="browsingObjectBo"
-		class="com.techburg.autospring.bo.impl.BrowsingObjectBoImpl">
+	<bean name="browsingObjectBo" class="com.techburg.autospring.bo.impl.BrowsingObjectBoImpl">
 	</bean>
 
 </beans>

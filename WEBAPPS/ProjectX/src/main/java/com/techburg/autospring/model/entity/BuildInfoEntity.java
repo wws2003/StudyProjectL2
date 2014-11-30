@@ -36,9 +36,9 @@ public class BuildInfoEntity {
 	@Column(name = "log_file_path")
 	private String logFilePath;
 	
-	@ManyToOne(targetEntity = BuildScriptEntity.class)
-	@JoinColumn(name = "build_script_id")
-	private BuildScriptEntity mBuildScriptEntity;
+	@ManyToOne(targetEntity = WorkspaceEntity.class)
+	@JoinColumn(name = "workspace_id")
+	private WorkspaceEntity mWorkspaceEntity;
 	
 	public BuildInfoEntity() {
 		
@@ -84,11 +84,11 @@ public class BuildInfoEntity {
 		this.logFilePath = logFilePath;
 	}
 	
-	public void setBuildScriptEntity(BuildScriptEntity buildScriptEntity) {
-		mBuildScriptEntity = buildScriptEntity;
+	public void setWorkspaceEntity(WorkspaceEntity workspaceEntity) {
+		mWorkspaceEntity = workspaceEntity;
 	}
 	
-	public BuildScriptEntity getBuildScriptEntity() {
-		return mBuildScriptEntity;
+	public WorkspaceEntity getWorkspaceEntity() {
+		return mWorkspaceEntity;
 	}
 }

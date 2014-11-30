@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.techburg.autospring.model.business.BuildScript;
+import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.task.abstr.AbstractBuildTask;
 import com.techburg.autospring.util.FileUtil;
 
@@ -17,7 +17,7 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 
 	private String mDefaultScriptFileLocation;
 	private String mDefaultScriptFileName;
-	private BuildScript mBuildScript;
+	private Workspace mWorkspace;
 
 	private static final String gCommand = "/bin/bash";
 
@@ -28,20 +28,19 @@ public class BuildTaskUnixScriptImpl extends AbstractBuildTask {
 	}
 
 	@Override
-	public void setBuildScript(BuildScript buildScript) {
-		mBuildScript = buildScript;
+	public void setWorkspace(Workspace workspace) {
+		mWorkspace = workspace;
 	}
 	
 	@Override
-	public BuildScript getBuildScript() {
-		return mBuildScript;
+	public Workspace getWorkspace() {
+		return mWorkspace;
 	}
-
 
 	@Override
 	protected int mainExecute() {
 		List<String> commandsAndArguments = new ArrayList<String>();
-		String scriptFilePath = (mBuildScript != null) ? mBuildScript.getScriptFilePath() : mDefaultScriptFileLocation + File.separator + mDefaultScriptFileName;
+		String scriptFilePath = (mWorkspace != null) ? mWorkspace.getScriptFilePath() : mDefaultScriptFileLocation + File.separator + mDefaultScriptFileName;
 		commandsAndArguments.add(gCommand);
 		commandsAndArguments.add(scriptFilePath);
 		ProcessBuilder processBuilder = new ProcessBuilder(commandsAndArguments);

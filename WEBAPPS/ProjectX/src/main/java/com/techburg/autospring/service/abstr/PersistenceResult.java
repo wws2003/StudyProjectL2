@@ -10,4 +10,5 @@ public class PersistenceResult {
 	public static final int REMOVE_FAILED = 5;
 	public static final int UPDATE_SUCCESSFUL = 6;
 	public static final int UPDATE_FAILED = 7;
+	public static final int REQUEST_QUEUED = 8;
 }

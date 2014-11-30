@@ -3,6 +3,8 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/css/common.css'></c:url>"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/round-button.css'></c:url>"></link>
 </head>
 <body>
 	<div class="container">
@@ -10,12 +12,13 @@
 		<div class="container_header">Simplest CI !</div>
 		<div class="main_content">
 			<div style="margin-bottom: 20px;">
-				A sample project to support CI for my program solving the problem of
-				Parallel Particles <a
+				A sample project to support CI. It was triggered by my program solving the problem of
+				Parallel Particles, and now being extended to be able to handle multiple projects <a
 					href="http://www.eecs.berkeley.edu/~carazvan/2010bootcamp/index.html">Here</a>
 				<br> It would support visualization of the result of the
 				program on user-browser soon...
 			</div>
+			<!--
 			<div>
 				<div style="margin-bottom: 20px;">
 					Browse source code <br> 
@@ -41,6 +44,19 @@
 					push hook <br>
 					Link: <a href="<c:url value="/testbuild/5"></c:url>"><c:url
 							value="/testbuild/5"></c:url></a>
+				</div>
+			</div>
+			  -->
+			<div class="round-buttons-div">
+				<div class="round-buttons-line">
+					<div class="round-button">
+	    				<div class="round-button-circle"><a href="<c:url value="/workspace/new"></c:url>" >New workspace</a>
+	    				</div>
+					</div>
+					<div class="round-button">
+	    				<div class="round-button-circle"><a href="<c:url value="/workspace/list"></c:url>" >List workspaces</a>
+	    				</div>
+					</div>
 				</div>
 			</div>
 		</div>

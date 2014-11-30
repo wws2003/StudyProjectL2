@@ -1,7 +1,7 @@
 package com.techburg.autospring.task.abstr;
 
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.model.business.BuildScript;
+import com.techburg.autospring.model.business.Workspace;
 
 public interface IBuildTask {
 	public static class BuildTaskResult {
@@ -10,8 +10,8 @@ public interface IBuildTask {
 		public static final int CANCELLED = 2;
 	}
 	
-	void setBuildScript(BuildScript buildScript);
-	BuildScript getBuildScript();
+	void setWorkspace(Workspace workspace);
+	Workspace getWorkspace();
 	
 	void cancel();
 	int execute();

@@ -129,6 +129,7 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 	}
 
 	private void runBuildTasks() {
+		//At the beginning, reconstruct the browsing structure to reflect any changes in folders and files in the workspace
 		try {
 			recontructBrowsingStructure();
 		} catch (Exception e1) {
@@ -136,8 +137,10 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 		}
 		while(!mStopped) {
 			try {
+				//Waiting for a new task to to release the semaphore
 				mQueueSemaphore.acquire();
 				
+				//Cancel tasks requested
 				long cancelledTaskId = mWaitingTaskQueue.getCancelledBuildTaskId();
 				//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Cancelled task Id " + cancelledTaskId);
 				if(cancelledTaskId > 0) {
@@ -145,6 +148,7 @@ public class BuildTaskProcessorSemaphoreImpl implements IBuildTaskProcessor, Dis
 					continue;
 				}
 				
+				//Retrieve next task from queue and execute
 				IBuildTask nextBuildTask = mWaitingTaskQueue.popBuildTaskFromQueue();
 				if(nextBuildTask != null) {
 					mWaitingTaskQueue.setBuildingTask(nextBuildTask);

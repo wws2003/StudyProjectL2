@@ -14,15 +14,16 @@ public abstract class AbstractBuildTask implements IBuildTask{
 	
 	private String mLogFileNamePrefix;
 	private String mLogFileNameExtension;
-	private String mLogFileLocation;
-	private static final String gUnknownLogFileName = "---";
-
+	
+	private static final String G_UNKNOWN_LOG_FILE_NAME = "---";
+	private static final String LOG_DIR_NAME = "Logs";
+	
 	protected IBuildInfoPersistenceService mPersistenceService;
 	
 	public AbstractBuildTask(String logFilePathPrefix, String logFileNameExtension, String logFileLocation) {
 		mLogFileNamePrefix = logFilePathPrefix;
 		mLogFileNameExtension  = logFileNameExtension;
-		mLogFileLocation = logFileLocation;
+		//mLogFileLocation = logFileLocation;
 	}
 
 	public void setBuildInfoPersistenceService(IBuildInfoPersistenceService persistenceService) {
@@ -61,11 +62,11 @@ public abstract class AbstractBuildTask implements IBuildTask{
 		buildInfo.setBeginTimeStamp(mBeginBuildTime);
 		buildInfo.setEndTimeStamp(mEndBuildTime);
 		buildInfo.setStatus(mStatus);
-		buildInfo.setBuildScript(getBuildScript());
+		buildInfo.setWorkspace(getWorkspace());
 		if(!toPersist) {
 			buildInfo.setId(mId);
 		}
-		String logFilePath = (mBeginBuildTime != null) ? getLogFileFullPath() : gUnknownLogFileName;
+		String logFilePath = (mBeginBuildTime != null) ? getLogFileFullPath() : G_UNKNOWN_LOG_FILE_NAME;
 		buildInfo.setLogFilePath(logFilePath);
 		
 		if(toPersist && mPersistenceService != null) {
@@ -76,7 +77,9 @@ public abstract class AbstractBuildTask implements IBuildTask{
 
 	protected String getLogFileFullPath() {
 		StringBuilder logFileNameBuilder = new StringBuilder();
-		logFileNameBuilder.append(mLogFileLocation)
+		logFileNameBuilder.append(getWorkspace().getDirectoryPath())
+						.append(File.separator)
+						.append(LOG_DIR_NAME)
 						.append(File.separator)
 						.append(mLogFileNamePrefix)
 						.append("_")

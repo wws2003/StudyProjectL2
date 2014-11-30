@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.techburg.autospring.factory.abstr.IBuildTaskFactory;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
-import com.techburg.autospring.model.BuildScriptPersistenceQuery;
+import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.model.business.BuildScript;
+import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.model.business.BuiltInfoPage;
 import com.techburg.autospring.service.abstr.IBuildDataService;
 import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
-import com.techburg.autospring.service.abstr.IBuildScriptPersistenceService;
+import com.techburg.autospring.service.abstr.IWorkspacePersistenceService;
 import com.techburg.autospring.service.abstr.PersistenceResult;
 import com.techburg.autospring.task.abstr.IBuildTask;
 import com.techburg.autospring.task.abstr.IBuildTaskProcessor;
@@ -46,7 +46,7 @@ public class BuildController {
 	private IBuildTaskProcessor mBuildTaskProcessor;
 	private IBuildTaskFactory mBuildTaskFactory;
 	private IBuildInfoPersistenceService mBuildInfoPersistenceService;
-	private IBuildScriptPersistenceService mBuildScriptPersistenceService;
+	private IWorkspacePersistenceService mWorkspacePersistenceService;
 
 	@Autowired
 	public void setBuildDataService(IBuildDataService buildDataService) {
@@ -69,8 +69,8 @@ public class BuildController {
 	}
 
 	@Autowired
-	public void setBuildScriptPersistenceService(IBuildScriptPersistenceService buildScriptPersistenceService) {
-		mBuildScriptPersistenceService = buildScriptPersistenceService;
+	public void setWorkspacePersistenceService(IWorkspacePersistenceService workspacePersistenceService) {
+		mWorkspacePersistenceService = workspacePersistenceService;
 	}
 
 	@RequestMapping(value="/buildlist", method=RequestMethod.GET) 
@@ -110,9 +110,9 @@ public class BuildController {
 
 		for(int i = 0; i < numberOfBuildTask; i++) {
 			long id = 1; // Just set an id for test
-			BuildScript buildScript = getBuildScriptbyId(id);
+			Workspace workspace = getWorkspaceById(id);
 			IBuildTask buildTask = mBuildTaskFactory.getNewBuildTask();
-			buildTask.setBuildScript(buildScript);
+			buildTask.setWorkspace(workspace);
 			mBuildTaskProcessor.addBuildTask(buildTask);
 		}
 
@@ -139,8 +139,8 @@ public class BuildController {
 
 		IBuildTask buildTask = mBuildTaskFactory.getNewBuildTask();
 		long id = 1; //TODO In the future, read id from request params or something...
-		BuildScript buildScript = getBuildScriptbyId(id);
-		buildTask.setBuildScript(buildScript);
+		Workspace workspace = getWorkspaceById(id);
+		buildTask.setWorkspace(workspace);
 		mBuildTaskProcessor.addBuildTask(buildTask);
 
 		return "hello";
@@ -237,14 +237,14 @@ public class BuildController {
 		}
 	}
 
-	private BuildScript getBuildScriptbyId(long id) {
-		List<BuildScript> buildScripts = new ArrayList<BuildScript>();
-		if(mBuildScriptPersistenceService != null) {
-			BuildScriptPersistenceQuery query = new BuildScriptPersistenceQuery();
+	private Workspace getWorkspaceById(long id) {
+		List<Workspace> workspaces = new ArrayList<Workspace>();
+		if(mWorkspacePersistenceService != null) {
+			WorkspacePersistenceQuery query = new WorkspacePersistenceQuery();
 			query.dataRange = DataRange.ID_MATCH;
 			query.id = id;
-			mBuildScriptPersistenceService.loadBuildScript(buildScripts, query);
-			return buildScripts.isEmpty() ? null : buildScripts.get(0);
+			mWorkspacePersistenceService.loadWorkspace(workspaces, query);
+			return workspaces.isEmpty() ? null : workspaces.get(0);
 		}
 		return null;
 	}
