@@ -109,7 +109,6 @@ public class WorkspaceDBTaskImpl extends AbstractDBTask {
 		default:
 			break;
 		}
-
 	}
 
 	private int persistWorkspace(Workspace workspace) {

@@ -280,6 +280,7 @@
 		408664B119CEB32E000A294E /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 408664B019CEB32E000A294E /* libwebsockets.a */; };
 		408664B719CEB32E000A294E /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408664B619CEB32E000A294E /* AppDelegate.cpp */; };
 		408664BA19CEB32E000A294E /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408664B919CEB32E000A294E /* HelloWorldScene.cpp */; };
+		408664C519CED899000A294E /* Scene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 408664C319CED899000A294E /* Scene2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -873,6 +874,8 @@
 		408664B619CEB32E000A294E /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		408664B819CEB32E000A294E /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		408664B919CEB32E000A294E /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		408664C319CED899000A294E /* Scene2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene2.cpp; sourceTree = "<group>"; };
+		408664C419CED899000A294E /* Scene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2097,6 +2100,8 @@
 				408664B619CEB32E000A294E /* AppDelegate.cpp */,
 				408664B819CEB32E000A294E /* HelloWorldScene.h */,
 				408664B919CEB32E000A294E /* HelloWorldScene.cpp */,
+				408664C319CED899000A294E /* Scene2.cpp */,
+				408664C419CED899000A294E /* Scene2.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2395,6 +2400,7 @@
 				4086633D19CEB32D000A294E /* CDAudioManager.m in Sources */,
 				408663E019CEB32D000A294E /* CCEditBoxImplMac.mm in Sources */,
 				4086621319CEB32C000A294E /* CCTransitionProgress.cpp in Sources */,
+				408664C519CED899000A294E /* Scene2.cpp in Sources */,
 				4086626819CEB32C000A294E /* CCImage.mm in Sources */,
 				4086648119CEB32E000A294E /* cpRatchetJoint.c in Sources */,
 				4086647F19CEB32E000A294E /* cpPivotJoint.c in Sources */,

@@ -139,7 +139,7 @@ public class TestDBTaskConcurrency {
 		buildInfoToPersist.setBeginTimeStamp(new Date());
 		buildInfoToPersist.setEndTimeStamp(new Date());
 		buildInfoToPersist.setStatus(-60);
-		dbTask.setPersistParams(buildInfoToPersist);
+		dbTask.setPersistParam(buildInfoToPersist);
 		dbTask.setScheduleMode(AbstractDBTask.SCHEDULE_SYNC_MODE);
 
 		mTaskExecutor.executeDBTask(dbTask);

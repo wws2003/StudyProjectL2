@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.techburg.autospring.factory.abstr.IBuildTaskFactory;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
+import com.techburg.autospring.model.BuildInfoPersistenceQuery.BuildInfoDataRange;
 import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.model.business.BuiltInfoPage;
+import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.service.abstr.IBuildDataService;
 import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
 import com.techburg.autospring.service.abstr.IWorkspacePersistenceService;
@@ -41,7 +42,7 @@ public class BuildController {
 	private static final String gWaitingListAttributeName = "waitingList";
 	private static final String gPage = "page";
 	private static final String gBuiltInfoPage = "builtInfoPage";
-
+	
 	private IBuildDataService mBuildDataService;
 	private IBuildTaskProcessor mBuildTaskProcessor;
 	private IBuildTaskFactory mBuildTaskFactory;
@@ -73,8 +74,9 @@ public class BuildController {
 		mWorkspacePersistenceService = workspacePersistenceService;
 	}
 
-	@RequestMapping(value="/buildlist", method=RequestMethod.GET) 
+	@RequestMapping(value="/buildlist/{workspaceId}/", method=RequestMethod.GET) 
 	public String listBuildInfo(
+			@PathVariable long workspaceId,
 			@RequestParam(value = gPage, required = false, defaultValue = "1") int page,
 			Model model) {
 		if(mBuildDataService == null) {
@@ -86,17 +88,15 @@ public class BuildController {
 		List<BuildInfo> buildingList = new ArrayList<BuildInfo>();
 		List<BuildInfo> waitingList = new ArrayList<BuildInfo>();
 
-		mBuildDataService.getBuildingBuildInfoList(buildingList);
-		mBuildDataService.getWaitingBuildInfoList(waitingList);
+		mBuildDataService.getBuildingBuildInfoListOfWorkspace(buildingList, workspaceId);
+		mBuildDataService.getWaitingBuildInfoListOfWorkspace(waitingList, workspaceId);
 		model.addAttribute(gBuildingListAttributeName, buildingList);
 		model.addAttribute(gWaitingListAttributeName, waitingList);
+		
+		BuiltInfoPage builtInfoPage = getBuiltInfoPage(page, workspaceId);
+		if(builtInfoPage != null)
+			model.addAttribute(gBuiltInfoPage, builtInfoPage);
 
-		//Temporally solution for SQLite, which is not safe to read while writing
-		if(buildingList.isEmpty() && waitingList.isEmpty()) {
-			BuiltInfoPage builtInfoPage = getBuiltInfoPage(page);
-			if(builtInfoPage != null)
-				model.addAttribute(gBuiltInfoPage, builtInfoPage);
-		}
 		return "buildlist";
 	}
 
@@ -145,17 +145,18 @@ public class BuildController {
 
 		return "hello";
 	}
-	
-	@RequestMapping(value="/buildlist/{lastReceivedId}", method=RequestMethod.GET)
+
+	//TODO Apply workspace parameter
+	@RequestMapping(value="/service/buildlist/{lastReceivedId}", method=RequestMethod.GET)
 	public @ResponseBody List<BuildInfo> listBuildInfoFromLastId(@PathVariable long lastReceivedId) {
 		List<BuildInfo> buildInfoList = new ArrayList<BuildInfo>();
-		
+
 		List<BuildInfo> buildingList = new ArrayList<BuildInfo>();
 		List<BuildInfo> waitingList = new ArrayList<BuildInfo>();
 
 		mBuildDataService.getBuildingBuildInfoList(buildingList);
 		mBuildDataService.getWaitingBuildInfoList(waitingList);
-		
+
 		//Temporally solution for SQLite, which is not safe to read while writing
 		if(buildingList.isEmpty() && waitingList.isEmpty()) {
 			BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
@@ -164,7 +165,7 @@ public class BuildController {
 			query.lastId = Long.MAX_VALUE;
 			mBuildInfoPersistenceService.loadPersistedBuildInfo(buildInfoList, query);
 		}
-		
+
 		return buildInfoList;
 	}
 
@@ -173,7 +174,7 @@ public class BuildController {
 		mBuildTaskProcessor.cancelTask(taskId);
 		return "cancel";
 	}
-	
+
 	@RequestMapping(value="/log/{buildId}", method=RequestMethod.GET) 
 	public void showLog(@PathVariable long buildId, HttpServletResponse response) throws IOException {
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
@@ -195,28 +196,28 @@ public class BuildController {
 		}
 	}
 
-	private BuiltInfoPage getBuiltInfoPage(int page) {
-		BuiltInfoPage builtInfoPage = new BuiltInfoPage();
-		long firstId = (page - 1) * BuiltInfoPage.BUILD_INFO_PER_PAGE + 1;
-		long lastId = firstId + BuiltInfoPage.BUILD_INFO_PER_PAGE - 1;
-		long maxId = mBuildInfoPersistenceService.getNumberOfPersistedBuildInfo();
-		lastId = (lastId > maxId) ? maxId : lastId;
+	private BuiltInfoPage getBuiltInfoPage(int page, long workspaceId) {
+		long nbInstance = mBuildInfoPersistenceService.getNumberOfPersistedBuildInfo(workspaceId);
+		int maxPage = (int) (nbInstance / BuiltInfoPage.BUILD_INFO_PER_PAGE) + (nbInstance % BuiltInfoPage.BUILD_INFO_PER_PAGE == 0 ? 0 : 1);
 
 		List<BuildInfo> builtInfoList = new ArrayList<BuildInfo>();
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
-		query.dataRange = DataRange.LIMITED_MATCH;
-		query.firstId = firstId;
-		query.lastId = lastId;
+		query.dataRange = BuildInfoDataRange.PAGE_MATCH;
+		query.page = page;
+		query.nbInstancePerPage = BuiltInfoPage.BUILD_INFO_PER_PAGE;
+		query.workspace = workspaceId;
+
 		int loadResult = mBuildInfoPersistenceService.loadPersistedBuildInfo(builtInfoList, query);
 		if(loadResult != PersistenceResult.LOAD_SUCCESSFUL) {
 			return null;
 		}
-
+		
+		BuiltInfoPage builtInfoPage = new BuiltInfoPage();
+		builtInfoPage.setWorkspaceId(workspaceId);
+		builtInfoPage.setMaxPageNumber(maxPage);
 		builtInfoPage.setPage(page);
-		builtInfoPage.setFirstId(firstId);
-		builtInfoPage.setLastId(lastId);
-		builtInfoPage.setMaxId(maxId);
 		builtInfoPage.setBuiltInfoList(builtInfoList);
+
 		return builtInfoPage;
 	}
 

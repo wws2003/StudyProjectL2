@@ -7,3 +7,10 @@
 //
 
 #include "AbstractPerceptronUnit.h"
+
+AbstractPerceptronUnit::AbstractPerceptronUnit() : m_currentOutput(0), m_currentErrorTerm(0), m_pCurrentInputs(NULL) {
+}
+
+AbstractPerceptronUnit::~AbstractPerceptronUnit() {
+    
+}

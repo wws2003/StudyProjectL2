@@ -10,5 +10,19 @@
 #define __ANN_mv__PerceptronUnitWeightPenaltyImpl__
 
 #include <iostream>
+#include "common.h"
+#include "PerceptronUnitSimpleSigmoidImpl.h"
+
+class PerceptronUnitWeightPenaltyImpl : public PerceptronUnitSimpleSigmoidImpl {
+public:
+    PerceptronUnitWeightPenaltyImpl(const double learningRate, const double weightPenaltyRate);
+    virtual ~PerceptronUnitWeightPenaltyImpl();
+    
+    //@Override
+    virtual void calculateUpdateDelta(double* deltaWeights);
+    
+private:
+    double m_weightPenaltyRate;
+};
 
 #endif /* defined(__ANN_mv__PerceptronUnitWeightPenaltyImpl__) */

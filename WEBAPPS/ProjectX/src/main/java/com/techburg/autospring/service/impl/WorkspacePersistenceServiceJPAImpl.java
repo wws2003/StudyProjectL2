@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +12,6 @@ import com.techburg.autospring.bo.abstr.IWorkspaceBo;
 import com.techburg.autospring.db.task.abstr.AbstractDBTask;
 import com.techburg.autospring.db.task.abstr.IDBTaskExecutor;
 import com.techburg.autospring.db.task.impl.WorkspaceDBTaskImpl;
-import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.model.entity.WorkspaceEntity;
@@ -55,6 +53,7 @@ public class WorkspacePersistenceServiceJPAImpl implements IWorkspacePersistence
 		return PersistenceResult.REQUEST_QUEUED;
 	}
 
+	//TODO Update using db task
 	@Override
 	public int updateWorkspace(Workspace workspace) {
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
@@ -71,44 +70,12 @@ public class WorkspacePersistenceServiceJPAImpl implements IWorkspacePersistence
 	}
 
 	@Override
-	public int loadWorkspace(List<Workspace> buildInfoList, WorkspacePersistenceQuery query) {
-		Query loadQuery = null;
-		buildInfoList.clear();
-		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
-
-		switch (query.dataRange) {
-		case DataRange.ALL:
-			loadQuery = entityManager.createNativeQuery("select * from workspace;", WorkspaceEntity.class);
-			try {
-				@SuppressWarnings("unchecked")
-				List<WorkspaceEntity> entities = loadQuery.getResultList();
-				for(WorkspaceEntity entity : entities) {
-					entityManager.detach(entity);
-					buildInfoList.add(mWorkspaceBo.getBusinessObjectFromEntity(entity));
-				}
-				return PersistenceResult.LOAD_SUCCESSFUL;
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-				return PersistenceResult.INVALID_QUERY;
-			}
-		case DataRange.ID_MATCH:
-			long id = query.id;
-			
-			/**
-			 * TODO Try to force the predicted error of database locked
-			 * by executing a time-consuming select rather than executing
-			 * select query many times
-			 */
-			WorkspaceEntity entity = entityManager.find(WorkspaceEntity.class, id);
-			if(entity != null) {
-				entityManager.detach(entity);
-				buildInfoList.add(mWorkspaceBo.getBusinessObjectFromEntity(entity));
-			}
-			return PersistenceResult.LOAD_SUCCESSFUL;
-		default:
-			return PersistenceResult.INVALID_QUERY;
-		}
+	public int loadWorkspace(List<Workspace> workspaceList, WorkspacePersistenceQuery query) {
+		WorkspaceDBTaskImpl workspaceLoadTask = new WorkspaceDBTaskImpl(mWorkspaceBo, mEntityManagerFactory);
+		workspaceLoadTask.setLoadParam(query);
+		workspaceLoadTask.setScheduleMode(AbstractDBTask.SCHEDULE_SYNC_MODE);
+		mDBTaskExecutor.executeDBTask(workspaceLoadTask);
+		return workspaceLoadTask.getLoadResult(workspaceList);
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public class TestJPA2 {
 	public void test() {
 		assertNotNull(mBuildInfoPersistenceService);
 		List<BuildInfo> builtList = new ArrayList<BuildInfo>();
-		long numberOfPersistedBuildInfo = mBuildInfoPersistenceService.getNumberOfPersistedBuildInfo();
+		long numberOfPersistedBuildInfo = mBuildInfoPersistenceService.getNumberOfPersistedBuildInfo(2);
 		assertEquals(PERSISTED_BUILD_INFO_NUMBER, numberOfPersistedBuildInfo);
 		BuildInfoPersistenceQuery query = new BuildInfoPersistenceQuery();
 		query.dataRange = DataRange.LIMITED_MATCH;

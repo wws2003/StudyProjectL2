@@ -10,10 +10,10 @@
 		<div class="container_header">Simplest CI !</div>
 		<div class="main_content">
 			<form action=<c:url value="/workspace/new"></c:url> method="POST">
-				Workspace name: <input type="text"><br> 
-				Build script name: <input type="text"><br>
+				Workspace name: <input name="workspacename" type="text"><br> 
+				Build script name: <input name="buildscriptname" type="text"><br>
 				Script content: <br>
-				<textarea rows="25" cols="80" name="content">
+				<textarea rows="25" cols="80" name="buildscriptcontent">
 				</textarea>
 				<br> <input type="submit" value="Submit"> <br>
 			</form>

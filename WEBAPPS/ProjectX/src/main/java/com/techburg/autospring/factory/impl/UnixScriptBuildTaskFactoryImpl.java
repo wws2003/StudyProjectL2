@@ -12,7 +12,7 @@ import com.techburg.autospring.task.impl.BuildTaskUnixScriptImpl;
 public class UnixScriptBuildTaskFactoryImpl implements IBuildTaskFactory, InitializingBean {
 
 	private IBuildInfoPersistenceService mPersistenceService;
-	private IWorkspacePersistenceService mWorkspacePersistenceService;
+	//private IWorkspacePersistenceService mWorkspacePersistenceService;
 	
 	private static final String gLogFilePathPrefix = "log";
 	private static final String gLogFileExtension = "log";
@@ -28,7 +28,7 @@ public class UnixScriptBuildTaskFactoryImpl implements IBuildTaskFactory, Initia
 	
 	@Autowired
 	public void setWorkspacePersistenceService(IWorkspacePersistenceService workspacePersistenceService) {
-		mWorkspacePersistenceService = workspacePersistenceService;
+		//mWorkspacePersistenceService = workspacePersistenceService;
 	}
 	
 	public void setLogFileLocation(String logFileLocation) {

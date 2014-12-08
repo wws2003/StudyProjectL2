@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.techburg.autospring.factory.abstr.IWorkspaceFactory;
 import com.techburg.autospring.model.business.Workspace;
+import com.techburg.autospring.util.FileUtil;
 
 public class WorkspaceFactoryImpl implements IWorkspaceFactory {
 
@@ -15,7 +16,8 @@ public class WorkspaceFactoryImpl implements IWorkspaceFactory {
 		Workspace workspace = new Workspace();
 		String workspaceDirPath = mWorkspaceDefaultDirectoryPath + File.separator + workspaceName;
 		workspace.setDirectoryPath(workspaceDirPath);
-		workspace.setScriptFilePath(workspaceDirPath + File.separator + buildScriptFileName == null ? mWorkspaceDefaultBuildScriptFileName : buildScriptFileName);
+		workspace.setScriptFilePath(workspaceDirPath + File.separator + (buildScriptFileName == null ? mWorkspaceDefaultBuildScriptFileName : buildScriptFileName));
+		setUpWorkspaceDir(workspace);
 		return workspace;
 	}
 
@@ -26,5 +28,9 @@ public class WorkspaceFactoryImpl implements IWorkspaceFactory {
 	public void setWorkspaceDefaultBuildScriptFileName(String workspaceDefaultBuildScriptFileName) {
 		this.mWorkspaceDefaultBuildScriptFileName = workspaceDefaultBuildScriptFileName;
 	}
-
+	
+	private void setUpWorkspaceDir(Workspace workspace) {
+		FileUtil fileUtil = new FileUtil();
+		fileUtil.createDirectoryIfNotExist(workspace.getDirectoryPath());
+	}
 }

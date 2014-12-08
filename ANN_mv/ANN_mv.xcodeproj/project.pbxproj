@@ -7,8 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4016B9BB19F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4016B9B919F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.cpp */; };
+		4016B9BE19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4016B9BC19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.cpp */; };
+		4016B9C119F5704E00EBAA89 /* PerceptronUnitDummyImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4016B9BF19F5704E00EBAA89 /* PerceptronUnitDummyImpl.cpp */; };
+		4016B9C419F5724E00EBAA89 /* PerceptronUnitFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4016B9C219F5724E00EBAA89 /* PerceptronUnitFactory.cpp */; };
 		401958A919F2C6E300280097 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 401958A819F2C6E300280097 /* main.cpp */; };
 		401958AB19F2C6E300280097 /* ANN_mv.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 401958AA19F2C6E300280097 /* ANN_mv.1 */; };
+		401958B819F2DD7E00280097 /* MultiLayerNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 401958B619F2DD7E00280097 /* MultiLayerNetwork.cpp */; };
+		40581FD419F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40581FD219F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.cpp */; };
+		40581FD719F50826002608F5 /* AbstractPerceptronUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40581FD519F50826002608F5 /* AbstractPerceptronUnit.cpp */; };
+		4064F8DF19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4064F8DD19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.cpp */; };
+		4064F8E219FF79B3004EC1E2 /* NetworkTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4064F8E019FF79B3004EC1E2 /* NetworkTester.cpp */; };
+		40810D5C1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40810D5A1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.cpp */; };
+		4083936B19FE41A300642A9F /* PerceptronTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4083936919FE41A300642A9F /* PerceptronTester.cpp */; };
+		4084C7F01A124CD7001CE268 /* PerceptronUnitLinearImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4084C7EE1A124CD7001CE268 /* PerceptronUnitLinearImpl.cpp */; };
+		40D6C7301A125B2E00C96A33 /* NetworkAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40D6C72E1A125B2E00C96A33 /* NetworkAssembler.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +38,38 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4016B9B919F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitMomemtumAddedImpl.cpp; sourceTree = "<group>"; };
+		4016B9BA19F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitMomemtumAddedImpl.h; sourceTree = "<group>"; };
+		4016B9BC19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitWeightPenaltyImpl.cpp; sourceTree = "<group>"; };
+		4016B9BD19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitWeightPenaltyImpl.h; sourceTree = "<group>"; };
+		4016B9BF19F5704E00EBAA89 /* PerceptronUnitDummyImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitDummyImpl.cpp; sourceTree = "<group>"; };
+		4016B9C019F5704E00EBAA89 /* PerceptronUnitDummyImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitDummyImpl.h; sourceTree = "<group>"; };
+		4016B9C219F5724E00EBAA89 /* PerceptronUnitFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitFactory.cpp; sourceTree = "<group>"; };
+		4016B9C319F5724E00EBAA89 /* PerceptronUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitFactory.h; sourceTree = "<group>"; };
+		4016B9C719F644CF00EBAA89 /* Util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
 		401958A519F2C6E300280097 /* ANN_mv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ANN_mv; sourceTree = BUILT_PRODUCTS_DIR; };
 		401958A819F2C6E300280097 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		401958AA19F2C6E300280097 /* ANN_mv.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ANN_mv.1; sourceTree = "<group>"; };
+		401958B219F2DB2700280097 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		401958B619F2DD7E00280097 /* MultiLayerNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultiLayerNetwork.cpp; sourceTree = "<group>"; };
+		401958B719F2DD7E00280097 /* MultiLayerNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLayerNetwork.h; sourceTree = "<group>"; };
+		40581FD219F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitSimpleSigmoidImpl.cpp; sourceTree = "<group>"; };
+		40581FD319F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitSimpleSigmoidImpl.h; sourceTree = "<group>"; };
+		40581FD519F50826002608F5 /* AbstractPerceptronUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractPerceptronUnit.cpp; sourceTree = "<group>"; };
+		40581FD619F50826002608F5 /* AbstractPerceptronUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPerceptronUnit.h; sourceTree = "<group>"; wrapsLines = 1; };
+		4064F8DD19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitDummyForTestImpl.cpp; sourceTree = "<group>"; };
+		4064F8DE19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitDummyForTestImpl.h; sourceTree = "<group>"; };
+		4064F8E019FF79B3004EC1E2 /* NetworkTester.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkTester.cpp; sourceTree = "<group>"; };
+		4064F8E119FF79B3004EC1E2 /* NetworkTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTester.h; sourceTree = "<group>"; };
+		40810D5A1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitLinearWeightPenaltyImpl.cpp; sourceTree = "<group>"; };
+		40810D5B1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitLinearWeightPenaltyImpl.h; sourceTree = "<group>"; };
+		40810D5F1A1333A100DCA252 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		4083936919FE41A300642A9F /* PerceptronTester.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronTester.cpp; sourceTree = "<group>"; };
+		4083936A19FE41A300642A9F /* PerceptronTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronTester.h; sourceTree = "<group>"; };
+		4084C7EE1A124CD7001CE268 /* PerceptronUnitLinearImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerceptronUnitLinearImpl.cpp; sourceTree = "<group>"; };
+		4084C7EF1A124CD7001CE268 /* PerceptronUnitLinearImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerceptronUnitLinearImpl.h; sourceTree = "<group>"; };
+		40D6C72E1A125B2E00C96A33 /* NetworkAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkAssembler.cpp; sourceTree = "<group>"; };
+		40D6C72F1A125B2E00C96A33 /* NetworkAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAssembler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4016B9C519F644B600EBAA89 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				4016B9C719F644CF00EBAA89 /* Util.hpp */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		4019589C19F2C6E300280097 = {
 			isa = PBXGroup;
 			children = (
@@ -60,10 +110,79 @@
 		401958A719F2C6E300280097 /* ANN_mv */ = {
 			isa = PBXGroup;
 			children = (
+				401958B219F2DB2700280097 /* common.h */,
 				401958A819F2C6E300280097 /* main.cpp */,
+				40810D5F1A1333A100DCA252 /* main.h */,
+				4083936819FE419000642A9F /* test */,
+				40581FCF19F39ECD002608F5 /* abstract */,
+				40810D5E1A132CF700DCA252 /* business */,
+				40581FD119F3B048002608F5 /* factory */,
+				40581FD019F3B03B002608F5 /* impl */,
+				4016B9C519F644B600EBAA89 /* util */,
 				401958AA19F2C6E300280097 /* ANN_mv.1 */,
 			);
 			path = ANN_mv;
+			sourceTree = "<group>";
+		};
+		40581FCF19F39ECD002608F5 /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				40581FD519F50826002608F5 /* AbstractPerceptronUnit.cpp */,
+				40581FD619F50826002608F5 /* AbstractPerceptronUnit.h */,
+			);
+			name = abstract;
+			sourceTree = "<group>";
+		};
+		40581FD019F3B03B002608F5 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				40581FD219F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.cpp */,
+				40581FD319F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.h */,
+				4016B9B919F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.cpp */,
+				4016B9BA19F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.h */,
+				4016B9BC19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.cpp */,
+				4016B9BD19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.h */,
+				4016B9BF19F5704E00EBAA89 /* PerceptronUnitDummyImpl.cpp */,
+				4016B9C019F5704E00EBAA89 /* PerceptronUnitDummyImpl.h */,
+				4084C7EE1A124CD7001CE268 /* PerceptronUnitLinearImpl.cpp */,
+				4084C7EF1A124CD7001CE268 /* PerceptronUnitLinearImpl.h */,
+				40810D5A1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.cpp */,
+				40810D5B1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.h */,
+			);
+			name = impl;
+			sourceTree = "<group>";
+		};
+		40581FD119F3B048002608F5 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				4016B9C219F5724E00EBAA89 /* PerceptronUnitFactory.cpp */,
+				4016B9C319F5724E00EBAA89 /* PerceptronUnitFactory.h */,
+				40D6C72E1A125B2E00C96A33 /* NetworkAssembler.cpp */,
+				40D6C72F1A125B2E00C96A33 /* NetworkAssembler.h */,
+			);
+			name = factory;
+			sourceTree = "<group>";
+		};
+		40810D5E1A132CF700DCA252 /* business */ = {
+			isa = PBXGroup;
+			children = (
+				401958B619F2DD7E00280097 /* MultiLayerNetwork.cpp */,
+				401958B719F2DD7E00280097 /* MultiLayerNetwork.h */,
+			);
+			name = business;
+			sourceTree = "<group>";
+		};
+		4083936819FE419000642A9F /* test */ = {
+			isa = PBXGroup;
+			children = (
+				4083936919FE41A300642A9F /* PerceptronTester.cpp */,
+				4083936A19FE41A300642A9F /* PerceptronTester.h */,
+				4064F8DD19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.cpp */,
+				4064F8DE19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.h */,
+				4064F8E019FF79B3004EC1E2 /* NetworkTester.cpp */,
+				4064F8E119FF79B3004EC1E2 /* NetworkTester.h */,
+			);
+			name = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +236,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40810D5C1A130B0C00DCA252 /* PerceptronUnitLinearWeightPenaltyImpl.cpp in Sources */,
 				401958A919F2C6E300280097 /* main.cpp in Sources */,
+				401958B819F2DD7E00280097 /* MultiLayerNetwork.cpp in Sources */,
+				4016B9C119F5704E00EBAA89 /* PerceptronUnitDummyImpl.cpp in Sources */,
+				4064F8E219FF79B3004EC1E2 /* NetworkTester.cpp in Sources */,
+				40581FD719F50826002608F5 /* AbstractPerceptronUnit.cpp in Sources */,
+				4016B9C419F5724E00EBAA89 /* PerceptronUnitFactory.cpp in Sources */,
+				4016B9BB19F521B000EBAA89 /* PerceptronUnitMomemtumAddedImpl.cpp in Sources */,
+				4064F8DF19FE531F004EC1E2 /* PerceptronUnitDummyForTestImpl.cpp in Sources */,
+				4084C7F01A124CD7001CE268 /* PerceptronUnitLinearImpl.cpp in Sources */,
+				40D6C7301A125B2E00C96A33 /* NetworkAssembler.cpp in Sources */,
+				40581FD419F413B4002608F5 /* PerceptronUnitSimpleSigmoidImpl.cpp in Sources */,
+				4016B9BE19F55B5B00EBAA89 /* PerceptronUnitWeightPenaltyImpl.cpp in Sources */,
+				4083936B19FE41A300642A9F /* PerceptronTester.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +357,7 @@
 				401958B019F2C6E300280097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

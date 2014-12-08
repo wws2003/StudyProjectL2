@@ -2,6 +2,7 @@ package com.techburg.autospring.db.task.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,8 +12,8 @@ import javax.persistence.Query;
 
 import com.techburg.autospring.bo.abstr.IBuildInfoBo;
 import com.techburg.autospring.db.task.abstr.AbstractDBTask;
-import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
 import com.techburg.autospring.model.BuildInfoPersistenceQuery;
+import com.techburg.autospring.model.BuildInfoPersistenceQuery.BuildInfoDataRange;
 import com.techburg.autospring.model.business.BuildInfo;
 import com.techburg.autospring.model.entity.BuildInfoEntity;
 import com.techburg.autospring.service.abstr.PersistenceResult;
@@ -32,61 +33,63 @@ public class BuildInfoDBTaskImpl extends AbstractDBTask {
 	private BuildInfo mParamBuildInfoToPersist = null;
 	private BuildInfoPersistenceQuery mParamBuildInfoLoadQuery = null;
 	private long mParamIdForRemove = -1;
-	
+	private long mParamWorkspaceId = -1;
+
 	//Results calculated by execute()
 	private int mResultForPersist = -1;
 	private int mResultForLoad = -1;
 	private int mResultForRemove = -1;
 	private List<BuildInfo> mResultBuildInfoListLoad = new ArrayList<BuildInfo>();
 	private long mResultNumber = -1;
-	
+
 	public BuildInfoDBTaskImpl(IBuildInfoBo buildInfoBo, EntityManagerFactory etmFactory) {
 		mBuildInfoBo = buildInfoBo;
 		mEntityManagerFactory = etmFactory;
 	}
 
-	public void setPersistParams(BuildInfo buildInfoToPersist) {
+	public void setPersistParam(BuildInfo buildInfoToPersist) {
 		mParamBuildInfoToPersist = buildInfoToPersist;
 		mTaskType = TASK_TYPE_PERSIST;
 		setDBReadWriteMode(DB_WRITE_MODE);
 	}
-	
+
 	public int getPersistResult() {
 		return mResultForPersist;
 	}
-	
-	public void setGetBuildInfoNumberParam() {
+
+	public void setGetNumberParam(long workspaceId) {
+		mParamWorkspaceId = workspaceId;
 		mTaskType = TASK_TYPE_GET_NUMBER;
 		setDBReadWriteMode(DB_READ_MODE);
 	}
-	
+
 	public long getBuildInfoNumberResult() {
 		return mResultNumber;
 	}
-	
+
 	public void setLoadParam(BuildInfoPersistenceQuery paramBuildInfoLoadQuery) {
 		mParamBuildInfoLoadQuery = paramBuildInfoLoadQuery;
 		mTaskType = TASK_TYPE_LOAD;
 		setDBReadWriteMode(DB_READ_MODE);
 	}
-	
+
 	public int getLoadResult(List<BuildInfo> resultBuildInfoListLoad) {
 		resultBuildInfoListLoad.clear();
 		resultBuildInfoListLoad.addAll(mResultBuildInfoListLoad);
 		mResultBuildInfoListLoad.clear();
 		return mResultForLoad;
 	}
-	
+
 	public void setRemoveParam(long removeId) {
 		mParamIdForRemove = removeId;
 		mTaskType = TASK_TYPE_REMOVE_BY_ID;
 		setDBReadWriteMode(DB_WRITE_MODE);
 	}
-	
+
 	public int getRemoveResult() {
 		return mResultForRemove;
 	}
-	
+
 	@Override
 	public void execute() {
 		switch (mTaskType) {
@@ -94,11 +97,11 @@ public class BuildInfoDBTaskImpl extends AbstractDBTask {
 			mResultForPersist = persistBuildInfo(mParamBuildInfoToPersist);
 			break;
 		case TASK_TYPE_GET_NUMBER:
-			mResultNumber = getNumberOfPersistedBuildInfo();
+			mResultNumber = getNumberOfPersistedBuildInfoOfWorkspace(mParamWorkspaceId);
 			break;
 		case TASK_TYPE_LOAD:
 			mResultBuildInfoListLoad.clear();
-			loadPersistedBuildInfo(mResultBuildInfoListLoad, mParamBuildInfoLoadQuery);
+			mResultForLoad = loadPersistedBuildInfo(mResultBuildInfoListLoad, mParamBuildInfoLoadQuery);
 			break;
 		case TASK_TYPE_REMOVE_BY_ID:
 			mResultForRemove = removeBuildInfoByID(mParamIdForRemove);
@@ -133,36 +136,18 @@ public class BuildInfoDBTaskImpl extends AbstractDBTask {
 		Query loadQuery = null;
 		buildInfoList.clear();
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
+		StringBuilder queryStringBuilder = new StringBuilder();
 
 		switch (query.dataRange) {
-		case DataRange.ALL:
-			loadQuery = entityManager.createNativeQuery("select * from build_info;", BuildInfoEntity.class);
-			try {
-				@SuppressWarnings("unchecked")
-				List<BuildInfoEntity> entities = loadQuery.getResultList();
-				for(BuildInfoEntity entity : entities) {
-					entityManager.detach(entity);
-					buildInfoList.add(mBuildInfoBo.getBusinessObjectFromEntity(entity));
-				}
-				return PersistenceResult.LOAD_SUCCESSFUL;
+		case BuildInfoDataRange.ALL:
+			queryStringBuilder.setLength(0);
+			queryStringBuilder.append("select * from build_info");
+
+			if(query.workspace > 0) {
+				queryStringBuilder.append(" where workspace_id = ")
+				.append(query.workspace);
 			}
-			catch (Exception e) {
-				e.printStackTrace();
-				return PersistenceResult.INVALID_QUERY;
-			}
-		case DataRange.LIMITED_MATCH:
-			long firstId = query.firstId;
-			long lastId = query.lastId;
-			StringBuilder queryStringBuilder = new StringBuilder();
-			queryStringBuilder.append("select * from build_info")
-			.append(" ")
-			.append("where id between")
-			.append(" ")
-			.append(firstId)
-			.append(" ")
-			.append("and")
-			.append(" ")
-			.append(lastId);
+
 			loadQuery = entityManager.createNativeQuery(queryStringBuilder.toString(), BuildInfoEntity.class);
 			try {
 				@SuppressWarnings("unchecked")
@@ -177,7 +162,72 @@ public class BuildInfoDBTaskImpl extends AbstractDBTask {
 				e.printStackTrace();
 				return PersistenceResult.INVALID_QUERY;
 			}
-		case DataRange.ID_MATCH:
+		case BuildInfoDataRange.PAGE_MATCH:
+			int page = query.page;
+			int nbPage = query.nbInstancePerPage;
+			
+			queryStringBuilder.append("select * from ")
+			.append("(")
+			.append("select * from build_info ")
+			.append("where workspace_id = ")
+			.append(query.workspace)
+			.append(" order by id desc ")
+			.append("limit ")
+			.append(page * nbPage)
+			.append(") ")
+			.append("order by id asc ")
+			.append("limit ")
+			.append(nbPage);
+
+			loadQuery = entityManager.createNativeQuery(queryStringBuilder.toString(), BuildInfoEntity.class);
+			try {
+				@SuppressWarnings("unchecked")
+				List<BuildInfoEntity> entities = loadQuery.getResultList();
+				for(ListIterator<BuildInfoEntity> bIter = entities.listIterator(entities.size()); bIter.hasPrevious(); ) {
+					BuildInfoEntity entity = bIter.previous();
+					entityManager.detach(entity);
+					buildInfoList.add(mBuildInfoBo.getBusinessObjectFromEntity(entity));
+				}
+				return PersistenceResult.LOAD_SUCCESSFUL;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return PersistenceResult.INVALID_QUERY;
+			}
+		case BuildInfoDataRange.LIMITED_MATCH:
+			long firstId = query.firstId;
+			long lastId = query.lastId;
+
+			queryStringBuilder.append("select * from build_info")
+			.append(" ")
+			.append("where id between")
+			.append(" ")
+			.append(firstId)
+			.append(" ")
+			.append("and")
+			.append(" ")
+			.append(lastId);
+			if(query.workspace > 0) {
+				queryStringBuilder.append(" and workspace_id = ")
+				.append(query.workspace);
+			}
+
+			loadQuery = entityManager.createNativeQuery(queryStringBuilder.toString(), BuildInfoEntity.class);
+			try {
+				@SuppressWarnings("unchecked")
+				List<BuildInfoEntity> entities = loadQuery.getResultList();
+				for(BuildInfoEntity entity : entities) {
+					entityManager.detach(entity);
+					buildInfoList.add(mBuildInfoBo.getBusinessObjectFromEntity(entity));
+				}
+				return PersistenceResult.LOAD_SUCCESSFUL;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return PersistenceResult.INVALID_QUERY;
+			}
+			
+		case BuildInfoDataRange.ID_MATCH:
 			long id = query.id;
 			BuildInfoEntity entity = entityManager.find(BuildInfoEntity.class, id);
 			if(entity != null) {
@@ -205,9 +255,10 @@ public class BuildInfoDBTaskImpl extends AbstractDBTask {
 		return ret;
 	}
 
-	private long getNumberOfPersistedBuildInfo() {
+	private long getNumberOfPersistedBuildInfoOfWorkspace(long workspaceId) {
 		EntityManager entityManager = mEntityManagerFactory.createEntityManager();
-		Query loadQuery = entityManager.createNamedQuery("findNumberOfRecords");
+		Query loadQuery = entityManager.createNamedQuery("findNumberOfRecordsOfWorkspace");
+		loadQuery.setParameter("workspace", workspaceId);
 		long numberOfPersistedBuildInfo = (Long) loadQuery.getSingleResult();
 		entityManager.close();
 		return numberOfPersistedBuildInfo;

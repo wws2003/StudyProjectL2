@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "Scene2.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -39,7 +40,7 @@ bool HelloWorld::init()
                                         "CloseSelected.png",
                                         this,
                                         menu_selector(HelloWorld::menuCloseCallback) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width / 2, 30) );
 
     // create menu, it's an autorelease object
     CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
@@ -51,7 +52,7 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
+    CCLabelTTF* pLabel = CCLabelTTF::create("What do you mean Poirot?", "Thonburi", 34);
 
     // ask director the window size
     CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -63,22 +64,34 @@ bool HelloWorld::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+    CCSprite* pSprite1 = CCSprite::create("HelloWorld.png");
 
+    CCSize spriteSize = pSprite1->getContentSize();
+    
     // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width/2, size.height/2) );
+    pSprite1->setPosition( ccp(spriteSize.width / 2, size.height/2) );
 
     // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+    this->addChild(pSprite1, 0);
+    
+    // add the second "HelloWorld" splash screen"
+    CCSprite* pSprite2 = CCSprite::create("HelloWorld.png");
+    
+    // position the sprite on the center of the screen
+    pSprite2->setPosition( ccp(spriteSize.width + spriteSize.width / 2, size.height/2) );
+    
+    // add the sprite as a child to this layer
+    this->addChild(pSprite2, 1);
     
     return true;
 }
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
-    CCDirector::sharedDirector()->end();
+    CCDirector* pDirector = CCDirector::sharedDirector();
+    pDirector->pushScene(Scene2::scene());
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
+    //exit(0);
 #endif
 }

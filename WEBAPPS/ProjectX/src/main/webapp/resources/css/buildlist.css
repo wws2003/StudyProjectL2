@@ -41,12 +41,12 @@ td,th {
 
 .build_list_row div:nth-child(1) {
 	text-align:center;
-	width: 8%;
+	width: 7%;
 }
 
 .build_list_row div:nth-child(2) {
 	text-align:center;
-	width: 12%;
+	width: 11%;
 }
 
 .build_list_row div:nth-child(3) {
@@ -56,16 +56,19 @@ td,th {
 
 .build_list_row div:nth-child(4) {
 	text-align:center;
+	padding-right: 1%;
 	width: 10%;
 }
 
 .build_list_row div:nth-child(5) {
 	text-align:center;
-	width: 48%;
+	word-wrap: break-word;
+	width: 49%;
 }
 
 .build_list_row div:nth-child(6) {
 	text-align:center;
+	padding-left: 1%;
 	width: 8%;
 }
 

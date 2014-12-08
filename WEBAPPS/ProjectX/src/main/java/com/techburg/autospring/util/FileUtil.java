@@ -2,6 +2,7 @@ package com.techburg.autospring.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -53,5 +54,12 @@ public class FileUtil {
 	public void writeStringToOutputStream(String output, OutputStream outputStream) throws Exception {
 		byte[] outputByteArray = output.getBytes(Charset.forName("UTF-8"));
 		outputStream.write(outputByteArray);
+	}
+	
+	public void createDirectoryIfNotExist(String directoryPath) {
+		File file = new File(directoryPath);
+		if(!file.exists()) {
+			file.mkdir();
+		}
 	}
 }

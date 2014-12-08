@@ -23,7 +23,7 @@
 }
 
 .round-button:hover {
-    width: 30%;
+    
 }
 
 .round-button-circle:hover {
@@ -43,7 +43,7 @@
 	    				</div>
 					</div>
 					<div class="round-button">
-	    				<div class="round-button-circle"><a href="<c:url value="/workspace/list"></c:url>" >Build list</a>
+	    				<div class="round-button-circle"><a href="<c:url value="/buildlist/${workspaceId}/"></c:url>" >Build list</a>
 	    				</div>
 					</div>
 					<div class="round-button">

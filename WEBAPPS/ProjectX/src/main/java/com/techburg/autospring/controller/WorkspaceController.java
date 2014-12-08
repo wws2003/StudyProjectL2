@@ -12,38 +12,63 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techburg.autospring.factory.abstr.IWorkspaceFactory;
-import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
+import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.service.abstr.IWorkspacePersistenceService;
+import com.techburg.autospring.service.abstr.PersistenceResult;
 import com.techburg.autospring.util.FileUtil;
 
 @Controller
 public class WorkspaceController {
 	private static final String gWorkspaceListAttributeName = "workspaces";
+	private static final String gWorkspaceIdAttributeName = "workspaceId";
+	
 	private static final String gScriptFileAvailable = "scriptFileAvailable";
 	private static final String gScriptFileContent = "scriptFileContent";
 	private static final String gScriptFileContentUpdated = "scriptFileContentUpdated";
-
+	private static final String gRedirectPageAttributeName = "redirectPage";
+	
 	private IWorkspacePersistenceService mWorkspacePersistenceService;
 	private IWorkspaceFactory mWorkspaceFactory;
-	
+
 	@Autowired
 	public void setWorkspacePersistenceService(IWorkspacePersistenceService workspacePersistenceService) {
 		mWorkspacePersistenceService = workspacePersistenceService;
 	}
-	
+
 	@Autowired
 	public void setWorkspaceFactory(IWorkspaceFactory workspaceFactory) {
 		mWorkspaceFactory = workspaceFactory;
 	}
 
-	@RequestMapping(value="/workspace/new", method=RequestMethod.POST)
-	public String newWorkspace(Model model) {
-		
-		return "inform";
+	@RequestMapping(value="/workspace/new", method=RequestMethod.GET)
+	public String toNewWorkspacePage() {
+		return "workspace";
 	}
 	
+	@RequestMapping(value="/workspace/new", method=RequestMethod.POST)
+	public String newWorkspace(Model model,
+			@RequestParam(value = "workspacename", required = true) String workspaceName,
+			@RequestParam(value = "buildscriptname", required = true) String buildScriptName,
+			@RequestParam(value = "buildscriptcontent", required = true) String buildScriptContent) {
+		
+		Workspace newWorkspace = null;
+		newWorkspace = mWorkspaceFactory.createWorkspace(workspaceName, buildScriptName);
+		try {
+			saveWorkspaceBuildScriptContent(newWorkspace, buildScriptContent);
+			if(mWorkspacePersistenceService.persistWorkspace(newWorkspace) == PersistenceResult.REQUEST_QUEUED) {	
+				model.addAttribute(gRedirectPageAttributeName, "/workspace/list");
+				return "inform";
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "error";
+	}
+
 	@RequestMapping(value="/workspace/list", method=RequestMethod.GET)
 	public String listWorkspaces(Model model) {
 		List<Workspace> workspaces = new ArrayList<Workspace>();
@@ -53,23 +78,24 @@ public class WorkspaceController {
 		model.addAttribute(gWorkspaceListAttributeName, workspaces);
 		return "workspacelist";
 	}
-	
+
 	@RequestMapping(value="/workspace/detail/{workspaceId}", method=RequestMethod.GET)
 	public String detailWorkspace(Model model, @PathVariable long workspaceId) {
+		model.addAttribute(gWorkspaceIdAttributeName, workspaceId);
 		return "workspacedetail";
 	}
-	
+
 	@RequestMapping(value="/script/edit", method=RequestMethod.GET)
 	public String editScriptContent(
 			@RequestParam(value = gScriptFileContentUpdated, required = false) boolean scriptFileContentUpdated,
 			Model model) {
-		
+
 		//Detect if redirected from successful edit submission
 		model.addAttribute(gScriptFileContentUpdated, scriptFileContentUpdated);
-		
+
 		long id = 1; //TODO In the future, id will be read from proper parameters
 		Workspace workspace = getWorkspacebyId(id);
-		
+
 		if(workspace != null) {
 			String scriptFilePath = workspace.getScriptFilePath();
 			FileUtil fileUtil = new FileUtil();
@@ -96,16 +122,10 @@ public class WorkspaceController {
 		//TODO Avoid concurrency when read/write file
 		long id = 1; //TODO In the future, id will be read from proper parameters
 		Workspace workspace = getWorkspacebyId(id);
-		
+
 		if(workspace != null) {
-			String scriptFilePath = workspace.getScriptFilePath();
-			
-			//Avoid script run error due to \r character
-			content = content.replace("\r\n", "\n");
-			
-			FileUtil fileUtil = new FileUtil();
 			try {
-				fileUtil.storeContentToFile(content, scriptFilePath);
+				saveWorkspaceBuildScriptContent(workspace, content);
 			}
 			catch (Exception e) {
 				return "home";
@@ -125,5 +145,15 @@ public class WorkspaceController {
 			return workspaces.isEmpty() ? null : workspaces.get(0);
 		}
 		return null;
+	}
+
+	private void saveWorkspaceBuildScriptContent(Workspace workspace, String buildScriptContent) throws Exception {
+		String scriptFilePath = workspace.getScriptFilePath();
+
+		//Avoid script run error due to \r character
+		String content = buildScriptContent.replace("\r\n", "\n");
+
+		FileUtil fileUtil = new FileUtil();
+		fileUtil.storeContentToFile(content, scriptFilePath);
 	}
 }

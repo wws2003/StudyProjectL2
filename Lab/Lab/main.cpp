@@ -11,6 +11,8 @@
 #include <cassert>
 #include "TestThread.h"
 
+const int AA = 1;
+
 void functionWithNonConstantPtrArgument(int* x) ;
 void functionWithConstantPtrArgument(const int* x);
 void functionWithNonConstantRefArgument(int& x);
@@ -18,6 +20,7 @@ void functionWithConstantRefArgument(const int& x);
 void functionWithNonConstantArgument(int x);
 void functionWithConstantArgument(const int x);
 void functionWithConstantPtrVector(const std::vector<int*> vect);
+void functionWithConstanceValueVector(std::vector<const int> vect);
 
 void functionWithNonConstantPtrArgument(int* x) {
     functionWithConstantPtrArgument(x);
@@ -54,6 +57,11 @@ void functionWithConstantPtrVector(const std::vector<int*> vect) {
     //vect.push_back(NULL); Compile error
 }
 
+void functionWithConstanceValueVector(std::vector<const int> vect) {
+    //Cause compile error
+    //vect.push_back(AA);
+}
+
 int main(int argc, const char * argv[])
 {
 
@@ -63,7 +71,7 @@ int main(int argc, const char * argv[])
     std::vector<int> vect;
     vect.push_back(1);
     vect.reserve(vect.capacity() * 2);
-    assert(vect[0] == 2);
+    assert(vect[0] == 1);
     return 0;
 }
 

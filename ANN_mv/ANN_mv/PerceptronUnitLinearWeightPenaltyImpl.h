@@ -10,5 +10,20 @@
 #define __ANN_mv__PerceptronUnitLinearWeightPenaltyImpl__
 
 #include <iostream>
+#include "common.h"
+#include "PerceptronUnitLinearImpl.h"
+
+class PerceptronUnitLinearWeightPenaltyImpl : public PerceptronUnitLinearImpl {
+public:
+    PerceptronUnitLinearWeightPenaltyImpl(const double learningRate, const double weightPenaltyRate);
+    virtual ~PerceptronUnitLinearWeightPenaltyImpl();
+    
+    //@Override
+    virtual void calculateUpdateDelta(double* deltaWeights) const;
+    
+private:
+    const double m_weightPenaltyRate;
+};
+
 
 #endif /* defined(__ANN_mv__PerceptronUnitLinearWeightPenaltyImpl__) */

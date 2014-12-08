@@ -1,6 +1,7 @@
 package com.techburg.autospring;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,12 +13,12 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.BasePersistenceQuery.DataRange;
+import com.techburg.autospring.model.BuildInfoPersistenceQuery;
 import com.techburg.autospring.model.WorkspacePersistenceQuery;
 import com.techburg.autospring.model.business.BuildInfo;
-import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.model.business.BuildInfo.Status;
+import com.techburg.autospring.model.business.Workspace;
 import com.techburg.autospring.service.abstr.IBuildInfoPersistenceService;
 import com.techburg.autospring.service.abstr.IWorkspacePersistenceService;
 import com.techburg.autospring.service.abstr.PersistenceResult;

@@ -77,26 +77,32 @@
 				</div>
 				
 				<div class="page_line">
-					<a href='<c:url value="/buildlist/?page=1"></c:url>'>First </a>
+					<a href='<c:url value="/buildlist/${builtInfoPage.workspaceId}/?page=1"></c:url>'>First </a>
 					&nbsp;
-					<c:if test="${builtInfoPage.page > 1}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page - 1}"></c:url>'>Prev </a></c:if>
+					<c:if test="${builtInfoPage.page > 1}"><a href='<c:url value="/buildlist/${builtInfoPage.workspaceId}/?page=${builtInfoPage.page - 1}"></c:url>'>Prev </a></c:if>
 					&nbsp;
-					<c:out value="(${builtInfoPage.firstId} - ${builtInfoPage.lastId}) / ${builtInfoPage.maxId}"></c:out>
+					<c:out value="${builtInfoPage.page} / ${builtInfoPage.maxPageNumber}"></c:out>
 					&nbsp;
-					<c:if test="${builtInfoPage.lastId < builtInfoPage.maxId}"><a href='<c:url value="/buildlist/?page=${builtInfoPage.page + 1}"></c:url>'>Next </a></c:if>
+					<c:if test="${builtInfoPage.page < builtInfoPage.maxPageNumber}"><a href='<c:url value="/buildlist/${builtInfoPage.workspaceId}/?page=${builtInfoPage.page + 1}"></c:url>'>Next </a></c:if>
 					&nbsp;
-					<a href='<c:url value="/buildlist/?page=${builtInfoPage.lastPage}"></c:url>'> Last</a>
+					<a href='<c:url value="/buildlist/${builtInfoPage.workspaceId}/?page=${builtInfoPage.maxPageNumber}"></c:url>'> Last</a>
 				</div>
 				
 			</c:if>
-			<div>
-				<a href='<c:url value="/home"></c:url>'>To home page</a>
-			</div>
 		</c:when>
 		<c:otherwise>
 			Service not available
 		</c:otherwise>
 	</c:choose>
+	
+	<div class="container-footer" style="position: static;">
+	<c:if test="${not empty builtInfoPage}">
+		<a href='<c:url value="/workspace/detail/${builtInfoPage.workspaceId}"></c:url>'>To workspace page</a>
+		&nbsp;&nbsp;&nbsp;
+	</c:if>
+	<a href='<c:url value="/home"></c:url>'>To home page</a>
+	
+</div>
 </div>
 </div>
 </body>

@@ -10,5 +10,19 @@
 #define __ANN_mv__PerceptronUnitMomemtumAddedImpl__
 
 #include <iostream>
+#include "PerceptronUnitSimpleSigmoidImpl.h"
+
+class PerceptronUnitMomemtumAddedImpl : public PerceptronUnitSimpleSigmoidImpl {
+public:
+    PerceptronUnitMomemtumAddedImpl(const double learningRate, const double momentum);
+    virtual ~PerceptronUnitMomemtumAddedImpl();
+    
+    //@Override
+    virtual void calculateUpdateDelta(double* deltaWeights);
+    
+private:
+    double m_momentum;
+    double* m_lastDeltaWeights;
+};
 
 #endif /* defined(__ANN_mv__PerceptronUnitMomemtumAddedImpl__) */

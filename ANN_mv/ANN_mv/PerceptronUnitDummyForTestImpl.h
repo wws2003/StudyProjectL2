@@ -10,5 +10,12 @@
 #define __ANN_mv__PerceptronUnitDummyForTestImpl__
 
 #include <iostream>
+#include "PerceptronUnitDummyImpl.h"
+
+class PerceptronUnitDummyForTestImpl : public PerceptronUnitDummyImpl {
+public:
+    //@Override
+    virtual double inline getErrorTerm() const {return 1;}
+};
 
 #endif /* defined(__ANN_mv__PerceptronUnitDummyForTestImpl__) */

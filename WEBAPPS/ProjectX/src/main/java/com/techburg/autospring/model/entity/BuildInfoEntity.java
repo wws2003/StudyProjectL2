@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name = "findNumberOfRecords",
 			query = "select count(bi.id) from BuildInfoEntity bi"),
+	@NamedQuery(name = "findNumberOfRecordsOfWorkspace",
+			query = "select count(bi.id) from BuildInfoEntity bi where bi.mWorkspaceEntity.id = :workspace"),
 })
 
 @Table(name = "build_info")
@@ -23,27 +25,27 @@ public class BuildInfoEntity {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@Column(name = "status")
 	private int status;
-	
+
 	@Column(name = "begin_build_time")
 	private Date beginBuildTime;
-	
+
 	@Column(name = "end_build_time")
 	private Date endBuildTime;
-	
+
 	@Column(name = "log_file_path")
 	private String logFilePath;
-	
+
 	@ManyToOne(targetEntity = WorkspaceEntity.class)
 	@JoinColumn(name = "workspace_id")
 	private WorkspaceEntity mWorkspaceEntity;
-	
+
 	public BuildInfoEntity() {
-		
+
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -83,11 +85,11 @@ public class BuildInfoEntity {
 	public void setLogFilePath(String logFilePath) {
 		this.logFilePath = logFilePath;
 	}
-	
+
 	public void setWorkspaceEntity(WorkspaceEntity workspaceEntity) {
 		mWorkspaceEntity = workspaceEntity;
 	}
-	
+
 	public WorkspaceEntity getWorkspaceEntity() {
 		return mWorkspaceEntity;
 	}

@@ -29,4 +29,18 @@ public class BuildDataServiceMockImpl implements IBuildDataService {
 		buildInfo.setLogFilePath("LogFilePath");
 		return buildInfo;
 	}
+
+	@Override
+	public void getBuildingBuildInfoListOfWorkspace(
+			List<BuildInfo> buildInfoList, long workspaceId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getWaitingBuildInfoListOfWorkspace(
+			List<BuildInfo> buildInfoList, long workspaceId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

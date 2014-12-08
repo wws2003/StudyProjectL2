@@ -1,5 +1,6 @@
 package com.techburg.autospring.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,29 @@ public class BuildDataServiceImpl implements IBuildDataService {
 	@Override
 	public void getWaitingBuildInfoList(List<BuildInfo> buildInfoList) {
 		mBuildTaskProcessor.getWaitingBuildInfoList(buildInfoList);
+	}
+
+	@Override
+	public void getBuildingBuildInfoListOfWorkspace(List<BuildInfo> buildInfoList, long workspaceId) {
+		List<BuildInfo> tmpBuildInfoList = new ArrayList<BuildInfo>();
+		mBuildTaskProcessor.getBuildingBuildInfoList(tmpBuildInfoList);
+		buildInfoList.clear();
+		for(BuildInfo buildInfo : tmpBuildInfoList) {
+			if(buildInfo.getWorkspace() != null && buildInfo.getWorkspace().getId() == workspaceId) {
+				buildInfoList.add(buildInfo);
+			}
+		}
+	}
+
+	@Override
+	public void getWaitingBuildInfoListOfWorkspace(List<BuildInfo> buildInfoList, long workspaceId) {
+		List<BuildInfo> tmpBuildInfoList = new ArrayList<BuildInfo>();
+		mBuildTaskProcessor.getWaitingBuildInfoList(tmpBuildInfoList);
+		buildInfoList.clear();
+		for(BuildInfo buildInfo : tmpBuildInfoList) {
+			if(buildInfo.getWorkspace() != null && buildInfo.getWorkspace().getId() == workspaceId) {
+				buildInfoList.add(buildInfo);
+			}
+		}
 	}
 }
