@@ -11,6 +11,10 @@
 
 #include <iostream>
 
+#ifdef __linux
+    #define _NOEXCEPT _GLIBCXX_USE_NOEXCEPT
+#endif
+
 class LockException : public std::exception {
 public:
     enum LOCK_EXCEPTION_TYPE {
