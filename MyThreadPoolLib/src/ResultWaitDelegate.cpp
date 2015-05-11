@@ -8,7 +8,7 @@
 
 #include "ResultWaitDelegate.h"
 
-ResultWaitDelegate::ResultWaitDelegate(IMutexPtr jobMutexPtr, ICondVarPtr jobCondPtr) :  m_jobMutexPtr(jobMutexPtr), m_jobCondPtr(jobCondPtr) {
+ResultWaitDelegate::ResultWaitDelegate(MutexPtr jobMutexPtr, CondVarPtr jobCondPtr) :  m_jobMutexPtr(jobMutexPtr), m_jobCondPtr(jobCondPtr) {
     
 }
 

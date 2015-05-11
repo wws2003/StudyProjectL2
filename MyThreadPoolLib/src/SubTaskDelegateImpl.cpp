@@ -21,7 +21,7 @@ SubTaskDelegateImpl::~SubTaskDelegateImpl() {
 
 //@Override
 unsigned int SubTaskDelegateImpl::executeSubTasks(const AbstractRecursiveTaskPtrs& subRecursiveTaskPtrs) {
-    ITaskPtrs subTaskPtrs;
+    TaskPtrs subTaskPtrs;
     subTaskPtrs.insert(subTaskPtrs.begin(), subRecursiveTaskPtrs.begin(), subRecursiveTaskPtrs.end());
     
     //Add as much task to thread pool as possible, the remaining tasks will be executed in the current thread

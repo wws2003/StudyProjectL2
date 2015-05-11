@@ -17,7 +17,7 @@ PCondVar::~PCondVar() {
     pthread_cond_destroy(&m_condVar);
 }
 
-void PCondVar::wait(IMutexPtr mutexPtr) {
+void PCondVar::wait(MutexPtr mutexPtr) {
     //temporally casting, consider other solution for this kind of problem
     PMutex* pMutexPtr = dynamic_cast<PMutex*>(mutexPtr);
     pthread_cond_wait(&m_condVar, pMutexPtr->getMutexPtr());

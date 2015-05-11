@@ -8,7 +8,7 @@
 
 #include "ResultSignalDelegate.h"
 
-ResultSignalDelegate::ResultSignalDelegate(IMutexPtr jobMutexPtr, ICondVarPtr condMutexPtr) :m_jobMutexPtr(jobMutexPtr), m_condMutexPtr(condMutexPtr)  {
+ResultSignalDelegate::ResultSignalDelegate(MutexPtr jobMutexPtr, CondVarPtr condMutexPtr) :m_jobMutexPtr(jobMutexPtr), m_condMutexPtr(condMutexPtr)  {
     
 }
 

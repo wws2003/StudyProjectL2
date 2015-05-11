@@ -13,7 +13,7 @@
 #include <assert.h>
 #include <cstdio>
 
-AbstractThreadPool::AbstractThreadPool(IMutexPtr mutexPtr, ICondVarPtr condVarPtr, int numberOfThreads) : m_taskMutexPtr(mutexPtr), m_condVarPtr(condVarPtr), m_numberOfThreads(numberOfThreads), m_isStopped(true), m_numberOfIncompletedTask(0) {
+AbstractThreadPool::AbstractThreadPool(MutexPtr mutexPtr, CondVarPtr condVarPtr, int numberOfThreads) : m_taskMutexPtr(mutexPtr), m_condVarPtr(condVarPtr), m_numberOfThreads(numberOfThreads), m_isStopped(true), m_numberOfIncompletedTask(0) {
     
 }
 
@@ -22,7 +22,7 @@ AbstractThreadPool::~AbstractThreadPool() {
     delete m_taskMutexPtr;
 }
 
-void AbstractThreadPool::addTask(ITaskPtr taskPtr) {
+void AbstractThreadPool::addTask(TaskPtr taskPtr) {
     m_taskMutexPtr->lock();
     
     m_taskPtrQueue.push_back(taskPtr);
@@ -37,7 +37,7 @@ void AbstractThreadPool::addTask(ITaskPtr taskPtr) {
     m_taskMutexPtr->unlock();
 }
 
-unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
+unsigned int AbstractThreadPool::addTaskBatch(const TaskPtrs& taskPtrs) {
     m_taskMutexPtr->lock();
     
     unsigned int numberOfTaskAdded = 0;
@@ -46,9 +46,9 @@ unsigned int AbstractThreadPool::addTaskBatch(const ITaskPtrs& taskPtrs) {
     //To avoid deadlock, only conduct this operation if the task queue is empty
     
     if (m_taskPtrQueue.empty()) {
-        for (ITaskPtrs::const_iterator tIter = taskPtrs.begin(); tIter != taskPtrs.end() && numberOfTaskAdded < MAX_TASK_CAN_ADD; tIter++) {
+        for (TaskPtrs::const_iterator tIter = taskPtrs.begin(); tIter != taskPtrs.end() && numberOfTaskAdded < MAX_TASK_CAN_ADD; tIter++) {
             //printf("Added a new task\n");
-            ITaskPtr taskPtr = *tIter;
+            TaskPtr taskPtr = *tIter;
             m_taskPtrQueue.push_back(taskPtr);
             numberOfTaskAdded++;
         }
@@ -65,7 +65,7 @@ void AbstractThreadPool::waitAllTaskComplete() {
     }
 }
 
-ThreadPoolErrorCode AbstractThreadPool::destroy() {
+TaskExecutorErrorCode AbstractThreadPool::destroy() {
     m_taskMutexPtr->lock();
     m_isStopped = true;
     m_condVarPtr->broadcast();
@@ -87,7 +87,7 @@ void AbstractThreadPool::oneThreadJob() {
             //After return from wait, the mutex is assumed to be locked again
         };
         if (!m_isStopped) {
-            ITaskPtr currentTask = m_taskPtrQueue.front();
+            TaskPtr currentTask = m_taskPtrQueue.front();
             m_taskPtrQueue.pop_front();
             
             //printf("To process a task in thread id = %ld\n", currentThreadId());

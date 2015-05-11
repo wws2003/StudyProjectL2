@@ -11,10 +11,16 @@
 #include "PThreadPool.h"
 #include "PMutex.h"
 #include "PCondVar.h"
+#include "IPThreadConfigurator.h"
+#include "RoundRobinPThreadConfigurator.h"
 
 AbstractThreadPoolPtr ThreadPoolFactory::getThreadPoolPtr(unsigned int numberOfThread) {
-    IMutexPtr mutexPtr = new PMutex();
-    ICondVarPtr condVarPtr = new PCondVar();
-    AbstractThreadPoolPtr threadPoolPtr = new PThreadPool(mutexPtr, condVarPtr, numberOfThread);
+    MutexPtr mutexPtr = new PMutex();
+    CondVarPtr condVarPtr = new PCondVar();
+
+    //TODO Instantiage pThreadConfigurator
+    PThreadConfiguratorPtr pThreadConfigurator = new RoundRobinPThreadConfigurator();
+
+    AbstractThreadPoolPtr threadPoolPtr = new PThreadPool(mutexPtr, condVarPtr, numberOfThread, pThreadConfigurator);
     return threadPoolPtr;
 }

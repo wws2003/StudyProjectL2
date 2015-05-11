@@ -14,8 +14,8 @@
 
 IResultDelegatePtrPair ResultDelegatePairFactoryImpl::getResultDelegatePtrPair() {
     IResultDelegatePtrPair pair;
-    IMutexPtr mutexPtr = new PMutex();
-    ICondVarPtr condVarPtr = new PCondVar();
+    MutexPtr mutexPtr = new PMutex();
+    CondVarPtr condVarPtr = new PCondVar();
     pair.first = new ResultWaitDelegate(mutexPtr, condVarPtr);
     pair.second = new ResultSignalDelegate(mutexPtr, condVarPtr);
     return pair;
